@@ -87,7 +87,17 @@ export interface CommunityItem {
   href?: string
 }
 
+export interface SkillItem {
+  name: string
+  /** svg/png path under public/ */
+  icon?: string
+  /** 1–3 character lettermark when there is no logo */
+  mark?: string
+  /** lettermark colour */
+  colour?: string
+}
+
 export interface SkillGroup {
   label: string
-  items: string[]
+  items: SkillItem[]
 }

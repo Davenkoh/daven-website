@@ -1,21 +1,37 @@
 import { cn } from '@/lib/cn'
 import { useSiteStore } from '@/store/useSiteStore'
+import { useAudioStore } from '@/store/useAudioStore'
 
-/** "Interactive" ON/OFF switch: on = the room, off = classic pages. Lives in the nav pill. */
-export function InteractiveToggle({ className }: { className?: string }) {
+interface InteractiveToggleProps {
+  className?: string
+  /** start the music when switching to the room and pause it when leaving (off on the welcome gate) */
+  controlsAudio?: boolean
+}
+
+/** "Interactive" ON/OFF switch: on = the room, off = classic pages. */
+export function InteractiveToggle({ className, controlsAudio = true }: InteractiveToggleProps) {
   const mode = useSiteStore((s) => s.mode)
   const setMode = useSiteStore((s) => s.setMode)
+  const play = useAudioStore((s) => s.play)
+  const pause = useAudioStore((s) => s.pause)
   const on = mode === 'interactive'
+  const toggle = () => {
+    const next = on ? 'classic' : 'interactive'
+    setMode(next, true)
+    if (!controlsAudio) return
+    if (next === 'interactive') void play()
+    else pause()
+  }
   return (
     <span className={cn('flex items-center gap-2 pl-1 pr-1', className)}>
-      <span className="hidden font-hud text-[11px] uppercase tracking-[0.14em] text-fg/70 sm:inline">Interactive</span>
+      <span className="font-hud text-[11px] uppercase tracking-[0.14em] text-fg/70">Interactive</span>
       <button
         type="button"
         role="switch"
         aria-checked={on}
         aria-label="Interactive mode"
         title={on ? 'Switch to the classic pages' : 'Switch to the interactive room'}
-        onClick={() => setMode(on ? 'classic' : 'interactive', true)}
+        onClick={toggle}
         className={cn('switch', on && 'is-on')}
       >
         <span className="switch-text" aria-hidden="true">

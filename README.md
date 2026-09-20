@@ -25,11 +25,14 @@ npm run lint
 | `public/photos/avatar.jpg` | small round avatar | used in the nav pill |
 | `public/videos/intro.mp4` or `videoIntro.youtubeId` in `src/config/site.config.ts` | video intro on the About page | 16:9; `public/photos/about-hero.jpg` is the poster |
 | `public/photos/hobby-*.jpg` | hobby photos | wired in `src/data/about.ts` |
+| `public/audio/records/rec-1.mp3` … | records for the About page turntable | titles/colours in `src/about/player/records.ts`; these pause the room's lofi while they play |
 | `public/Daven-Koh-Resume.pdf` | resume | linked from the footer |
 
 Regenerate placeholders with `python3 scripts/placeholders.py --force`.
 
 **Photos on book pages / classic cards:** add `photos: ['/photos/entries/acai-den-1.jpg', '/photos/entries/acai-den-2.jpg']` to an entry in `src/data/*.ts`. The first photo is the hero, the next three become thumbnails. Logos go in `public/logos/` and are referenced with `logo: '/logos/holicay.png'`.
+
+The first visit to the room shows a one-click spotlight tour of everything clickable; it is remembered in `localStorage` under `daven.tourSeen`.
 
 ## Calibrating the scene to a new room image
 

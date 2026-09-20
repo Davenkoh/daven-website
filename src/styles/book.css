@@ -89,7 +89,7 @@
 /* ---------- spread ---------- */
 .book {
   position: relative;
-  width: min(94vw, 1400px, calc((100vh - 190px) * 1.5));
+  width: min(94vw, 1400px, calc((100vh - 150px) * 1.5));
   aspect-ratio: 3 / 2;
   touch-action: pan-y;
 }
@@ -209,9 +209,22 @@
 .page-inside {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 1em;
-  padding-bottom: 9cqw;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+  text-align: center;
+}
+.inside-count {
+  font-family: var(--font-pixel);
+  font-size: 3.2em;
+  line-height: 1;
+  color: var(--color-ink);
+}
+.inside-hint {
+  max-width: 24ch;
+  font-size: 1.05em;
+  font-weight: 300;
+  color: var(--color-ink-soft);
 }
 .page-blank {
   cursor: pointer;
@@ -452,9 +465,13 @@
 }
 .entry-bullets {
   margin: 0;
-  padding-left: 1.2em;
+  padding-left: 1.3em;
+  list-style: disc;
   font-weight: 300;
   color: var(--color-ink-soft);
+}
+.entry-bullets li::marker {
+  color: var(--color-ink-muted);
 }
 .entry-bullets li + li {
   margin-top: 0.5em;

@@ -34,11 +34,64 @@ export const community: CommunityItem[] = [
 ]
 
 export const skills: SkillGroup[] = [
-  { label: 'Software & AI', items: ['Python', 'Java', 'R', 'SQL', 'HTML/CSS', 'Django', 'Git', 'Docker', 'AI agent design', 'MCP', 'REST APIs', 'Web scraping', 'Basic computer vision', 'Deployment'] },
-  { label: 'Operations', items: ['SOPs & staff training', 'Budgeting & cost control', 'QuickBooks', 'Payroll', 'Inventory systems'] },
-  { label: 'Growth & Marketing', items: ['Content & short-form video strategy', 'Copywriting', 'Lead generation', 'GoHighLevel', 'HubSpot', 'TikTok Ads Manager', 'Meta Business Suite', 'Event planning'] },
-  { label: 'Design & Media', items: ['Canva', 'CapCut', 'Basic Photoshop', 'Basic Illustrator'] },
-  { label: 'Languages', items: ['English', 'Mandarin (fluent spoken)'] },
+  {
+    label: 'Software & AI',
+    items: [
+      { name: 'Python', icon: '/logos/tools/python.svg' },
+      { name: 'Java', icon: '/logos/tools/openjdk.svg' },
+      { name: 'R', icon: '/logos/tools/r.svg' },
+      { name: 'SQL', icon: '/logos/tools/postgresql.svg' },
+      { name: 'HTML/CSS', icon: '/logos/tools/html5.svg' },
+      { name: 'Django', icon: '/logos/tools/django.svg' },
+      { name: 'Git', icon: '/logos/tools/git.svg' },
+      { name: 'Docker', icon: '/logos/tools/docker.svg' },
+      { name: 'AI agent design', mark: 'AI', colour: '#6dbf8a' },
+      { name: 'MCP', icon: '/logos/tools/modelcontextprotocol.svg' },
+      { name: 'REST APIs', mark: 'API', colour: '#5fa8d8' },
+      { name: 'Web scraping', mark: '{ }', colour: '#e0a63c' },
+      { name: 'Computer vision', icon: '/logos/tools/opencv.svg' },
+      { name: 'Deployment', mark: '▲', colour: '#f2f2f2' },
+    ],
+  },
+  {
+    label: 'Operations',
+    items: [
+      { name: 'SOPs & staff training', mark: 'SOP', colour: '#e5705a' },
+      { name: 'Budgeting & cost control', mark: '$', colour: '#6dbf8a' },
+      { name: 'QuickBooks', icon: '/logos/tools/quickbooks.svg' },
+      { name: 'Payroll', mark: 'PAY', colour: '#e0a63c' },
+      { name: 'Inventory systems', mark: 'INV', colour: '#5fa8d8' },
+    ],
+  },
+  {
+    label: 'Growth & Marketing',
+    items: [
+      { name: 'Short-form video strategy', mark: '▶', colour: '#e5705a' },
+      { name: 'Copywriting', mark: '✎', colour: '#e0a63c' },
+      { name: 'Lead generation', mark: '⇢', colour: '#6dbf8a' },
+      { name: 'GoHighLevel', mark: 'GHL', colour: '#5fa8d8' },
+      { name: 'HubSpot', icon: '/logos/tools/hubspot.svg' },
+      { name: 'TikTok Ads Manager', icon: '/logos/tools/tiktok.svg' },
+      { name: 'Meta Business Suite', icon: '/logos/tools/meta.svg' },
+      { name: 'Event planning', mark: 'EV', colour: '#e5705a' },
+    ],
+  },
+  {
+    label: 'Design & Media',
+    items: [
+      { name: 'Canva', mark: 'C', colour: '#00C4CC' },
+      { name: 'CapCut', mark: 'CC', colour: '#f2f2f2' },
+      { name: 'Photoshop', mark: 'Ps', colour: '#31A8FF' },
+      { name: 'Illustrator', mark: 'Ai', colour: '#FF9A00' },
+    ],
+  },
+  {
+    label: 'Languages',
+    items: [
+      { name: 'English', mark: 'EN', colour: '#f2f2f2' },
+      { name: 'Mandarin (fluent spoken)', mark: '中', colour: '#e5705a' },
+    ],
+  },
 ]
 
 export const aboutIntro =

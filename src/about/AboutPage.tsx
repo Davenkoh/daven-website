@@ -1,20 +1,20 @@
 import { SITE } from '@/config/site.config'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { VideoIntro } from './VideoIntro'
-import { ContactSection } from './ContactSection'
+import { ConnectLinks } from './ConnectLinks'
 import { SkillsStrip } from './SkillsStrip'
 import { Bento } from './Bento'
 
-/** About micropage: title, video, contact, toolkit, then "Beyond the Desk". */
+/** About micropage: title with links, video, toolkit, then "Beyond the Desk". */
 export default function AboutPage() {
   useDocumentTitle(`About · ${SITE.name}`, SITE.description)
   return (
     <>
-      <header>
+      <header className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <h1 className="title-arrow text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">About Me</h1>
+        <ConnectLinks />
       </header>
       <VideoIntro />
-      <ContactSection />
       <SkillsStrip />
       <section className="mt-24">
         <h2 className="text-5xl font-medium leading-[1.05] tracking-tight md:text-6xl">

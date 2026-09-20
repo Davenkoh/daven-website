@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import type { Topic } from '@/data/types'
-import { entriesByTopic, filterEntries } from '@/data'
+import { entriesByTopic } from '@/data'
 import { SITE, TOPIC_LABEL } from '@/config/site.config'
-import { useSiteStore } from '@/store/useSiteStore'
 import { useAudioStore } from '@/store/useAudioStore'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useFocusTrap } from '@/hooks/useFocusTrap'
@@ -11,16 +10,14 @@ import { useWheelFlip } from '@/hooks/useWheelFlip'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { Icon } from '@/components/Icon'
 import { buildBook, currentForPage } from './buildPages'
-import { FilterBar } from './FilterBar'
 import { FlipBook } from './FlipBook'
 import { PageStack } from './PageStack'
 
 /** Full-screen dialog holding one topic's flip-book. */
 export default function BookOverlay({ topic }: { topic: Topic }) {
   const navigate = useNavigate()
-  const filters = useSiteStore((s) => s.filters)
   const playForTopic = useAudioStore((s) => s.playForTopic)
-  const entries = useMemo(() => filterEntries(entriesByTopic[topic], filters), [topic, filters])
+  const entries = entriesByTopic[topic]
   const book = useMemo(() => buildBook(topic, entries), [topic, entries])
   const single = useMediaQuery('(max-width: 767px), (orientation: portrait)')
   useDocumentTitle(`${TOPIC_LABEL[topic]} · ${SITE.name}`)
@@ -29,18 +26,8 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
   const [current, setCurrent] = useState(0)
   const [page, setPage] = useState(0)
   const stageRef = useRef<HTMLDivElement>(null)
-  const filtersKey = filters.join(',')
-  const lastFilters = useRef(filtersKey)
 
-  // filters changed → back to the contents page (ref comparison survives StrictMode's double effects)
-  useEffect(() => {
-    if (lastFilters.current === filtersKey) return
-    lastFilters.current = filtersKey
-    setCurrent(1)
-    setPage(book.tocPageIndex)
-  }, [filtersKey, book.tocPageIndex])
-
-  // keep both cursors in range when filters shrink the book
+  // keep both cursors in range
   const safeCurrent = Math.min(current, book.leaves.length)
   const safePage = Math.min(page, book.pages.length - 1)
 
@@ -123,7 +110,6 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
           <button type="button" className="book-cta" onClick={() => goToPage(book.tocPageIndex)}>
             Back to Content Page
           </button>
-          {showTags && <FilterBar tone="dark" />}
         </div>
         {single ? (
           <PageStack book={book} page={safePage} onPageChange={setPage} ctx={ctx} />

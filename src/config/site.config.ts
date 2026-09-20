@@ -46,6 +46,15 @@ export const TOPIC_BLURB: Record<Topic, string> = {
   events: 'Rooms I have filled with founders, students and friends.',
 }
 
+/** Section colours on the classic home page, matching the room: lamp amber, window blue, rug red, plant green. */
+export const TOPIC_COLOURS: Record<Topic | 'about' | 'room', string> = {
+  career: '#e0a63c',
+  projects: '#5fa8d8',
+  events: '#e5705a',
+  about: '#6dbf8a',
+  room: '#9a9a9a',
+}
+
 /** Which vinyl track plays when a topic opens (ids from data/tracks.ts). */
 export const TOPIC_TRACK: Record<Topic, string> = {
   career: 'track-1',

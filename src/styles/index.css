@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./scene.css";
 @import "./book.css";
+@import "./player.css";
 
 /* Aspekta (self-hosted, OFL 1.1) — https://github.com/ivodolenc/aspekta */
 @font-face {

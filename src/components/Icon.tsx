@@ -14,6 +14,8 @@ type IconName =
   | 'eye'
   | 'copy'
   | 'external'
+  | 'mail'
+  | 'file'
 
 const paths: Record<IconName, React.ReactNode> = {
   speaker: (
@@ -92,6 +94,19 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <path d="M7 17 17 7" />
       <path d="M8 7h9v9" />
+    </>
+  ),
+  mail: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </>
+  ),
+  file: (
+    <>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5" />
+      <path d="M9 13h6M9 17h6" />
     </>
   ),
 }

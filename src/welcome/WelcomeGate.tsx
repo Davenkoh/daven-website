@@ -3,6 +3,7 @@ import { SITE } from '@/config/site.config'
 import { Button } from '@/components/Button'
 import { Icon } from '@/components/Icon'
 import { useClock } from '@/hooks/useClock'
+import { InteractiveToggle } from '@/scene/InteractiveToggle'
 
 interface WelcomeGateProps {
   /** whether the interactive room follows (shows the sound hint) */
@@ -44,14 +45,23 @@ export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
           {SITE.taglines[1]}
         </motion.p>
         <motion.div {...stagger(3)} className="mt-12 flex flex-col items-center gap-5">
+          <div className="glass flex items-center gap-3 rounded-full py-2 pl-5 pr-3">
+            <InteractiveToggle controlsAudio={false} />
+          </div>
           <Button onClick={onEnter} className="px-8 py-3.5 text-base" autoFocus>
             Start <Icon name="arrow-right" size={16} />
           </Button>
-          {interactive && (
-            <p className="inline-flex items-center gap-2 font-mono text-xs text-muted">
-              <Icon name="speaker" size={14} /> Sound on for the full experience
-            </p>
-          )}
+          <p className="inline-flex items-center gap-2 font-mono text-xs text-muted">
+            {interactive ? (
+              <>
+                <Icon name="speaker" size={14} /> Sound on for the full experience
+              </>
+            ) : (
+              <>
+                <Icon name="speaker-off" size={14} /> Classic pages, no music
+              </>
+            )}
+          </p>
         </motion.div>
       </div>
       <p className="absolute bottom-8 font-hud text-[11px] uppercase tracking-[0.2em] text-muted/70">

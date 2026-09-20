@@ -473,15 +473,91 @@ button.vinyl:focus-visible {
 /* ---------- laptop clock ---------- */
 .laptop-clock {
   position: absolute;
-  transform: translate(-50%, -50%);
+  /* the laptop screen leans about 5°, so the digits follow it */
+  transform: translate(-50%, -50%) skewX(-5deg) rotate(-1deg);
   pointer-events: none;
   white-space: nowrap;
   font-family: -apple-system, 'Helvetica Neue', 'Aspekta Variable', system-ui, sans-serif;
   font-weight: 300;
-  letter-spacing: 0.03em;
-  color: #fff;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.04em;
+  color: #eef3ff;
+  opacity: 0.9;
+  mix-blend-mode: screen;
+  filter: blur(0.3px);
+  text-shadow:
+    0 0 5px rgba(180, 210, 255, 0.45),
+    0 0 1px rgba(255, 255, 255, 0.5);
   font-variant-numeric: tabular-nums;
+}
+
+/* ---------- first-visit tour ---------- */
+[data-tour] .hotspot-caption {
+  opacity: 0 !important;
+}
+.tour {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  cursor: pointer;
+}
+.tour-mask {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.tour-ring {
+  fill: none;
+  stroke: rgba(255, 224, 168, 0.95);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 14px rgba(255, 210, 140, 0.7));
+  animation: tour-pulse 2.4s ease-in-out infinite;
+}
+@keyframes tour-pulse {
+  0%,
+  100% {
+    stroke-opacity: 0.95;
+  }
+  50% {
+    stroke-opacity: 0.5;
+  }
+}
+.tour-label {
+  position: absolute;
+  transform: translateX(-50%);
+  padding: 7px 12px;
+  border-radius: 6px;
+  background: rgba(255, 224, 168, 0.96);
+  color: #1b1408;
+  font-family: var(--font-hud);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.tour-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 96px;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
+}
+.tour-caption-title {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.tour-caption-sub {
+  margin-top: 8px;
+  font-family: var(--font-hud);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ---------- interactive on/off switch ---------- */

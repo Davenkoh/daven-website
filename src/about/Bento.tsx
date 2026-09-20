@@ -4,7 +4,7 @@ import { Icon } from '@/components/Icon'
 import type { ComponentProps } from 'react'
 import { HobbiesCard } from './cards/HobbiesCard'
 import { LanguagesCard } from './cards/LanguagesCard'
-import { ListeningCard } from './cards/ListeningCard'
+import { PlayerCard } from './cards/PlayerCard'
 import { QuoteCard } from './cards/QuoteCard'
 import { CommunityCard } from './cards/CommunityCard'
 
@@ -35,7 +35,7 @@ export function Bento() {
     <div className="mt-10 grid gap-4 md:grid-cols-3">
       <HobbiesCard />
       <LanguagesCard />
-      <ListeningCard />
+      <PlayerCard />
       <QuoteCard />
       <CommunityCard />
     </div>
