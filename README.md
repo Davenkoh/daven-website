@@ -20,21 +20,23 @@ npm run lint
 | File | What | Notes |
 |---|---|---|
 | `public/room.webp` + `public/room.jpg` | the room image (done: 1672×941, original kept in `assets-src/`) | To swap it, export WebP + JPEG, set `ROOM.width/height` in `src/config/scene.config.ts` and calibrate (below). |
-| `public/portraits/{r}-{c}.png` | 9 cut-outs of you on the chair | `r` 0=up 1=centre 2=down, `c` 0=left 1=centre 2=right (viewer's left/right). Same canvas size for all nine, transparent background. |
+| `public/portraits/daven.png` | cut-out of you on the chair, facing the camera | transparent background, 1600×2000 (or update `PORTRAIT.aspect`) |
 | `public/audio/track-1.mp3` … `track-3.mp3` | lofi tracks (done: three 10-minute sides, 128 kbps) | Titles/artists live in `src/data/tracks.ts`. Keep the ids — topics map to tracks in `src/config/site.config.ts`. To re-cut: `ffmpeg -ss 0 -t 600 -i source.m4a -codec:a libmp3lame -b:a 128k public/audio/track-1.mp3`. |
 | `public/photos/avatar.jpg` | small round avatar | used in the nav pill |
-| `public/photos/about-hero.jpg` | About page header photo | 16:9 |
+| `public/videos/intro.mp4` or `videoIntro.youtubeId` in `src/config/site.config.ts` | video intro on the About page | 16:9; `public/photos/about-hero.jpg` is the poster |
 | `public/photos/hobby-*.jpg` | hobby photos | wired in `src/data/about.ts` |
 | `public/Daven-Koh-Resume.pdf` | resume | linked from the footer |
 
 Regenerate placeholders with `python3 scripts/placeholders.py --force`.
+
+**Photos on book pages / classic cards:** add `photos: ['/photos/entries/acai-den-1.jpg', '/photos/entries/acai-den-2.jpg']` to an entry in `src/data/*.ts`. The first photo is the hero, the next three become thumbnails. Logos go in `public/logos/` and are referenced with `logo: '/logos/holicay.png'`.
 
 ## Calibrating the scene to a new room image
 
 1. Replace `public/room.webp` / `public/room.jpg`, set `ROOM.width` / `ROOM.height` in `src/config/scene.config.ts`.
 2. `npm run dev`, enter the room, press **`c`** to open the calibration overlay.
 3. Move the mouse to read world-pixel coordinates. **Click** copies `{ x, y }`; **shift-click** several corners to build a polygon (copied as `[[x, y], …]` for `WINDOW.polygons`); **Esc** clears it.
-4. Paste the numbers into `HOTSPOTS`, `WINDOW`, `LAMP`, `VINYL`, `PORTRAIT` and `SUMMARY`. Keep everything interactive inside `SAFE`.
+4. Paste the numbers into `HOTSPOTS`, `WINDOW` (one polygon per glass pane), `LAMP`, `VINYL`, `PORTRAIT`, `LAPTOP` (clock position) and `SUMMARY`. Keep everything interactive inside `SAFE`.
 
 ## Content
 

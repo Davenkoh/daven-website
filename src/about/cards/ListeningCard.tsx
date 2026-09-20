@@ -39,7 +39,7 @@ export function ListeningCard() {
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">{playing ? 'Now playing' : 'Paused'}</p>
             <p className="mt-1 text-xl font-medium">{trackLabel(track)}</p>
             <p className="text-sm text-muted">{track.artist}</p>
-            {error && <p className="mt-2 text-xs text-accent">No music yet — drop MP3s into public/audio.</p>}
+            {error && <p className="mt-2 text-xs text-accent">No music yet: drop MP3s into public/audio.</p>}
           </div>
           <div className="flex items-center gap-3">
             <button type="button" className="hud-btn glass" aria-label="Next track" onClick={() => void next()}>

@@ -10,6 +10,7 @@ import { WindowLayer } from './WindowLayer'
 import { LampGlow } from './LampGlow'
 import { Vinyl } from './Vinyl'
 import { VinylControls } from './VinylControls'
+import { LaptopClock } from './LaptopClock'
 import { HotspotLayer } from './HotspotLayer'
 
 /** The room: scaled image layers inside the World, plus screen-space overlays (card, controls, hotspots). */
@@ -27,6 +28,7 @@ export function Scene() {
         <Portrait />
       </World>
       <div className="scene-overlay">
+        <LaptopClock />
         <SummaryCard />
         <VinylControls />
         <HotspotLayer />

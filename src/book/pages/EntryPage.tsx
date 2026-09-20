@@ -1,18 +1,21 @@
 import type { Entry } from '@/data/types'
 import { EntryIcon } from '@/classic/EntryCard'
+import { entryPhotos } from '@/data'
 import { TagChips } from '../TagChips'
 
 interface EntryPageProps {
   entry: Entry
   number: number
   side: 'left' | 'right'
+  showTags: boolean
 }
 
 const stop = (e: React.MouseEvent) => e.stopPropagation()
 
-export function EntryPage({ entry, number, side }: EntryPageProps) {
+export function EntryPage({ entry, number, side, showTags }: EntryPageProps) {
+  const photos = entryPhotos(entry)
   return (
-    <article className="page-paper page-entry">
+    <article className="page-paper page-entry page-scroll">
       <header className="entry-head">
         <EntryIcon entry={entry} className="entry-icon" />
         <div className="entry-titles">
@@ -20,13 +23,21 @@ export function EntryPage({ entry, number, side }: EntryPageProps) {
           {entry.subtitle && <p className="entry-sub">{entry.subtitle}</p>}
         </div>
       </header>
-      {entry.image ? (
-        <img src={entry.image} alt="" className="entry-hero" loading="lazy" />
-      ) : (
-        <div className="entry-strip">
-          {entry.period && <span>{entry.period}</span>}
-          {entry.location && <span>{entry.location}</span>}
-          {entry.status && <span className="entry-status">{entry.status}</span>}
+      <div className="entry-strip">
+        {entry.period && <span>{entry.period}</span>}
+        {entry.location && <span>{entry.location}</span>}
+        {entry.status && <span className="entry-status">{entry.status}</span>}
+      </div>
+      {photos.length > 0 && (
+        <div className="entry-photos">
+          <img src={photos[0]} alt="" className="entry-hero" loading="lazy" />
+          {photos.length > 1 && (
+            <div className="entry-thumbs">
+              {photos.slice(1, 4).map((src) => (
+                <img key={src} src={src} alt="" loading="lazy" />
+              ))}
+            </div>
+          )}
         </div>
       )}
       {entry.meta && (
@@ -64,9 +75,11 @@ export function EntryPage({ entry, number, side }: EntryPageProps) {
           ))}
         </p>
       )}
-      <footer className="entry-foot">
-        <TagChips tags={entry.tags} tone="paper" />
-      </footer>
+      {showTags && (
+        <footer className="entry-foot">
+          <TagChips tags={entry.tags} tone="paper" />
+        </footer>
+      )}
       <span className={`page-num page-num-${side}`}>{number}</span>
     </article>
   )

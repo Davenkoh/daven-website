@@ -1,5 +1,5 @@
 import { useEffect, useState, type MouseEvent } from 'react'
-import { HOTSPOTS, LAMP, PORTRAIT, SAFE, VINYL, WINDOW } from '@/config/scene.config'
+import { HOTSPOTS, LAMP, LAPTOP, PORTRAIT, SAFE, VINYL, WINDOW } from '@/config/scene.config'
 import { useWorld } from '@/hooks/useWorldScale'
 
 /**
@@ -50,7 +50,7 @@ export function CalibrationOverlay() {
   }
 
   const portraitH = PORTRAIT.w * PORTRAIT.aspect
-  const face = toClient(PORTRAIT.x + PORTRAIT.w * PORTRAIT.face.x, PORTRAIT.y + portraitH * PORTRAIT.face.y)
+  const laptop = toClient(LAPTOP.x, LAPTOP.y)
 
   return (
     <div className="calib" onMouseMove={onMove} onClick={onClick}>
@@ -74,7 +74,7 @@ export function CalibrationOverlay() {
       >
         <span className="calib-label" style={{ background: 'rgba(255,120,200,.9)' }}>VINYL</span>
       </div>
-      <div style={{ position: 'absolute', left: face.x - 6, top: face.y - 6, width: 12, height: 12, borderRadius: '50%', background: 'rgba(120,160,255,.9)' }} />
+      <div style={{ position: 'absolute', left: laptop.x - 6, top: laptop.y - 6, width: 12, height: 12, borderRadius: '50%', background: 'rgba(255,255,255,.9)' }} title="LAPTOP clock" />
       <svg className="absolute inset-0 h-full w-full" aria-hidden="true">
         {WINDOW.polygons.map((pg, i) => (
           <polygon key={i} points={pg.map(([x, y]) => { const p = toClient(x, y); return `${p.x},${p.y}` }).join(' ')} fill="rgba(80,160,255,.12)" stroke="rgba(80,160,255,.9)" strokeDasharray="6 4" />

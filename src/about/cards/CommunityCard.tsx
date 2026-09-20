@@ -4,7 +4,7 @@ import { BentoItem } from '../Bento'
 
 export function CommunityCard() {
   return (
-    <BentoItem title="Community" glyph="⌂" className="md:col-span-2">
+    <BentoItem title="Community" glyph="⌂" className="md:col-span-3">
       <ul className="divide-y divide-line">
         {community.map((c) => (
           <li key={c.org} className="flex flex-wrap items-center justify-between gap-2 py-3">

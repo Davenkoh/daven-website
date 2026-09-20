@@ -47,7 +47,7 @@ export function VinylControls() {
       )}
       {(blocked || error) && (
         <p className="vinyl-status" role="status">
-          {error ? 'No music yet — drop MP3s into public/audio' : 'Sound is off — press play'}
+          {error ? 'No music yet: drop MP3s into public/audio' : 'Sound is off: press play'}
         </p>
       )}
     </div>

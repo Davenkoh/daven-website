@@ -47,6 +47,7 @@ export const events: Entry[] = [
     period: 'Aug 2025 – Jan 2026',
     tags: ['Operations', 'GTM'],
     icon: '🤝',
+    logo: '/logos/nus.png',
     meta: [
       { label: 'Role', value: 'Co-organiser & emcee · External Liaisons' },
       { label: 'Turnout', value: '80 founders from NUS, NTU, SMU, SUTD' },
@@ -65,6 +66,7 @@ export const events: Entry[] = [
     period: '2026',
     tags: ['Operations', 'GTM'],
     icon: '🌏',
+    logo: '/logos/nus.png',
     meta: [
       { label: 'Role', value: 'Co-organiser · Finance Director' },
       { label: 'Speakers', value: '11, incl. Jeene from the NOC office + 9 NOC alumni' },
@@ -83,6 +85,7 @@ export const events: Entry[] = [
     period: 'Upcoming',
     tags: ['Operations', 'GTM'],
     icon: '🎪',
+    logo: '/logos/nus.png',
     status: 'In planning',
     meta: [
       { label: 'Role', value: 'Finance Director · organising team' },
@@ -102,6 +105,7 @@ export const events: Entry[] = [
     period: 'May 2026 – present',
     tags: ['Operations'],
     icon: '🧶',
+    logo: '/logos/nus.png',
     status: 'Ongoing',
     meta: [
       { label: 'Role', value: 'Programmes IC' },

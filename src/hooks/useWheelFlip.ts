@@ -20,6 +20,13 @@ export function useWheelFlip(ref: RefObject<HTMLElement | null>, { next, prev, e
     let idle = 0
     let lock = 0
     const onWheel = (e: WheelEvent) => {
+      // a page with overflowing content scrolls first; only flip once it is at the end
+      const scroller = (e.target as HTMLElement | null)?.closest<HTMLElement>('.page-scroll')
+      if (scroller && scroller.scrollHeight > scroller.clientHeight + 1) {
+        const atTop = scroller.scrollTop <= 0
+        const atBottom = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 1
+        if ((e.deltaY > 0 && !atBottom) || (e.deltaY < 0 && !atTop)) return
+      }
       e.preventDefault()
       if (locked) return
       const raw = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX

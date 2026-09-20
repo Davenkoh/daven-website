@@ -1,6 +1,7 @@
 import type { Topic } from '@/data/types'
 import { SITE, TOPIC_BLURB, TOPIC_LABEL } from '@/config/site.config'
 import { COVER_THEME } from '../coverTheme'
+import type { PageContext } from './PageFace'
 
 
 function Motif({ topic, colour }: { topic: Topic; colour: string }) {
@@ -57,13 +58,25 @@ export function CoverPage({ topic }: { topic: Topic }) {
   )
 }
 
-export function BackCoverPage({ topic }: { topic: Topic }) {
+export function BackCoverPage({ topic, ctx }: { topic: Topic; ctx: PageContext }) {
   const t = COVER_THEME[topic]
   return (
     <div className="page-cover page-cover-back" style={{ background: t.bg, color: t.ink }}>
-      <p className="cover-foot" style={{ color: t.accent }}>
-        Thanks for reading · {SITE.name}
+      <p className="cover-thanks" style={{ color: t.accent }}>
+        Thanks for reading
       </p>
+      <p className="cover-sub">{SITE.name}</p>
+      <button
+        type="button"
+        className="cover-button"
+        style={{ background: t.accent }}
+        onClick={(e) => {
+          e.stopPropagation()
+          ctx.goToPage(0)
+        }}
+      >
+        Back to Front Page
+      </button>
     </div>
   )
 }

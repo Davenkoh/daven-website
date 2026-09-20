@@ -1,6 +1,14 @@
 export type Tag = 'GTM' | 'Operations' | 'Software' | 'AI'
 export const TAGS: readonly Tag[] = ['GTM', 'Operations', 'Software', 'AI']
 
+/** One room colour per category: lamp amber, rug red, window blue, plant green. `paper` is the darker ink for book pages. */
+export const TAG_COLOURS: Record<Tag, { dark: string; paper: string }> = {
+  GTM: { dark: '#e0a63c', paper: '#b57a14' },
+  Operations: { dark: '#e5705a', paper: '#b8452f' },
+  Software: { dark: '#5fa8d8', paper: '#2c72a8' },
+  AI: { dark: '#6dbf8a', paper: '#2f8a58' },
+}
+
 export type Topic = 'career' | 'projects' | 'events'
 export const TOPICS: readonly Topic[] = ['career', 'projects', 'events']
 
@@ -25,7 +33,10 @@ export interface Entry {
   location?: string
   period?: string
   tags: Tag[]
+  /** hero image (kept for backwards compatibility; prefer `photos`) */
   image?: string
+  /** photos shown on the book page and the classic card: the first is the hero, the rest are thumbnails */
+  photos?: string[]
   logo?: string
   /** Initials or emoji used when there is no logo image */
   icon?: string

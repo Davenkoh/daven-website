@@ -27,34 +27,28 @@ export const ROOM = { src: '/room.webp', fallback: '/room.jpg', width: 1672, hei
 export const SAFE = { x: 90, y: 20, w: 1500, h: 900 }
 
 /**
- * Window pane polygon(s) — rain is clipped to these. The right pane has a notch cut
- * around the lamp shade, which stands in front of the glass.
+ * Window glass polygons, one per pane, so the rain falls behind the mullions and frame.
+ * The bottom-right pane has a notch cut around the lamp shade, which stands in front of the glass.
  */
 export const WINDOW = {
   polygons: [
-    [
-      [1048, 0],
-      [1566, 0],
-      [1566, 288],
-      [1500, 288],
-      [1500, 422],
-      [1566, 422],
-      [1566, 478],
-      [1048, 478],
-    ],
+    [[1048, 0], [1282, 0], [1282, 205], [1048, 205]],
+    [[1300, 0], [1560, 0], [1560, 205], [1300, 205]],
+    [[1048, 222], [1282, 222], [1282, 478], [1048, 478]],
+    [[1300, 222], [1560, 222], [1560, 288], [1500, 288], [1500, 422], [1560, 422], [1560, 478], [1300, 478]],
   ] as [number, number][][],
 }
 
+/** Centre of the laptop screen where the live clock is drawn (font size in image px). */
+export const LAPTOP = { x: 1059, y: 527, fontSize: 15 }
+
 export const PORTRAIT = {
+  src: '/portraits/daven.png',
   x: 560,
   y: 332,
   w: 520,
-  /** height / width of the portrait PNGs */
+  /** height / width of the portrait PNG */
   aspect: 2000 / 1600,
-  /** where the face is inside the frame (0–1) — the head-tracking anchor */
-  face: { x: 0.5, y: 0.38 },
-  frames: '/portraits',
-  ext: 'png',
 }
 const portraitH = PORTRAIT.w * PORTRAIT.aspect
 

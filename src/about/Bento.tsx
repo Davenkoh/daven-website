@@ -7,7 +7,6 @@ import { LanguagesCard } from './cards/LanguagesCard'
 import { ListeningCard } from './cards/ListeningCard'
 import { QuoteCard } from './cards/QuoteCard'
 import { CommunityCard } from './cards/CommunityCard'
-import { ContactCard } from './cards/ContactCard'
 
 type IconName = ComponentProps<typeof Icon>['name']
 
@@ -22,7 +21,7 @@ interface BentoItemProps {
 export function BentoItem({ title, icon, glyph, className, children }: BentoItemProps) {
   return (
     <section className={cn('group flex flex-col rounded-card border border-line bg-card p-5 sm:p-6', className)}>
-      <h3 className="mb-5 flex items-center gap-2 text-sm text-muted">
+      <h3 className="mb-5 flex items-center gap-2 text-base text-fg/85">
         {icon ? <Icon name={icon} size={14} /> : <span aria-hidden="true">{glyph}</span>}
         {title}
       </h3>
@@ -39,7 +38,6 @@ export function Bento() {
       <ListeningCard />
       <QuoteCard />
       <CommunityCard />
-      <ContactCard />
     </div>
   )
 }

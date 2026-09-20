@@ -76,5 +76,5 @@ function TopicRoute() {
   const mode = useSiteStore((s) => s.mode)
   if (!topic || !(TOPICS as readonly string[]).includes(topic)) return <Navigate to="/" replace />
   const t = topic as Topic
-  return mode === 'classic' ? <TopicPage topic={t} /> : <BookOverlay topic={t} />
+  return mode === 'classic' ? <TopicPage topic={t} /> : <BookOverlay key={t} topic={t} />
 }

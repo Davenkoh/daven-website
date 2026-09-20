@@ -29,6 +29,7 @@ export const projects: Entry[] = [
     period: 'May – Jul 2026',
     tags: ['AI', 'GTM'],
     icon: '🎬',
+    logo: '/logos/holicay.png',
     meta: [
       { label: 'Result', value: '1M TikTok views from 4 posts' },
       { label: 'Cost', value: '< US$1 per post vs ~US$100 per influencer' },
@@ -47,6 +48,7 @@ export const projects: Entry[] = [
     period: 'May – Jul 2026',
     tags: ['AI', 'Operations', 'GTM'],
     icon: '📨',
+    logo: '/logos/holicay.png',
     meta: [
       { label: 'Scale', value: '~200 cold outreach / week' },
       { label: 'Time saved', value: '~4 h/day → under 1 h' },
@@ -65,6 +67,7 @@ export const projects: Entry[] = [
     period: 'Jun – Jul 2026',
     tags: ['AI', 'Operations'],
     icon: '📊',
+    logo: '/logos/holicay.png',
     meta: [
       { label: 'Scale', value: '~50 influencers · 4,500 videos / month · 3 platforms' },
       { label: 'Time saved', value: '3 days → 5 minutes' },
@@ -83,6 +86,7 @@ export const projects: Entry[] = [
     period: 'May 2026 – present',
     tags: ['Software'],
     icon: '🧺',
+    logo: '/logos/nus.png',
     status: 'Live',
     meta: [
       { label: 'Stack', value: 'Python · Oracle Cloud · Telegram Bot API' },
@@ -102,6 +106,7 @@ export const projects: Entry[] = [
     period: 'Sep 2025',
     tags: ['AI', 'Software'],
     icon: '🕶️',
+    logo: '/logos/nus.png',
     status: 'Semi-finalist',
     meta: [
       { label: 'Type', value: 'Hackathon · team of 4' },
@@ -121,6 +126,7 @@ export const projects: Entry[] = [
     period: 'Sep 2023 – Jun 2024',
     tags: ['Software', 'GTM'],
     icon: '🏠',
+    logo: '/logos/propnex.png',
     meta: [
       { label: 'Scale', value: '~500 clients' },
       { label: 'Stack', value: 'GoHighLevel · WhatsApp' },

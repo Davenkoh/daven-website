@@ -6,8 +6,7 @@ export const SITE = {
   shortName: 'Daven',
   role: 'Business x Tech',
   title: 'Daven Koh | Business x Tech',
-  description:
-    'Daven Koh — business and technology builder working across GTM, operations, software and AI.',
+  description: 'Daven Koh, a business and technology builder working across GTM, operations, software and AI.',
   greeting: "Aloha! I'm Daven",
   taglines: ['Business x Tech', 'GTM · Operations · Software · AI'] as const,
   summary: 'I build and grow businesses & the systems behind them.',
@@ -16,8 +15,11 @@ export const SITE = {
   timeZoneLabel: 'SGT',
   email: 'Davenkoh3@gmail.com',
   resumeUrl: '/Daven-Koh-Resume.pdf',
-  /** TODO(Daven): replace with the real video-intro link */
-  videoIntroUrl: 'https://www.youtube.com/',
+  /**
+   * Video intro on the About page. Set `youtubeId` (the part after v= in the YouTube link)
+   * or drop a file at public/videos/intro.mp4 and leave youtubeId empty.
+   */
+  videoIntro: { youtubeId: '', src: '/videos/intro.mp4', poster: '/photos/about-hero.jpg' },
   socials: [
     { label: 'LinkedIn', href: 'https://linkedin.com/in/daven-koh' },
     { label: 'GitHub', href: 'https://github.com/Davenkoh' },

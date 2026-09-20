@@ -25,24 +25,12 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
   const single = useMediaQuery('(max-width: 767px), (orientation: portrait)')
   useDocumentTitle(`${TOPIC_LABEL[topic]} · ${SITE.name}`)
 
-  // spread state = leaves turned; single-page state = page index
+  // spread state = leaves turned; single-page state = page index. Every book opens on its cover.
   const [current, setCurrent] = useState(0)
   const [page, setPage] = useState(0)
   const stageRef = useRef<HTMLDivElement>(null)
   const filtersKey = filters.join(',')
   const lastFilters = useRef(filtersKey)
-
-  // open on the cover, then turn to the contents
-  useEffect(() => {
-    setCurrent(0)
-    setPage(0)
-    const t = window.setTimeout(() => {
-      setCurrent(1)
-      setPage(book.tocPageIndex)
-    }, 650)
-    return () => window.clearTimeout(t)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topic])
 
   // filters changed → back to the contents page (ref comparison survives StrictMode's double effects)
   useEffect(() => {
@@ -52,11 +40,9 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
     setPage(book.tocPageIndex)
   }, [filtersKey, book.tocPageIndex])
 
-  // keep both cursors in range when the book shrinks
-  useEffect(() => {
-    setCurrent((c) => Math.min(c, book.leaves.length))
-    setPage((p) => Math.min(p, book.pages.length - 1))
-  }, [book])
+  // keep both cursors in range when filters shrink the book
+  const safeCurrent = Math.min(current, book.leaves.length)
+  const safePage = Math.min(page, book.pages.length - 1)
 
   useEffect(() => {
     playForTopic(topic)
@@ -115,33 +101,40 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
     }
   }
 
-  const ctx = useMemo(() => ({ topic, goToPage }), [topic, goToPage])
-  const spreadLabel = current === 0 ? 'Cover' : current >= book.leaves.length ? 'Back cover' : `Pages ${current * 2 - 1}–${current * 2}`
+  const showTags = topic !== 'events'
+  const ctx = useMemo(() => ({ topic, goToPage, showTags }), [topic, goToPage, showTags])
 
   return (
     <div className="book-overlay" role="dialog" aria-modal="true" aria-label={`${TOPIC_LABEL[topic]} book`}>
       <div className="book-backdrop" onClick={close} />
-      <div className="book-stage" ref={stageRef} tabIndex={-1} onKeyDown={onKeyDown}>
+      <div
+        className="book-stage"
+        ref={stageRef}
+        tabIndex={-1}
+        onKeyDown={onKeyDown}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) close()
+        }}
+      >
         <button type="button" className="book-close glass" onClick={close} aria-label="Close the book">
           <Icon name="close" size={18} />
         </button>
         <div className="book-top">
-          <p className="font-hud text-[11px] uppercase tracking-[0.22em] text-fg/60">
-            {TOPIC_LABEL[topic]} · {entries.length} {entries.length === 1 ? 'entry' : 'entries'}
-          </p>
-          <FilterBar tone="dark" />
+          <button type="button" className="book-cta" onClick={() => goToPage(book.tocPageIndex)}>
+            Back to Content Page
+          </button>
+          {showTags && <FilterBar tone="dark" />}
         </div>
         {single ? (
-          <PageStack book={book} page={page} onPageChange={setPage} ctx={ctx} />
+          <PageStack book={book} page={safePage} onPageChange={setPage} ctx={ctx} />
         ) : (
-          <FlipBook book={book} current={current} onCurrentChange={setCurrent} ctx={ctx} />
+          <FlipBook book={book} current={safeCurrent} onCurrentChange={setCurrent} ctx={ctx} />
         )}
-        <div className="book-chrome">
-          <button type="button" className="glass rounded-full px-4 py-2 font-hud text-[11px] text-fg/85 transition hover:bg-white/10" onClick={() => goToPage(book.tocPageIndex)}>
-            Back to contents
-          </button>
-          {!single && <span className="font-hud text-[11px] text-fg/60">{spreadLabel} · click a page, scroll or use ← →</span>}
-        </div>
+        {!single && (
+          <p className="book-hint">
+            Click, scroll or use <kbd>←</kbd> <kbd>→</kbd>
+          </p>
+        )}
       </div>
     </div>
   )

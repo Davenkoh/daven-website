@@ -8,7 +8,7 @@ export function LanguagesCard() {
   const lang = languages[index]
   const other = languages[(index + 1) % languages.length]
   return (
-    <BentoItem title="Languages" glyph="🌐">
+    <BentoItem title="My Languages" glyph="🌐">
       <div className="flex flex-1 flex-col items-center justify-center gap-5 text-center">
         <button
           type="button"

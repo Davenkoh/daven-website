@@ -1,4 +1,5 @@
 import type { Entry } from '@/data/types'
+import { entryPhotos } from '@/data'
 import { Pill } from '@/components/Pill'
 import { Icon } from '@/components/Icon'
 import { TagChips } from '@/book/TagChips'
@@ -24,11 +25,21 @@ export function EntryIcon({ entry, className }: { entry: Entry; className?: stri
   )
 }
 
-export function EntryCard({ entry }: { entry: Entry }) {
+export function EntryCard({ entry, showTags = true }: { entry: Entry; showTags?: boolean }) {
+  const photos = entryPhotos(entry)
   return (
     <article className="flex flex-col gap-4 rounded-card border border-line bg-card p-5 transition hover:border-white/20">
-      {entry.image && (
-        <img src={entry.image} alt="" loading="lazy" className="aspect-video w-full rounded-xl object-cover" />
+      {photos.length > 0 && (
+        <div className="flex flex-col gap-2">
+          <img src={photos[0]} alt="" loading="lazy" className="aspect-video w-full rounded-xl object-cover" />
+          {photos.length > 1 && (
+            <div className="grid grid-cols-3 gap-2">
+              {photos.slice(1, 4).map((src) => (
+                <img key={src} src={src} alt="" loading="lazy" className="aspect-[4/3] w-full rounded-lg object-cover" />
+              ))}
+            </div>
+          )}
+        </div>
       )}
       <div className="flex items-start gap-3">
         <EntryIcon entry={entry} />
@@ -77,7 +88,7 @@ export function EntryCard({ entry }: { entry: Entry }) {
           ))}
         </div>
       )}
-      <TagChips tags={entry.tags} tone="dark" className="mt-auto border-t border-line pt-4" />
+      {showTags && <TagChips tags={entry.tags} tone="dark" className="mt-auto border-t border-line pt-4 text-[11px]" />}
     </article>
   )
 }

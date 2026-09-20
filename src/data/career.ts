@@ -10,6 +10,7 @@ export const career: Entry[] = [
     period: 'May – Jul 2026',
     tags: ['GTM', 'AI', 'Software'],
     icon: 'H',
+    logo: '/logos/holicay.png',
     meta: [
       { label: 'Type', value: 'Internship · NOC Vietnam' },
       { label: 'Outcome', value: '1M TikTok views from 4 posts' },
@@ -50,6 +51,7 @@ export const career: Entry[] = [
     period: 'Sep 2023 – Jun 2024',
     tags: ['GTM', 'Operations', 'Software'],
     icon: 'R',
+    logo: '/logos/propnex.png',
     meta: [
       { label: 'Type', value: 'Part-time' },
       { label: 'Outcome', value: '~500 clients in a stage-sorted CRM' },
@@ -86,6 +88,7 @@ export const career: Entry[] = [
     period: 'Aug 2025 – May 2029 (expected)',
     tags: ['Software', 'AI'],
     icon: '🎓',
+    logo: '/logos/nus.png',
     meta: [
       { label: 'Type', value: 'Education' },
       { label: 'GPA', value: "4.88 / 5.00 · Dean's List" },
@@ -106,6 +109,7 @@ export const career: Entry[] = [
     period: 'Apr 2021 – Feb 2024',
     tags: ['GTM'],
     icon: 'NP',
+    logo: '/logos/ngee-ann.png',
     meta: [
       { label: 'Type', value: 'Education' },
       { label: 'GPA', value: "3.88 / 4.00 · Director's List" },

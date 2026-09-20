@@ -8,7 +8,7 @@ export function SkillsStrip() {
       <dl className="mt-8 divide-y divide-line border-y border-line">
         {skills.map((g) => (
           <div key={g.label} className="grid gap-3 py-5 md:grid-cols-[200px_1fr]">
-            <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{g.label}</dt>
+            <dt className="font-mono text-[13px] uppercase tracking-[0.16em] text-white">{g.label}</dt>
             <dd className="flex flex-wrap gap-2">
               {g.items.map((s) => (
                 <Pill key={s} className="text-fg/80">
