@@ -1,0 +1,115 @@
+import type { Entry } from './types'
+
+export const events: Entry[] = [
+  {
+    slug: 'ku-nus-founder-mixer',
+    title: 'KU × NUS Founder Mixer',
+    subtitle: 'The Collective · Seoul',
+    org: 'The Collective',
+    location: 'Seoul',
+    period: 'Winter 2025 – 26',
+    tags: ['Operations', 'GTM'],
+    icon: '🇰🇷',
+    meta: [
+      { label: 'Role', value: 'Co-organiser & emcee' },
+      { label: 'Turnout', value: '~20 KU founders · ~20 NUS students' },
+      { label: 'Partner', value: "KU Crimson (Korea University's startup network)" },
+    ],
+    bullets: [
+      'Co-organised and emceed a Korea University × NUS founder mixer while on winter exchange in Seoul.',
+      "Brought ~20 KU founders together with ~20 NUS students on exchange, partnering with KU Crimson.",
+    ],
+  },
+  {
+    slug: 'collective-pitch-night',
+    title: 'The Collective Pitch Night',
+    subtitle: '8 startups · one S$1,000 prize',
+    org: 'The Collective',
+    location: 'Singapore',
+    period: '2026',
+    tags: ['Operations', 'GTM'],
+    icon: '🎤',
+    meta: [
+      { label: 'Role', value: 'Co-organiser & emcee' },
+      { label: 'Line-up', value: '8 NUS and NTU startups' },
+      { label: 'Prize', value: 'S$1,000 sponsored by Hacktron' },
+    ],
+    bullets: [
+      'Co-organised and emceed The Collective Pitch Night: 8 NUS and NTU startups pitching for a S$1,000 prize sponsored by Hacktron.',
+    ],
+  },
+  {
+    slug: 'founders-across-campus',
+    title: 'Founders Across Campus',
+    subtitle: 'NUS Entrepreneurship Society · networking night',
+    org: 'NUS Entrepreneurship Society',
+    location: 'Singapore',
+    period: 'Aug 2025 – Jan 2026',
+    tags: ['Operations', 'GTM'],
+    icon: '🤝',
+    meta: [
+      { label: 'Role', value: 'Co-organiser & emcee · External Liaisons' },
+      { label: 'Turnout', value: '80 founders from NUS, NTU, SMU, SUTD' },
+      { label: 'Partner', value: 'StartupX · 5 polytechnic F&B vendors' },
+    ],
+    bullets: [
+      'Co-organised and emceed a networking night that brought together 80 founders from NUS, NTU, SMU and SUTD, plus 5 polytechnic student F&B vendors, in partnership with StartupX.',
+    ],
+  },
+  {
+    slug: 'noc-idp-sharing',
+    title: 'NOC × iDP Sharing at RC4',
+    subtitle: 'RC4 Entrepreneurship · 11 speakers',
+    org: 'RC4 Entrepreneurship',
+    location: 'Singapore',
+    period: '2026',
+    tags: ['Operations', 'GTM'],
+    icon: '🌏',
+    meta: [
+      { label: 'Role', value: 'Co-organiser · Finance Director' },
+      { label: 'Speakers', value: '11, incl. Jeene from the NOC office + 9 NOC alumni' },
+      { label: 'Sign-ups', value: '90' },
+    ],
+    bullets: [
+      'Co-organised the NOC × iDP sharing at RC4: 11 speakers, including Jeene from the NOC office, and 9 NOC alumni from different locations. 90 sign-ups.',
+    ],
+  },
+  {
+    slug: 'rc4-startup-carnival',
+    title: 'RC4 Startup Carnival',
+    subtitle: '~20 startups and NOC set up booths in RC4',
+    org: 'RC4 Entrepreneurship',
+    location: 'Singapore',
+    period: 'Upcoming',
+    tags: ['Operations', 'GTM'],
+    icon: '🎪',
+    status: 'In planning',
+    meta: [
+      { label: 'Role', value: 'Finance Director · organising team' },
+      { label: 'Scale', value: '~20 startups + NOC booths' },
+      { label: 'Status', value: 'In planning' },
+    ],
+    bullets: [
+      'Planning the annual Startup Carnival with the team, which brings ~20 startups and NOC to set up booths in RC4 so students can meet them and be inspired.',
+    ],
+  },
+  {
+    slug: 'rc4-elderly-craft',
+    title: 'Elderly beadwork & craft sessions',
+    subtitle: 'RC4 Volunteers · 20 elderly × 40 student volunteers',
+    org: 'RC4 Volunteers',
+    location: 'Singapore',
+    period: 'May 2026 – present',
+    tags: ['Operations'],
+    icon: '🧶',
+    status: 'Ongoing',
+    meta: [
+      { label: 'Role', value: 'Programmes IC' },
+      { label: 'Pairing', value: '20 elderly participants · 40 student volunteers' },
+      { label: 'Status', value: 'Ongoing project' },
+    ],
+    bullets: [
+      'Co-organising an ongoing project pairing 20 elderly participants with 40 student volunteers for beadwork and craft sessions.',
+    ],
+  },
+]

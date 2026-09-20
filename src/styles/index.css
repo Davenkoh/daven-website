@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@import "./scene.css";
+@import "./book.css";
+
+/* Aspekta (self-hosted, OFL 1.1) — https://github.com/ivodolenc/aspekta */
+@font-face {
+  font-family: 'Aspekta Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/aspekta/AspektaVF.woff2') format('woff2');
+}
+
+@theme {
+  --font-sans: 'Aspekta Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-pixel: 'Pixelify Sans', 'JetBrains Mono', monospace;
+  --font-book: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-book-serif: ui-serif, Georgia, 'Times New Roman', serif;
+  --font-hud: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-bg: oklch(0.12 0 0);
+  --color-fg: oklch(0.95 0 0);
+  --color-muted: oklch(0.556 0 0);
+  --color-card: #111111;
+  --color-line: oklch(1 0 0 / 0.1);
+  --color-accent: oklch(0.82 0.16 75);      /* warm amber, lamp light */
+  --color-paper: #fbf9f4;
+  --color-ink: oklch(0.145 0 0);
+  --color-ink-soft: oklch(0.439 0 0);
+  --color-ink-muted: oklch(0.556 0 0);
+
+  --radius-card: 18px;
+  --ease-flip: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: oklch(0.82 0.16 75 / 0.35);
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid oklch(0.82 0.16 75 / 0.7);
+    outline-offset: 3px;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(1 0 0 / 0.12);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+@utility glass {
+  background: oklch(0 0 0 / 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid oklch(1 0 0 / 0.1);
+}
+
+@utility title-arrow {
+  &::after {
+    content: '↘';
+    display: inline-block;
+    margin-left: 0.25em;
+    font-size: 0.45em;
+    vertical-align: 0.35em;
+    color: var(--color-muted);
+    font-weight: 400;
+  }
+}
+
+/* Sections that are hidden while an overlay is open still keep layout */
+[inert] {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

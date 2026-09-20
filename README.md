@@ -1,0 +1,47 @@
+# Daven Koh — interactive personal website
+
+Vite + React 19 + TypeScript + Tailwind v4 + Motion + Zustand. Deployed as a static SPA on Vercel.
+
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # type-check + production build into dist/
+npm run preview    # serve the production build
+npm run lint
+```
+
+## Modes
+
+- **Room** (interactive): the workspace scene at `/`, books open on top at `/career`, `/projects`, `/events`; `/about` is a full page.
+- **Classic**: the same content as scrollable dark pages. Chosen automatically on phones / touch devices, or with the Room / Classic switch.
+
+## Assets you need to add (placeholders are generated meanwhile)
+
+| File | What | Notes |
+|---|---|---|
+| `public/room.webp` + `public/room.jpg` | the room image (done: 1672×941, original kept in `assets-src/`) | To swap it, export WebP + JPEG, set `ROOM.width/height` in `src/config/scene.config.ts` and calibrate (below). |
+| `public/portraits/{r}-{c}.png` | 9 cut-outs of you on the chair | `r` 0=up 1=centre 2=down, `c` 0=left 1=centre 2=right (viewer's left/right). Same canvas size for all nine, transparent background. |
+| `public/audio/track-1.mp3` … `track-3.mp3` | lofi tracks (done: three 10-minute sides, 128 kbps) | Titles/artists live in `src/data/tracks.ts`. Keep the ids — topics map to tracks in `src/config/site.config.ts`. To re-cut: `ffmpeg -ss 0 -t 600 -i source.m4a -codec:a libmp3lame -b:a 128k public/audio/track-1.mp3`. |
+| `public/photos/avatar.jpg` | small round avatar | used in the nav pill |
+| `public/photos/about-hero.jpg` | About page header photo | 16:9 |
+| `public/photos/hobby-*.jpg` | hobby photos | wired in `src/data/about.ts` |
+| `public/Daven-Koh-Resume.pdf` | resume | linked from the footer |
+
+Regenerate placeholders with `python3 scripts/placeholders.py --force`.
+
+## Calibrating the scene to a new room image
+
+1. Replace `public/room.webp` / `public/room.jpg`, set `ROOM.width` / `ROOM.height` in `src/config/scene.config.ts`.
+2. `npm run dev`, enter the room, press **`c`** to open the calibration overlay.
+3. Move the mouse to read world-pixel coordinates. **Click** copies `{ x, y }`; **shift-click** several corners to build a polygon (copied as `[[x, y], …]` for `WINDOW.polygons`); **Esc** clears it.
+4. Paste the numbers into `HOTSPOTS`, `WINDOW`, `LAMP`, `VINYL`, `PORTRAIT` and `SUMMARY`. Keep everything interactive inside `SAFE`.
+
+## Content
+
+- `src/data/career.ts`, `projects.ts`, `events.ts` — book entries (`tags` drive the GTM / Operations / Software / AI filters and the radio chips).
+- `src/data/about.ts` — timeline, hobbies, quote, languages, community, skills.
+- `src/config/site.config.ts` — name, taglines, socials, topic → track mapping.
+
+## Deploy
+
+Import the repo in Vercel (framework preset: Vite). `vercel.json` rewrites every route to `index.html` so deep links work.
