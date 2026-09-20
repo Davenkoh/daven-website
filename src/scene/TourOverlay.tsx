@@ -22,7 +22,7 @@ function union(rects: DOMRect[]): DOMRect | null {
   return new DOMRect(left, top, right - left, bottom - top)
 }
 
-/** Measures the on-screen "+" dots with their captions, and the record player, so the holes fit exactly. */
+/** Measures the on-screen "+" dots with their captions so the holes fit exactly. */
 function measureBoxes(): Box[] {
   const out: Box[] = []
   for (const h of HOTSPOTS) {
@@ -33,9 +33,6 @@ function measureBoxes(): Box[] {
     const r = union(parts.map((el) => el.getBoundingClientRect()))
     if (r) out.push({ id: h.id, left: r.left - PAD, top: r.top - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2 })
   }
-  const player = [document.querySelector('.vinyl'), document.querySelector('.vinyl-controls')].filter((el): el is Element => !!el)
-  const pr = union(player.map((el) => el.getBoundingClientRect()))
-  if (pr) out.push({ id: 'music', left: pr.left - PAD, top: pr.top - PAD, width: pr.width + PAD * 2, height: pr.height + PAD * 2 })
   return out
 }
 
@@ -65,7 +62,7 @@ function useMeasuredBoxes(): Box[] {
 
 /**
  * One-pane first-visit tutorial: darkens the room and cuts a tight spotlight around each
- * topic's "+" dot and label, plus the record player. Any click or key ends it.
+ * topic's "+" dot and label. Any click or key ends it.
  */
 export function TourOverlay({ onDone }: { onDone: () => void }) {
   const { viewport } = useWorld()
