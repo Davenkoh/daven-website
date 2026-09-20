@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { cn } from '@/lib/cn'
 
 interface HotspotProps {
+  id?: string
   /** accessible name */
   label: string
   /** visible caption text */
@@ -28,7 +29,7 @@ interface HotspotProps {
 }
 
 /** Afterhours-style clickable object: a translucent "+" dot and a mono caption. Screen px. */
-export function Hotspot({ label, caption, to, onClick, pressed, left, top, width, height, dot, revealed, primary, arrow, align = 'center', captionInset = 0, className }: HotspotProps) {
+export function Hotspot({ id, label, caption, to, onClick, pressed, left, top, width, height, dot, revealed, primary, arrow, align = 'center', captionInset = 0, className }: HotspotProps) {
   const style: CSSProperties = { left, top, width, height }
   const dotStyle: CSSProperties = { left: `${dot.x * 100}%`, top: `${dot.y * 100}%` }
   const captionStyle: CSSProperties =
@@ -49,13 +50,13 @@ export function Hotspot({ label, caption, to, onClick, pressed, left, top, width
   )
   if (to) {
     return (
-      <Link to={to} className={cls} style={style} aria-label={label}>
+      <Link to={to} className={cls} style={style} aria-label={label} data-id={id}>
         {inner}
       </Link>
     )
   }
   return (
-    <button type="button" className={cls} style={style} aria-label={label} aria-pressed={pressed} onClick={onClick}>
+    <button type="button" className={cls} style={style} aria-label={label} aria-pressed={pressed} onClick={onClick} data-id={id}>
       {inner}
     </button>
   )

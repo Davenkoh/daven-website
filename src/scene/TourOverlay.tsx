@@ -1,31 +1,81 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 import { motion } from 'motion/react'
-import { HOTSPOTS, VINYL } from '@/config/scene.config'
+import { HOTSPOTS } from '@/config/scene.config'
 import { useWorld } from '@/hooks/useWorldScale'
 
-const PAD = 12
+interface Box {
+  id: string
+  left: number
+  top: number
+  width: number
+  height: number
+}
+
+const PAD = 10
+
+function union(rects: DOMRect[]): DOMRect | null {
+  if (rects.length === 0) return null
+  const left = Math.min(...rects.map((r) => r.left))
+  const top = Math.min(...rects.map((r) => r.top))
+  const right = Math.max(...rects.map((r) => r.right))
+  const bottom = Math.max(...rects.map((r) => r.bottom))
+  return new DOMRect(left, top, right - left, bottom - top)
+}
+
+/** Measures the on-screen "+" dots with their captions, and the record player, so the holes fit exactly. */
+function measureBoxes(): Box[] {
+  const out: Box[] = []
+  for (const h of HOTSPOTS) {
+    if (!h.to) continue // the lamp is not part of the tour
+    const root = document.querySelector<HTMLElement>(`.hotspot[data-id="${h.id}"]`)
+    if (!root) continue
+    const parts = [root.querySelector('.hotspot-dot'), root.querySelector('.hotspot-caption')].filter((el): el is Element => !!el)
+    const r = union(parts.map((el) => el.getBoundingClientRect()))
+    if (r) out.push({ id: h.id, left: r.left - PAD, top: r.top - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2 })
+  }
+  const player = [document.querySelector('.vinyl'), document.querySelector('.vinyl-controls')].filter((el): el is Element => !!el)
+  const pr = union(player.map((el) => el.getBoundingClientRect()))
+  if (pr) out.push({ id: 'music', left: pr.left - PAD, top: pr.top - PAD, width: pr.width + PAD * 2, height: pr.height + PAD * 2 })
+  return out
+}
+
+// re-measure shortly after a resize, once the hotspots have moved
+const subscribe = (onChange: () => void) => {
+  let t = 0
+  const onResize = () => {
+    window.clearTimeout(t)
+    t = window.setTimeout(onChange, 80)
+  }
+  window.addEventListener('resize', onResize)
+  return () => {
+    window.clearTimeout(t)
+    window.removeEventListener('resize', onResize)
+  }
+}
+
+function useMeasuredBoxes(): Box[] {
+  const cache = useRef<{ key: string; boxes: Box[] }>({ key: '', boxes: [] })
+  return useSyncExternalStore(subscribe, () => {
+    const boxes = measureBoxes()
+    const key = JSON.stringify(boxes)
+    if (key !== cache.current.key) cache.current = { key, boxes }
+    return cache.current.boxes
+  })
+}
 
 /**
- * One-pane first-visit tutorial: darkens the room and cuts spotlights around everything
- * that can be clicked (except the window easter egg), with each item's name. Any click ends it.
+ * One-pane first-visit tutorial: darkens the room and cuts a tight spotlight around each
+ * topic's "+" dot and label, plus the record player. Any click or key ends it.
  */
 export function TourOverlay({ onDone }: { onDone: () => void }) {
-  const { toClient, scale, viewport } = useWorld()
+  const { viewport } = useWorld()
+  const boxes = useMeasuredBoxes()
 
   useEffect(() => {
     const onKey = () => onDone()
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onDone])
-
-  const spots = [
-    ...HOTSPOTS.map((h) => ({ id: h.id, label: h.label, x: h.x, y: h.y, w: h.w, h: h.h })),
-    // the record player plus its control strip underneath
-    { id: 'music', label: 'Music', x: VINYL.cx - VINYL.r - 60, y: VINYL.cy - VINYL.r - 10, w: (VINYL.r + 60) * 2, h: VINYL.r * 2 * VINYL.squash + 120 / scale },
-  ].map((s) => {
-    const p = toClient(s.x, s.y)
-    return { ...s, left: p.x - PAD, top: p.y - PAD, width: s.w * scale + PAD * 2, height: s.h * scale + PAD * 2 }
-  })
 
   return (
     <motion.div
@@ -42,25 +92,17 @@ export function TourOverlay({ onDone }: { onDone: () => void }) {
         <defs>
           <mask id="tour-holes">
             <rect width="100%" height="100%" fill="#fff" />
-            {spots.map((s) => (
-              <rect key={s.id} x={s.left} y={s.top} width={s.width} height={s.height} rx="18" fill="#000" />
+            {boxes.map((b) => (
+              <rect key={b.id} x={b.left} y={b.top} width={b.width} height={b.height} rx="14" fill="#000" />
             ))}
           </mask>
         </defs>
         <rect width="100%" height="100%" fill="rgba(4, 4, 6, 0.74)" mask="url(#tour-holes)" />
-        {spots.map((s) => (
-          <rect key={`ring-${s.id}`} className="tour-ring" x={s.left} y={s.top} width={s.width} height={s.height} rx="18" />
+        {boxes.map((b) => (
+          <rect key={`ring-${b.id}`} className="tour-ring" x={b.left} y={b.top} width={b.width} height={b.height} rx="14" />
         ))}
       </svg>
-      {spots.map((s) => (
-        <span key={`label-${s.id}`} className="tour-label" style={{ left: s.left + s.width / 2, top: s.top + s.height + 10 }}>
-          {s.label}
-        </span>
-      ))}
-      <div className="tour-caption">
-        <p className="tour-caption-title">Here is everything you can click.</p>
-        <p className="tour-caption-sub">Click anywhere to start exploring.</p>
-      </div>
+      <p className="tour-caption">Click these</p>
     </motion.div>
   )
 }

@@ -38,10 +38,10 @@ export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
         <motion.h1 {...stagger(0)} className="text-5xl font-medium tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
           {SITE.greeting}
         </motion.h1>
-        <motion.p {...stagger(1)} className="mt-6 text-xl text-fg/90 sm:text-2xl md:text-3xl">
+        <motion.p {...stagger(1)} className="mt-6 text-3xl text-fg/95 sm:text-4xl md:text-5xl">
           {SITE.taglines[0]}
         </motion.p>
-        <motion.p {...stagger(2)} className="mt-2 font-mono text-sm text-muted md:text-base">
+        <motion.p {...stagger(2)} className="mt-3 font-mono text-lg text-fg/70 md:text-2xl">
           {SITE.taglines[1]}
         </motion.p>
         <motion.div {...stagger(3)} className="mt-12 flex flex-col items-center gap-5">

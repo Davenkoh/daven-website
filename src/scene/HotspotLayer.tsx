@@ -36,7 +36,7 @@ export function HotspotLayer() {
         const captionInset = align === 'left' ? Math.max(0, 12 - p.x) : align === 'right' ? Math.max(0, p.x + width - (viewport.width - 12)) : 0
         const box = { left: p.x, top: p.y, width, height: h.h * scale, dot, align, captionInset } as const
         if (h.to) {
-          return <Hotspot key={h.id} {...box} to={h.to} label={`Open ${h.label}`} caption={h.label} arrow revealed primary />
+          return <Hotspot key={h.id} id={h.id} {...box} to={h.to} label={`Open ${h.label}`} caption={h.label} arrow revealed primary />
         }
         return (
           <Hotspot
