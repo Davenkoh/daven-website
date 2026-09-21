@@ -12,6 +12,10 @@ interface Box {
 }
 
 const PAD = 10
+/** the overlay fades in after this delay… */
+const SHOW_DELAY_MS = 800
+/** …and dismisses itself this long after it is visible (a click or key ends it sooner) */
+const AUTO_DISMISS_MS = 3500
 
 function union(rects: DOMRect[]): DOMRect | null {
   if (rects.length === 0) return null
@@ -62,7 +66,7 @@ function useMeasuredBoxes(): Box[] {
 
 /**
  * One-pane first-visit tutorial: darkens the room and cuts a tight spotlight around each
- * topic's "+" dot and label. Any click or key ends it.
+ * topic's "+" dot and label. It goes away by itself after 3.5 s, or sooner on any click or key.
  */
 export function TourOverlay({ onDone }: { onDone: () => void }) {
   const { viewport } = useWorld()
@@ -71,7 +75,11 @@ export function TourOverlay({ onDone }: { onDone: () => void }) {
   useEffect(() => {
     const onKey = () => onDone()
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    const timer = window.setTimeout(onDone, SHOW_DELAY_MS + AUTO_DISMISS_MS)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.clearTimeout(timer)
+    }
   }, [onDone])
 
   return (
@@ -80,7 +88,7 @@ export function TourOverlay({ onDone }: { onDone: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.35 } }}
-      transition={{ duration: 0.6, delay: 0.8 }}
+      transition={{ duration: 0.6, delay: SHOW_DELAY_MS / 1000 }}
       onClick={onDone}
       role="dialog"
       aria-label="What you can click in the room"
