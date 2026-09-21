@@ -13,13 +13,13 @@ export function ClassicLayout({ roomAvailable = false }: ClassicLayoutProps) {
   return (
     <div className="min-h-dvh bg-bg text-fg">
       {roomAvailable && (
-        <div className="mx-auto max-w-6xl px-6 pt-6">
+        <div className="mx-auto max-w-6xl px-6 pt-5">
           <Link to="/" className="inline-flex items-center gap-2 font-hud text-xs text-muted transition hover:text-fg">
             <Icon name="arrow-left" size={14} /> Back to the room
           </Link>
         </div>
       )}
-      <main className={roomAvailable ? 'mx-auto max-w-6xl px-6 pt-12 md:pt-16' : 'mx-auto max-w-6xl px-6 pt-20 md:pt-28'}>
+      <main className={roomAvailable ? 'mx-auto max-w-6xl px-6 pt-7 md:pt-9' : 'mx-auto max-w-6xl px-6 pt-20 md:pt-28'}>
         <Outlet />
       </main>
       <Footer />

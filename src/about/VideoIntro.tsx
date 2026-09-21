@@ -23,7 +23,10 @@ export function VideoIntro() {
     }
   }, [youtubeId, src])
   return (
-    <div className="relative mt-10 aspect-video overflow-hidden rounded-card border border-line bg-card">
+    <div
+      className="relative mx-auto mt-6 aspect-video w-auto max-w-full overflow-hidden rounded-card border border-line bg-card"
+      style={{ height: 'min(56.25vw, calc(100dvh - 240px))' }}
+    >
       {youtubeId ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0`}

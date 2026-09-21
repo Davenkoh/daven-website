@@ -32,8 +32,7 @@ export function ConnectLinks() {
   const github = SITE.socials.find((s) => s.label === 'GitHub')
   return (
     <div className="md:text-right">
-      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Connect</p>
-      <div className="mt-3 flex flex-wrap gap-2 md:justify-end">
+      <div className="flex flex-wrap gap-2 md:justify-end">
         <button type="button" onClick={copy} className={pill} title="Copy email">
           <Icon name="mail" size={16} /> {copied ? 'Copied!' : SITE.email}
         </button>

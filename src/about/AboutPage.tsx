@@ -10,8 +10,8 @@ export default function AboutPage() {
   useDocumentTitle(`About · ${SITE.name}`, SITE.description)
   return (
     <>
-      <header className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-        <h1 className="title-arrow text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">About Me</h1>
+      <header className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <h1 className="title-arrow text-5xl font-medium tracking-tight md:text-6xl">About Me</h1>
         <ConnectLinks />
       </header>
       <VideoIntro />
