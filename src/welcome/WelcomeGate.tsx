@@ -46,7 +46,7 @@ export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
           <div className="glass flex items-center gap-3 rounded-full py-2 pl-5 pr-3">
             <InteractiveToggle controlsAudio={false} />
           </div>
-          <Button onClick={onEnter} className="px-8 py-3.5 text-base" autoFocus>
+          <Button variant="accent" onClick={onEnter} className="px-8 py-3.5 text-base" autoFocus>
             Start <Icon name="arrow-right" size={16} />
           </Button>
           <p className="inline-flex items-center gap-2 font-mono text-sm text-fg/75">
