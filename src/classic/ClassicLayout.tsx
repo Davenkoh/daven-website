@@ -19,7 +19,7 @@ export function ClassicLayout({ roomAvailable = false }: ClassicLayoutProps) {
           </Link>
         </div>
       )}
-      <main className={roomAvailable ? 'mx-auto max-w-6xl px-6 pt-7 md:pt-9' : 'mx-auto max-w-6xl px-6 pt-20 md:pt-28'}>
+      <main className={roomAvailable ? 'mx-auto max-w-6xl px-6 pt-7 md:pt-9' : 'mx-auto max-w-6xl px-6 pt-8 md:pt-12'}>
         <Outlet />
       </main>
       <Footer />
