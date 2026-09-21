@@ -4,12 +4,14 @@ import { useAudioStore } from '@/store/useAudioStore'
 
 interface InteractiveToggleProps {
   className?: string
+  /** visible label */
+  label?: string
   /** start the music when switching to the room and pause it when leaving (off on the welcome gate) */
   controlsAudio?: boolean
 }
 
 /** "Interactive" ON/OFF switch: on = the room, off = classic pages. */
-export function InteractiveToggle({ className, controlsAudio = true }: InteractiveToggleProps) {
+export function InteractiveToggle({ className, controlsAudio = true, label = 'Interactive Mode (3D)' }: InteractiveToggleProps) {
   const mode = useSiteStore((s) => s.mode)
   const setMode = useSiteStore((s) => s.setMode)
   const play = useAudioStore((s) => s.play)
@@ -24,7 +26,7 @@ export function InteractiveToggle({ className, controlsAudio = true }: Interacti
   }
   return (
     <span className={cn('interactive-toggle', on && 'is-on', className)}>
-      <span className="interactive-toggle-label">Interactive Mode (3D)</span>
+      <span className="interactive-toggle-label">{label}</span>
       <button
         type="button"
         role="switch"

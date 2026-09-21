@@ -16,6 +16,7 @@ type IconName =
   | 'external'
   | 'mail'
   | 'file'
+  | 'download'
 
 const paths: Record<IconName, React.ReactNode> = {
   speaker: (
@@ -107,6 +108,13 @@ const paths: Record<IconName, React.ReactNode> = {
       <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
       <path d="M14 3v5h5" />
       <path d="M9 13h6M9 17h6" />
+    </>
+  ),
+  download: (
+    <>
+      <path d="M12 4v11" />
+      <path d="m7 10 5 5 5-5" />
+      <path d="M5 19h14" />
     </>
   ),
 }

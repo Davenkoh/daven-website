@@ -23,7 +23,7 @@ export function ClassicLayout({ roomAvailable = false }: ClassicLayoutProps) {
         <Outlet />
       </main>
       <Footer />
-      <NavPill homeLabel={roomAvailable ? 'Room' : 'Home'} extra={<InteractiveToggle />} />
+      <NavPill homeLabel={roomAvailable ? 'Room' : 'Home'} extra={<InteractiveToggle label="Interactive" />} />
     </div>
   )
 }

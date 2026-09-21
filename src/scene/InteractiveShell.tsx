@@ -38,7 +38,7 @@ export function InteractiveShell() {
       <div inert={overlayOpen} data-tour={tourOpen && !overlayOpen ? '' : undefined}>
         <Scene />
         <SceneHUD />
-        <NavPill homeLabel="Room" extra={<InteractiveToggle />} />
+        <NavPill homeLabel="Room" extra={<InteractiveToggle label="Interactive" />} />
       </div>
       {import.meta.env.DEV && calibration && !overlayOpen && <CalibrationOverlay />}
       <AnimatePresence>{tourOpen && !overlayOpen && <TourOverlay key="tour" onDone={endTour} />}</AnimatePresence>

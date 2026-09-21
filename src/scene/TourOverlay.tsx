@@ -15,7 +15,7 @@ const PAD = 10
 /** the overlay fades in after this delay… */
 const SHOW_DELAY_MS = 800
 /** …and dismisses itself this long after it is visible (a click or key ends it sooner) */
-const AUTO_DISMISS_MS = 3500
+const AUTO_DISMISS_MS = 3000
 
 function union(rects: DOMRect[]): DOMRect | null {
   if (rects.length === 0) return null
@@ -66,7 +66,7 @@ function useMeasuredBoxes(): Box[] {
 
 /**
  * One-pane first-visit tutorial: darkens the room and cuts a tight spotlight around each
- * topic's "+" dot and label. It goes away by itself after 3.5 s, or sooner on any click or key.
+ * topic's "+" dot and label. It goes away by itself after 3 s, or sooner on any click or key.
  */
 export function TourOverlay({ onDone }: { onDone: () => void }) {
   const { viewport } = useWorld()

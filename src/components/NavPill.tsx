@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import { NavLink } from 'react-router'
 import { cn } from '@/lib/cn'
 import { SITE } from '@/config/site.config'
-import { Avatar } from './Avatar'
 
 interface NavPillProps {
   /** Label for the "/" link (Home in classic mode, Room in the scene) */
@@ -40,9 +39,6 @@ export function NavPill({ homeLabel = 'Home', extra, className }: NavPillProps) 
         ))}
         <span className="mx-0.5 h-6 w-px bg-white/10 sm:mx-1" aria-hidden="true" />
         {extra}
-        <NavLink to="/about" className="rounded-full p-0.5" aria-label="About Daven">
-          <Avatar size={34} />
-        </NavLink>
       </div>
     </nav>
   )

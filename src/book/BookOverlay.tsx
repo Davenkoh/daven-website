@@ -120,7 +120,7 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
               Book
             </button>
             <button type="button" aria-pressed={linear} className={cn(linear && 'is-active')} onClick={() => setBookView('linear')}>
-              Linear
+              Scroll
             </button>
           </div>
           {!linear && (

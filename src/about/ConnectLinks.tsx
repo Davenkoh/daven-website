@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { SITE } from '@/config/site.config'
 import { Icon } from '@/components/Icon'
 
-const pill = 'inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm text-fg/85 transition hover:border-white/30 hover:text-fg'
+const pill =
+  'inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/15 px-4 py-2 text-sm font-medium text-[#ffd98a] shadow-[0_6px_20px_rgba(224,166,60,0.18)] transition hover:bg-accent/25 hover:text-white'
 
 function LinkedInMark() {
   return (
@@ -47,7 +48,7 @@ export function ConnectLinks() {
           </a>
         )}
         <a href={SITE.resumeUrl} target="_blank" rel="noreferrer" className={pill}>
-          <Icon name="file" size={16} /> Resume
+          <Icon name="download" size={16} /> Resume
         </a>
       </div>
     </div>
