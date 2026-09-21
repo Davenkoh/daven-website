@@ -70,7 +70,7 @@ export const skills: SkillGroup[] = [
       { name: 'Short-form video strategy', mark: '▶', colour: '#e5705a' },
       { name: 'Copywriting', mark: '✎', colour: '#e0a63c' },
       { name: 'Lead generation', mark: '⇢', colour: '#6dbf8a' },
-      { name: 'GoHighLevel', mark: 'GHL', colour: '#5fa8d8' },
+      { name: 'GoHighLevel', icon: '/logos/tools/gohighlevel.png' },
       { name: 'HubSpot', icon: '/logos/tools/hubspot.svg' },
       { name: 'TikTok Ads Manager', icon: '/logos/tools/tiktok.svg' },
       { name: 'Meta Business Suite', icon: '/logos/tools/meta.svg' },
