@@ -25,6 +25,7 @@ npm run lint
 | `public/photos/avatar.jpg` | small round avatar | used in the nav pill |
 | `public/videos/intro.mp4` or `videoIntro.youtubeId` in `src/config/site.config.ts` | video intro on the About page | 16:9; `public/photos/about-hero.jpg` is the poster |
 | `public/photos/hobby-*.jpg` | hobby photos | wired in `src/data/about.ts` |
+| `public/audio/page-flip.mp3` (optional) | a real page-turn recording | until it exists the book plays a synthesised paper swish |
 | `public/audio/records/rec-1.mp3` … | records for the About page turntable | titles/colours in `src/about/player/records.ts`; these pause the room's lofi while they play |
 | `public/Daven-Koh-Resume.pdf` | resume | linked from the footer |
 

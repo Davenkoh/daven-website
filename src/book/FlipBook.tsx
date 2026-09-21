@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import type { Book } from './buildPages'
+import { playFlipSound } from '@/audio/flipSound'
 import { Leaf } from './Leaf'
 import type { PageContext } from './pages/PageFace'
 
@@ -22,6 +23,7 @@ export function FlipBook({ book, current, onCurrentChange, ctx }: FlipBookProps)
     (next: number) => {
       const clamped = Math.max(0, Math.min(total, next))
       if (clamped === current || animating !== null) return
+      playFlipSound()
       setAnimating(clamped > current ? current : clamped)
       window.clearTimeout(fallback.current)
       fallback.current = window.setTimeout(() => setAnimating(null), 900)

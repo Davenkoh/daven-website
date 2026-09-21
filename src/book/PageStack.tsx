@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import type { Book } from './buildPages'
 import { PageFace, type PageContext } from './pages/PageFace'
 import { Icon } from '@/components/Icon'
+import { playFlipSound } from '@/audio/flipSound'
 
 interface PageStackProps {
   book: Book
@@ -24,6 +25,7 @@ export function PageStack({ book, page, onPageChange, ctx }: PageStackProps) {
   const go = (next: number) => {
     const clamped = Math.max(0, Math.min(pages.length - 1, next))
     if (clamped === page) return
+    playFlipSound()
     setDir(clamped > page ? 1 : -1)
     onPageChange(clamped)
   }
