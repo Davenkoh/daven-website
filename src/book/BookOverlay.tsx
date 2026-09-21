@@ -9,6 +9,9 @@ import { useFocusTrap } from '@/hooks/useFocusTrap'
 import { useWheelFlip } from '@/hooks/useWheelFlip'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { Icon } from '@/components/Icon'
+import { TopicPage } from '@/classic/TopicPage'
+import { useSiteStore } from '@/store/useSiteStore'
+import { cn } from '@/lib/cn'
 import { buildBook, currentForPage } from './buildPages'
 import { FlipBook } from './FlipBook'
 import { PageStack } from './PageStack'
@@ -20,6 +23,9 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
   const entries = entriesByTopic[topic]
   const book = useMemo(() => buildBook(topic, entries), [topic, entries])
   const single = useMediaQuery('(max-width: 767px), (orientation: portrait)')
+  const view = useSiteStore((s) => s.bookView)
+  const setBookView = useSiteStore((s) => s.setBookView)
+  const linear = view === 'linear'
   useDocumentTitle(`${TOPIC_LABEL[topic]} · ${SITE.name}`)
 
   // spread state = leaves turned; single-page state = page index. Every book opens on its cover.
@@ -54,11 +60,17 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
     else setCurrent((c) => Math.max(0, c - 1))
   }, [single])
 
-  useWheelFlip(stageRef, { next, prev, enabled: !single })
+  useWheelFlip(stageRef, { next, prev, enabled: !single && !linear })
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     const target = e.target as HTMLElement
     if (/^(INPUT|TEXTAREA)$/.test(target.tagName)) return
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      close()
+      return
+    }
+    if (linear) return
     switch (e.key) {
       case 'ArrowRight':
       case 'ArrowDown':
@@ -80,10 +92,6 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
       case 'End':
         e.preventDefault()
         goToPage(book.pages.length - 1)
-        break
-      case 'Escape':
-        e.preventDefault()
-        close()
         break
     }
   }
@@ -107,16 +115,30 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
           <Icon name="close" size={18} />
         </button>
         <div className="book-top">
-          <button type="button" className="book-cta" onClick={() => goToPage(book.tocPageIndex)}>
-            Back to Content Page
-          </button>
+          <div className="view-switch" role="group" aria-label="Reading view">
+            <button type="button" aria-pressed={!linear} className={cn(!linear && 'is-active')} onClick={() => setBookView('book')}>
+              Book
+            </button>
+            <button type="button" aria-pressed={linear} className={cn(linear && 'is-active')} onClick={() => setBookView('linear')}>
+              Linear
+            </button>
+          </div>
+          {!linear && (
+            <button type="button" className="book-cta" onClick={() => goToPage(book.tocPageIndex)}>
+              Back to Content Page
+            </button>
+          )}
         </div>
-        {single ? (
+        {linear ? (
+          <div className="book-linear">
+            <TopicPage topic={topic} />
+          </div>
+        ) : single ? (
           <PageStack book={book} page={safePage} onPageChange={setPage} ctx={ctx} />
         ) : (
           <FlipBook book={book} current={safeCurrent} onCurrentChange={setCurrent} ctx={ctx} />
         )}
-        {!single && (
+        {!single && !linear && (
           <p className="book-hint">
             Click, scroll or use <kbd>←</kbd> <kbd>→</kbd>
           </p>
