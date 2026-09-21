@@ -38,7 +38,7 @@ export const skills: SkillGroup[] = [
     label: 'Software & AI',
     items: [
       { name: 'Python', icon: '/logos/tools/python.svg' },
-      { name: 'Java', icon: '/logos/tools/openjdk.svg' },
+      { name: 'Java', icon: '/logos/tools/java.svg' },
       { name: 'R', icon: '/logos/tools/r.svg' },
       { name: 'SQL', icon: '/logos/tools/postgresql.svg' },
       { name: 'HTML/CSS', icon: '/logos/tools/html5.svg' },
@@ -49,7 +49,8 @@ export const skills: SkillGroup[] = [
       { name: 'MCP', icon: '/logos/tools/modelcontextprotocol.svg' },
       { name: 'REST APIs', mark: 'API', colour: '#5fa8d8' },
       { name: 'Web scraping', mark: '{ }', colour: '#e0a63c' },
-      { name: 'Computer vision', icon: '/logos/tools/opencv.svg' },
+      { name: 'OpenCV', icon: '/logos/tools/opencv.svg' },
+      { name: 'Computer vision', mark: 'CV', colour: '#5fa8d8' },
       { name: 'Deployment', mark: '▲', colour: '#f2f2f2' },
     ],
   },
@@ -79,10 +80,10 @@ export const skills: SkillGroup[] = [
   {
     label: 'Design & Media',
     items: [
-      { name: 'Canva', mark: 'C', colour: '#00C4CC' },
-      { name: 'CapCut', mark: 'CC', colour: '#f2f2f2' },
-      { name: 'Photoshop', mark: 'Ps', colour: '#31A8FF' },
-      { name: 'Illustrator', mark: 'Ai', colour: '#FF9A00' },
+      { name: 'Canva', icon: '/logos/tools/canva.svg' },
+      { name: 'CapCut', icon: '/logos/tools/capcut.svg' },
+      { name: 'Photoshop', icon: '/logos/tools/photoshop.svg' },
+      { name: 'Illustrator', icon: '/logos/tools/illustrator.svg' },
     ],
   },
   {
