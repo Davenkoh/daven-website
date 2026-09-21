@@ -2,7 +2,6 @@ import { motion } from 'motion/react'
 import { SITE } from '@/config/site.config'
 import { Button } from '@/components/Button'
 import { Icon } from '@/components/Icon'
-import { useClock } from '@/hooks/useClock'
 import { InteractiveToggle } from '@/scene/InteractiveToggle'
 
 interface WelcomeGateProps {
@@ -18,7 +17,6 @@ const stagger = (i: number) => ({
 })
 
 export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
-  const time = useClock(SITE.timeZone)
   return (
     <motion.section
       key="welcome"
@@ -64,9 +62,6 @@ export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
           </p>
         </motion.div>
       </div>
-      <p className="absolute bottom-8 font-hud text-[11px] uppercase tracking-[0.2em] text-muted/70">
-        {SITE.location} · {time} {SITE.timeZoneLabel}
-      </p>
     </motion.section>
   )
 }
