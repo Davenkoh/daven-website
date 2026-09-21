@@ -16,6 +16,20 @@ async function loadSample(audio: AudioContext) {
   }
 }
 
+/** Create the audio context and start loading the sample while we still have a user gesture. */
+export function primeFlipSound() {
+  try {
+    ctx ??= new AudioContext()
+    if (ctx.state === 'suspended') void ctx.resume()
+    if (sample === undefined) {
+      sample = null
+      void loadSample(ctx)
+    }
+  } catch {
+    /* no audio available */
+  }
+}
+
 /**
  * A short page-turn sound. Uses public/audio/page-flip.mp3 when that file exists,
  * otherwise a filtered noise burst that reads as paper sliding over paper.

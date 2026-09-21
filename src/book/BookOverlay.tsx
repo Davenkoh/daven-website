@@ -10,6 +10,7 @@ import { useWheelFlip } from '@/hooks/useWheelFlip'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { Icon } from '@/components/Icon'
 import { TopicPage } from '@/classic/TopicPage'
+import { primeFlipSound } from '@/audio/flipSound'
 import { useSiteStore } from '@/store/useSiteStore'
 import { cn } from '@/lib/cn'
 import { buildBook, currentForPage } from './buildPages'
@@ -39,6 +40,7 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
 
   useEffect(() => {
     playForTopic(topic)
+    primeFlipSound()
   }, [topic, playForTopic])
 
   const close = useCallback(() => navigate('/'), [navigate])

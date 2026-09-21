@@ -23,7 +23,6 @@ export function FlipBook({ book, current, onCurrentChange, ctx }: FlipBookProps)
     (next: number) => {
       const clamped = Math.max(0, Math.min(total, next))
       if (clamped === current || animating !== null) return
-      playFlipSound()
       setAnimating(clamped > current ? current : clamped)
       window.clearTimeout(fallback.current)
       fallback.current = window.setTimeout(() => setAnimating(null), 900)
@@ -56,6 +55,15 @@ export function FlipBook({ book, current, onCurrentChange, ctx }: FlipBookProps)
   }
 
   useEffect(() => () => window.clearTimeout(fallback.current), [])
+
+  // the sound follows the page change itself: click, wheel, keys and the contents links all count
+  const lastCurrent = useRef(current)
+  useEffect(() => {
+    if (lastCurrent.current !== current) {
+      lastCurrent.current = current
+      playFlipSound()
+    }
+  }, [current])
 
   return (
     <div className="book" onPointerDown={onPointerDown} onPointerUp={onPointerUp}>
