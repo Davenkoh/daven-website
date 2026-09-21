@@ -2,6 +2,7 @@
 @import "./scene.css";
 @import "./book.css";
 @import "./player.css";
+@import "./highlights.css";
 
 /* Aspekta (self-hosted, OFL 1.1) — https://github.com/ivodolenc/aspekta */
 @font-face {

@@ -21,8 +21,9 @@ export function InteractiveToggle({ className, controlsAudio = true, label = 'In
     const next = on ? 'classic' : 'interactive'
     setMode(next, true)
     if (!controlsAudio) return
-    if (next === 'interactive') void play()
-    else pause()
+    if (next === 'interactive') {
+      if (!useSiteStore.getState().highlightsOpen) void play()
+    } else pause()
   }
   return (
     <span className={cn('interactive-toggle', on && 'is-on', className)}>

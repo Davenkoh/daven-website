@@ -35,10 +35,12 @@ export default function App() {
 
   const [welcomed, setWelcomed] = useState(() => readStorage('session', WELCOME_KEY) === '1')
   const unlock = useAudioStore((s) => s.unlock)
+  const highlightsSeen = useSiteStore((s) => s.highlightsSeen)
   const enter = () => {
     writeStorage('session', WELCOME_KEY, '1')
-    // Must run synchronously inside the click so browsers allow audio to start.
-    if (mode === 'interactive') void unlock()
+    // The journey page comes first and stays silent; music starts when it closes.
+    // (If it was already seen this session, start the music now while we still have the click.)
+    if (mode === 'interactive' && highlightsSeen) void unlock()
     setWelcomed(true)
   }
 

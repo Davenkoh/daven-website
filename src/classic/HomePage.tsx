@@ -2,13 +2,13 @@ import { Link } from 'react-router'
 import { SITE, TOPIC_BLURB, TOPIC_COLOURS, TOPIC_LABEL } from '@/config/site.config'
 import { TOPICS } from '@/data/types'
 import { entriesByTopic } from '@/data'
-import { aboutIntro } from '@/data/about'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { useCoarsePointer } from '@/hooks/useMediaQuery'
 import { useSiteStore } from '@/store/useSiteStore'
 import { useAudioStore } from '@/store/useAudioStore'
 import { Icon } from '@/components/Icon'
 import { Button } from '@/components/Button'
+import { Highlights } from '@/highlights/Highlights'
 
 const cardStyle = (colour: string) => ({
   borderColor: `${colour}59`,
@@ -22,7 +22,7 @@ export function HomePage() {
   const play = useAudioStore((s) => s.play)
   const enterRoom = () => {
     setMode('interactive', true)
-    void play()
+    if (!useSiteStore.getState().highlightsOpen) void play()
   }
 
   return (
@@ -32,11 +32,11 @@ export function HomePage() {
         <h1 className="title-arrow mt-2 text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">{SITE.shortName}</h1>
         <p className="mt-8 text-2xl md:text-3xl">{SITE.taglines[0]}</p>
         <p className="mt-2 font-mono text-sm text-muted md:text-base">{SITE.taglines[1]}</p>
-        <p className="mt-8 max-w-2xl text-xl leading-relaxed text-fg/90">{SITE.summary}</p>
-        <p className="mt-4 max-w-2xl leading-relaxed text-fg/60">{aboutIntro}</p>
       </section>
 
-      <section className="mt-16 grid gap-4 md:grid-cols-3" aria-label="Explore">
+      <Highlights variant="page" onStart={enterRoom} startLabel="Enter the room" />
+
+      <section className="mt-4 grid gap-4 md:grid-cols-3" aria-label="Explore">
         {TOPICS.map((t) => (
           <Link
             key={t}
