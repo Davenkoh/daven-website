@@ -49,14 +49,14 @@ export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
           <Button onClick={onEnter} className="px-8 py-3.5 text-base" autoFocus>
             Start <Icon name="arrow-right" size={16} />
           </Button>
-          <p className="inline-flex items-center gap-2 font-mono text-base text-fg/75 md:text-lg">
+          <p className="inline-flex items-center gap-2 font-mono text-sm text-fg/75">
             {interactive ? (
               <>
-                <Icon name="speaker" size={18} /> Sound on for the full experience
+                <Icon name="speaker" size={15} /> Sound on for the full experience
               </>
             ) : (
               <>
-                <Icon name="speaker-off" size={18} /> Classic pages, no music
+                <Icon name="speaker-off" size={15} /> Classic pages, no music
               </>
             )}
           </p>
