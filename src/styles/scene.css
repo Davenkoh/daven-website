@@ -538,6 +538,35 @@ button.vinyl:focus-visible {
 }
 
 /* ---------- interactive on/off switch ---------- */
+.interactive-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 6px 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+.interactive-toggle-label {
+  font-family: var(--font-hud);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(242, 242, 242, 0.6);
+  transition: color 0.25s ease;
+}
+.interactive-toggle.is-on {
+  border-color: rgba(22, 198, 74, 0.55);
+  background: rgba(22, 198, 74, 0.14);
+  box-shadow: 0 0 18px rgba(22, 198, 74, 0.18);
+}
+.interactive-toggle.is-on .interactive-toggle-label {
+  color: #5ee88a;
+}
 .switch {
   position: relative;
   width: 54px;

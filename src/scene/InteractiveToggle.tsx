@@ -23,8 +23,8 @@ export function InteractiveToggle({ className, controlsAudio = true }: Interacti
     else pause()
   }
   return (
-    <span className={cn('flex items-center gap-2 pl-1 pr-1', className)}>
-      <span className="font-hud text-[11px] uppercase tracking-[0.14em] text-fg/70">Interactive</span>
+    <span className={cn('interactive-toggle', on && 'is-on', className)}>
+      <span className="interactive-toggle-label">Interactive Mode (3D)</span>
       <button
         type="button"
         role="switch"

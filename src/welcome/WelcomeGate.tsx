@@ -43,9 +43,7 @@ export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
           {SITE.taglines[1]}
         </motion.p>
         <motion.div {...stagger(3)} className="mt-12 flex flex-col items-center gap-5">
-          <div className="glass flex items-center gap-3 rounded-full py-2 pl-5 pr-3">
-            <InteractiveToggle controlsAudio={false} />
-          </div>
+          <InteractiveToggle controlsAudio={false} className="px-5 py-2.5" />
           <Button variant="accent" onClick={onEnter} className="px-8 py-3.5 text-base" autoFocus>
             Start <Icon name="arrow-right" size={16} />
           </Button>
