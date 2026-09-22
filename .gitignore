@@ -25,3 +25,6 @@ dist-ssr
 
 # source assets (large originals, not served)
 assets-src
+
+# vercel cli project link
+.vercel
