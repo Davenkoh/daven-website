@@ -1,15 +1,20 @@
 import type { Entry } from './types'
 
-export const events: Entry[] = [
+export const communities: Entry[] = [
   {
     slug: 'ku-nus-founder-mixer',
     title: 'KU × NUS Founder Mixer',
-    subtitle: 'The Collective · Seoul',
+    subtitle: 'The Collective | Seoul',
     org: 'The Collective',
     location: 'Seoul',
     period: 'Winter 2025 – 26',
     tags: ['Operations', 'GTM'],
     icon: '🇰🇷',
+    photos: ['/photos/highlights/ku-nus.webp', '/photos/highlights/ku-nus-emcee.webp'],
+    summary: 'A founder mixer between Korea University and NUS during winter exchange in Seoul.',
+    context: "Partnered with KU Crimson, Korea University's startup network.",
+    impact: 'Co-organised and emceed the night.',
+    result: '~20 KU founders met ~20 NUS students.',
     meta: [
       { label: 'Role', value: 'Co-organiser & emcee' },
       { label: 'Turnout', value: '~20 KU founders · ~20 NUS students' },
@@ -17,18 +22,23 @@ export const events: Entry[] = [
     ],
     bullets: [
       'Co-organised and emceed a Korea University × NUS founder mixer while on winter exchange in Seoul.',
-      "Brought ~20 KU founders together with ~20 NUS students on exchange, partnering with KU Crimson.",
+      'Brought ~20 KU founders together with ~20 NUS students on exchange, partnering with KU Crimson.',
     ],
   },
   {
     slug: 'collective-pitch-night',
     title: 'The Collective Pitch Night',
-    subtitle: '8 startups · one S$1,000 prize',
+    subtitle: 'The Collective | 8 startups, one S$1,000 prize',
     org: 'The Collective',
     location: 'Singapore',
     period: '2026',
     tags: ['Operations', 'GTM'],
     icon: '🎤',
+    photos: ['/photos/highlights/pitch-night.webp', '/photos/highlights/pitch-night-2.webp'],
+    summary: 'A pitch night for student startups from NUS and NTU.',
+    context: 'Judges from Antler and alumni from YC Startup School, with the prize sponsored by Hacktron.',
+    impact: 'Co-organised and emceed.',
+    result: '8 startups pitched for a S$1,000 prize.',
     meta: [
       { label: 'Role', value: 'Co-organiser & emcee' },
       { label: 'Line-up', value: '8 NUS and NTU startups' },
@@ -41,13 +51,18 @@ export const events: Entry[] = [
   {
     slug: 'founders-across-campus',
     title: 'Founders Across Campus',
-    subtitle: 'NUS Entrepreneurship Society · networking night',
+    subtitle: 'NUS Entrepreneurship Society | Networking night',
     org: 'NUS Entrepreneurship Society',
     location: 'Singapore',
     period: 'Aug 2025 – Jan 2026',
     tags: ['Operations', 'GTM'],
     icon: '🤝',
     logo: '/logos/nus.png',
+    photos: ['/photos/highlights/fac-crowd.webp', '/photos/highlights/fac-emcee.webp'],
+    summary: 'A networking night for student founders across four universities.',
+    context: 'In partnership with StartupX, with 5 polytechnic student F&B vendors.',
+    impact: 'Co-organised and emceed as External Liaisons.',
+    result: '80 founders from NUS, NTU, SMU and SUTD in one room.',
     meta: [
       { label: 'Role', value: 'Co-organiser & emcee · External Liaisons' },
       { label: 'Turnout', value: '80 founders from NUS, NTU, SMU, SUTD' },
@@ -60,13 +75,18 @@ export const events: Entry[] = [
   {
     slug: 'noc-idp-sharing',
     title: 'NOC × iDP Sharing at RC4',
-    subtitle: 'RC4 Entrepreneurship · 11 speakers',
+    subtitle: 'RC4 Entrepreneurship | 11 speakers',
     org: 'RC4 Entrepreneurship',
     location: 'Singapore',
     period: '2026',
     tags: ['Operations', 'GTM'],
     icon: '🌏',
     logo: '/logos/nus.png',
+    photos: ['/photos/highlights/noc-idp-group.webp', '/photos/highlights/noc-idp.webp'],
+    summary: 'A sharing session on NUS Overseas Colleges and the iDP programme.',
+    context: 'Speakers included Jeene from the NOC office, 9 NOC alumni from different locations and an iDP professor.',
+    impact: 'Co-organised as Finance Director.',
+    result: '90 sign-ups.',
     meta: [
       { label: 'Role', value: 'Co-organiser · Finance Director' },
       { label: 'Speakers', value: '11, incl. Jeene from the NOC office + 9 NOC alumni' },
@@ -79,7 +99,7 @@ export const events: Entry[] = [
   {
     slug: 'rc4-startup-carnival',
     title: 'RC4 Startup Carnival',
-    subtitle: '~20 startups and NOC set up booths in RC4',
+    subtitle: 'RC4 Entrepreneurship | ~20 startups and NOC set up booths in RC4',
     org: 'RC4 Entrepreneurship',
     location: 'Singapore',
     period: 'Upcoming',
@@ -87,6 +107,10 @@ export const events: Entry[] = [
     icon: '🎪',
     logo: '/logos/nus.png',
     status: 'In planning',
+    summary: 'The annual carnival that brings startups and NOC into RC4 so students can meet them.',
+    context: 'In planning with the RC4 Entrepreneurship team.',
+    impact: 'Finance Director on the organising team.',
+    result: '~20 startups and NOC booths planned.',
     meta: [
       { label: 'Role', value: 'Finance Director · organising team' },
       { label: 'Scale', value: '~20 startups + NOC booths' },
@@ -99,7 +123,7 @@ export const events: Entry[] = [
   {
     slug: 'rc4-elderly-craft',
     title: 'Elderly beadwork & craft sessions',
-    subtitle: 'RC4 Volunteers · 20 elderly × 40 student volunteers',
+    subtitle: 'RC4 Volunteers | 20 elderly × 40 student volunteers',
     org: 'RC4 Volunteers',
     location: 'Singapore',
     period: 'May 2026 – present',
@@ -107,6 +131,10 @@ export const events: Entry[] = [
     icon: '🧶',
     logo: '/logos/nus.png',
     status: 'Ongoing',
+    summary: 'Beadwork and craft sessions pairing elderly participants with student volunteers.',
+    context: 'An ongoing RC4 Volunteers project.',
+    impact: 'Programmes IC.',
+    result: '20 elderly participants paired with 40 student volunteers.',
     meta: [
       { label: 'Role', value: 'Programmes IC' },
       { label: 'Pairing', value: '20 elderly participants · 40 student volunteers' },

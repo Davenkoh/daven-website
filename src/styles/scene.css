@@ -296,6 +296,23 @@ button.vinyl:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
+/* the card's button breathes like the "+" dots, so it reads as clickable too */
+.summary-cta {
+  animation: cta-breathe 3.2s ease-in-out infinite;
+}
+@keyframes cta-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px rgba(224, 166, 60, 0.08),
+      0 0 16px rgba(224, 166, 60, 0.28);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(224, 166, 60, 0.14),
+      0 0 30px rgba(224, 166, 60, 0.5);
+  }
+}
 .hotspot {
   position: absolute;
   pointer-events: auto;

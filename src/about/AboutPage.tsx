@@ -5,13 +5,13 @@ import { ConnectLinks } from './ConnectLinks'
 import { SkillsStrip } from './SkillsStrip'
 import { Bento } from './Bento'
 
-/** About micropage: title with links, video, toolkit, then "Beyond the Desk". */
+/** Contact micropage: title with the ways to reach me, video, toolkit, then "Beyond the Desk". */
 export default function AboutPage() {
-  useDocumentTitle(`About · ${SITE.name}`, SITE.description)
+  useDocumentTitle(`Contact · ${SITE.name}`, SITE.description)
   return (
     <>
       <header className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-        <h1 className="title-arrow text-5xl font-medium tracking-tight md:text-6xl">About Me</h1>
+        <h1 className="title-arrow text-5xl font-medium tracking-tight md:text-6xl">Contact Me</h1>
         <ConnectLinks />
       </header>
       <VideoIntro />

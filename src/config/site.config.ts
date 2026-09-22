@@ -6,9 +6,9 @@ export const SITE = {
   shortName: 'Daven',
   role: 'Business x Tech',
   title: 'Daven Koh | Business x Tech',
-  description: 'Daven Koh, a business and technology builder working across GTM, operations, software and AI.',
+  description: 'Daven Koh, a business and technology builder working across GTM, business operations, software and AI systems.',
   greeting: "Aloha! I'm Daven",
-  taglines: ['Business x Tech', 'GTM · Operations · Software · AI'] as const,
+  taglines: ['Business x Tech', 'I specialize in GTM, business operations, software & AI systems'] as const,
   summary: 'I build and grow businesses & the systems behind them.',
   location: 'Singapore',
   timeZone: 'Asia/Singapore',
@@ -16,7 +16,7 @@ export const SITE = {
   email: 'Davenkoh3@gmail.com',
   resumeUrl: '/Daven-Koh-Resume.pdf',
   /**
-   * Video intro on the About page. Set `youtubeId` (the part after v= in the YouTube link)
+   * Video intro on the Contact page. Set `youtubeId` (the part after v= in the YouTube link)
    * or drop a file at public/videos/intro.mp4 and leave youtubeId empty.
    */
   videoIntro: { youtubeId: '', src: '/videos/intro.mp4', poster: '/photos/about-hero.jpg' },
@@ -28,38 +28,41 @@ export const SITE = {
   pages: [
     { label: 'Home', to: '/' },
     { label: 'Career', to: '/career' },
+    { label: 'Education', to: '/education' },
     { label: 'Projects', to: '/projects' },
-    { label: 'Events', to: '/events' },
-    { label: 'About', to: '/about' },
+    { label: 'Communities', to: '/communities' },
+    { label: 'Contact Me', to: '/contact' },
   ],
 } as const
 
 export const TOPIC_LABEL: Record<Topic, string> = {
   career: 'Career',
+  education: 'Education',
   projects: 'Projects',
-  events: 'Events I organised',
+  communities: 'Communities',
 }
 
 export const TOPIC_BLURB: Record<Topic, string> = {
-  career: 'Where I have worked, built and studied.',
+  career: 'Where I have worked and built.',
+  education: 'Where I have studied, and what I took from it.',
   projects: 'Things I have shipped, hacked together and pitched.',
-  events: 'Rooms I have filled with founders, students and friends.',
+  communities: 'Rooms I have filled with founders, students and friends.',
 }
 
-/** Section colours on the classic home page, matching the room: lamp amber, window blue, rug red, plant green. */
-export const TOPIC_COLOURS: Record<Topic | 'about' | 'room', string> = {
+/** One room colour per category: lamp amber, plant green, window blue, rug red. */
+export const TOPIC_COLOURS: Record<Topic, string> = {
   career: '#e0a63c',
+  education: '#6dbf8a',
   projects: '#5fa8d8',
-  events: '#e5705a',
-  about: '#6dbf8a',
-  room: '#9a9a9a',
+  communities: '#e5705a',
 }
 
 /** Which vinyl track plays when a topic opens (ids from data/tracks.ts). */
 export const TOPIC_TRACK: Record<Topic, string> = {
   career: 'track-1',
+  education: 'track-3',
   projects: 'track-2',
-  events: 'track-3',
+  communities: 'track-3',
 }
 
 /** Below this width (or on touch-only devices) the site defaults to classic mode. */

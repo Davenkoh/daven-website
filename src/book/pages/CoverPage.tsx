@@ -1,4 +1,4 @@
-import type { Topic } from '@/data/types'
+import { TOPICS, type Topic } from '@/data/types'
 import { SITE, TOPIC_BLURB, TOPIC_LABEL } from '@/config/site.config'
 import { COVER_THEME } from '../coverTheme'
 import type { PageContext } from './PageFace'
@@ -12,6 +12,18 @@ function Motif({ topic, colour }: { topic: Topic; colour: string }) {
           <path d="M30 170h40v-40h40v-40h40V50h30" />
           <circle cx="30" cy="170" r="6" fill={colour} />
           <circle cx="180" cy="50" r="6" fill={colour} />
+        </g>
+      </svg>
+    )
+  }
+  if (topic === 'education') {
+    return (
+      <svg viewBox="0 0 200 200" className="cover-motif" aria-hidden="true">
+        <g fill="none" stroke={colour} strokeWidth="4" strokeLinejoin="round" strokeLinecap="round">
+          <path d="M100 45 175 80 100 115 25 80z" />
+          <path d="M55 96v34c0 12 20 22 45 22s45-10 45-22V96" />
+          <path d="M175 80v42" />
+          <circle cx="175" cy="128" r="6" fill={colour} />
         </g>
       </svg>
     )
@@ -46,7 +58,7 @@ export function CoverPage({ topic }: { topic: Topic }) {
   return (
     <div className="page-cover" style={{ background: t.bg, color: t.ink }}>
       <p className="cover-kicker" style={{ color: t.accent }}>
-        {SITE.shortName} · Vol. {topic === 'career' ? 'I' : topic === 'projects' ? 'II' : 'III'}
+        {SITE.shortName} · Vol. {['I', 'II', 'III', 'IV'][TOPICS.indexOf(topic)]}
       </p>
       <h2 className="cover-title" style={{ color: t.accent }}>
         {TOPIC_LABEL[topic]}

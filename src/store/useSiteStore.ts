@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { Mode, Tag } from '@/data/types'
+import type { Mode } from '@/data/types'
 import { readStorage, writeStorage } from '@/lib/storage'
 
 const HIGHLIGHTS_KEY = 'daven.highlightsSeen'
@@ -13,7 +13,6 @@ interface SiteState {
   modeOverride: boolean
   lamp: boolean
   rain: boolean
-  filters: Tag[]
   calibration: boolean
   /** how the topics read inside the room: the flip-book or a linear scrolling page */
   bookView: BookView
@@ -26,10 +25,11 @@ interface SiteState {
   setMode: (mode: Mode, override?: boolean) => void
   toggleLamp: () => void
   toggleRain: () => void
-  toggleFilter: (tag: Tag) => void
-  clearFilters: () => void
   toggleCalibration: () => void
 }
+
+const partialize = (s: SiteState) => ({ mode: s.mode, modeOverride: s.modeOverride, lamp: s.lamp, rain: s.rain, bookView: s.bookView })
+type Persisted = ReturnType<typeof partialize>
 
 export const useSiteStore = create<SiteState>()(
   persist(
@@ -38,9 +38,8 @@ export const useSiteStore = create<SiteState>()(
       modeOverride: false,
       lamp: true,
       rain: true,
-      filters: [],
       calibration: false,
-      bookView: 'book',
+      bookView: 'linear',
       setBookView: (view) => set({ bookView: view }),
       highlightsOpen: readStorage('session', HIGHLIGHTS_KEY) !== '1',
       highlightsSeen: readStorage('session', HIGHLIGHTS_KEY) === '1',
@@ -52,23 +51,14 @@ export const useSiteStore = create<SiteState>()(
       setMode: (mode, override = true) => set({ mode, modeOverride: override }),
       toggleLamp: () => set((s) => ({ lamp: !s.lamp })),
       toggleRain: () => set((s) => ({ rain: !s.rain })),
-      toggleFilter: (tag) =>
-        set((s) => ({
-          filters: s.filters.includes(tag) ? s.filters.filter((t) => t !== tag) : [...s.filters, tag],
-        })),
-      clearFilters: () => set({ filters: [] }),
       toggleCalibration: () => set((s) => ({ calibration: !s.calibration })),
     }),
     {
       name: 'daven.site',
-      partialize: (s) => ({
-        mode: s.mode,
-        modeOverride: s.modeOverride,
-        lamp: s.lamp,
-        rain: s.rain,
-        filters: s.filters,
-        bookView: s.bookView,
-      }),
+      version: 2,
+      partialize,
+      // v2: the list view became the default reading view
+      migrate: (persisted) => ({ ...(persisted as Persisted), bookView: 'linear' as BookView }),
     },
   ),
 )

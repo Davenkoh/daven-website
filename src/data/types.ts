@@ -1,16 +1,15 @@
-export type Tag = 'GTM' | 'Operations' | 'Software' | 'AI'
-export const TAGS: readonly Tag[] = ['GTM', 'Operations', 'Software', 'AI']
+export type Tag = 'GTM' | 'Operations' | 'Software & AI'
+export const TAGS: readonly Tag[] = ['GTM', 'Operations', 'Software & AI']
 
-/** One room colour per category: lamp amber, rug red, window blue, plant green. `paper` is the darker ink for book pages. */
+/** One room colour per category: lamp amber, rug red, window blue. `paper` is the darker ink for book pages. */
 export const TAG_COLOURS: Record<Tag, { dark: string; paper: string }> = {
   GTM: { dark: '#e0a63c', paper: '#b57a14' },
   Operations: { dark: '#e5705a', paper: '#b8452f' },
-  Software: { dark: '#5fa8d8', paper: '#2c72a8' },
-  AI: { dark: '#6dbf8a', paper: '#2f8a58' },
+  'Software & AI': { dark: '#5fa8d8', paper: '#2c72a8' },
 }
 
-export type Topic = 'career' | 'projects' | 'events'
-export const TOPICS: readonly Topic[] = ['career', 'projects', 'events']
+export type Topic = 'career' | 'education' | 'projects' | 'communities'
+export const TOPICS: readonly Topic[] = ['career', 'education', 'projects', 'communities']
 
 export type Mode = 'interactive' | 'classic'
 
@@ -41,6 +40,12 @@ export interface Entry {
   /** Initials or emoji used when there is no logo image */
   icon?: string
   meta?: EntryMeta[]
+  /** the four lines on a gallery card; the full story lives in `bullets` */
+  summary?: string
+  context?: string
+  /** highest-impact item */
+  impact?: string
+  result?: string
   description?: string
   bullets?: string[]
   links?: EntryLink[]

@@ -1,0 +1,50 @@
+import type { Entry } from './types'
+
+export const education: Entry[] = [
+  {
+    slug: 'nus',
+    title: 'Bachelor of Computing, Business AI Systems',
+    subtitle: 'National University of Singapore | School of Computing',
+    org: 'NUS',
+    location: 'Singapore',
+    period: 'Aug 2025 – May 2029 (expected)',
+    tags: ['Software & AI'],
+    icon: '🎓',
+    logo: '/logos/nus.png',
+    summary: 'A technical degree at the intersection of business and AI, chosen after a business diploma.',
+    context: 'Residential College 4, a systems-thinking residential programme.',
+    impact: 'NUS Overseas Colleges (NOC) Vietnam in 2026 and a winter exchange at Korea University in Seoul.',
+    result: "GPA 4.88 / 5.00, Dean's List.",
+    meta: [
+      { label: 'Type', value: 'Education' },
+      { label: 'GPA', value: "4.88 / 5.00 · Dean's List" },
+      { label: 'College', value: 'Residential College 4 (systems thinking)' },
+    ],
+    bullets: [
+      "GPA 4.88 / 5.00 (Dean's List).",
+      'Residential College 4, a systems-thinking residential programme.',
+      'On NUS Overseas Colleges (NOC) Vietnam in 2026; winter exchange at Korea University in Seoul.',
+    ],
+  },
+  {
+    slug: 'ngee-ann',
+    title: 'Diploma in Business Studies (Marketing)',
+    subtitle: 'Ngee Ann Polytechnic | Minor in Entrepreneurship',
+    org: 'Ngee Ann Polytechnic',
+    location: 'Singapore',
+    period: 'Apr 2021 – Feb 2024',
+    tags: ['GTM'],
+    icon: 'NP',
+    logo: '/logos/ngee-ann.png',
+    summary: 'Business studies with a marketing specialisation and a minor in entrepreneurship.',
+    context: 'Where I first heard founders talk about building something from nothing, and co-founded Acai Den on campus.',
+    impact: 'Top in Marketing Communications.',
+    result: "GPA 3.88 / 4.00, Director's List.",
+    meta: [
+      { label: 'Type', value: 'Education' },
+      { label: 'GPA', value: "3.88 / 4.00 · Director's List" },
+      { label: 'Award', value: 'Top in Marketing Communications' },
+    ],
+    bullets: ["GPA 3.88 / 4.00 (Director's List).", 'Top in Marketing Communications.'],
+  },
+]

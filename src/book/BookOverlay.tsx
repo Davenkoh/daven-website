@@ -98,7 +98,7 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
     }
   }
 
-  const showTags = topic !== 'events'
+  const showTags = topic === 'career' || topic === 'projects'
   const ctx = useMemo(() => ({ topic, goToPage, showTags }), [topic, goToPage, showTags])
 
   return (
@@ -118,11 +118,11 @@ export default function BookOverlay({ topic }: { topic: Topic }) {
         </button>
         <div className="book-top">
           <div className="view-switch" role="group" aria-label="Reading view">
-            <button type="button" aria-pressed={!linear} className={cn(!linear && 'is-active')} onClick={() => setBookView('book')}>
-              Book
-            </button>
             <button type="button" aria-pressed={linear} className={cn(linear && 'is-active')} onClick={() => setBookView('linear')}>
-              List View
+              List
+            </button>
+            <button type="button" aria-pressed={!linear} className={cn(!linear && 'is-active')} onClick={() => setBookView('book')}>
+              Book View
             </button>
           </div>
           {!linear && (

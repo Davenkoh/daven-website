@@ -58,11 +58,11 @@ export function HighlightsOverlay({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="hl-dock" role="group" aria-label="Scroll shortcuts">
-          <button type="button" className="hl-dock-btn" onClick={() => jumpTo('top')}>
-            Back to top <Icon name="arrow-up" size={15} />
+          <button type="button" className="hl-dock-btn" onClick={() => jumpTo('top')} aria-label="Scroll to the top">
+            Top <Icon name="arrow-up" size={14} />
           </button>
-          <button type="button" className="hl-dock-btn" onClick={() => jumpTo('end')}>
-            Jump to the end <Icon name="arrow-down" size={15} />
+          <button type="button" className="hl-dock-btn" onClick={() => jumpTo('end')} aria-label="Scroll to the bottom">
+            Bottom <Icon name="arrow-down" size={14} />
           </button>
         </div>
       </motion.section>

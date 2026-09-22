@@ -10,7 +10,7 @@ export function TocPage({ page, ctx }: { page: TocPageData; ctx: PageContext }) 
         Table of contents{page.parts > 1 ? ` · ${page.part}/${page.parts}` : ''}
       </p>
       {page.items.length === 0 ? (
-        <p className="page-body page-muted">Nothing matches those filters. Clear them to see everything.</p>
+        <p className="page-body page-muted">Nothing here yet.</p>
       ) : (
         <ol className="toc-list">
           {page.items.map((item) => (

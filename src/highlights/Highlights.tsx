@@ -1,6 +1,7 @@
 import { useState, type CSSProperties } from 'react'
 import { highlights, highlightsClosing, highlightsHeader, type HighlightBlock, type HighlightFigure, type HighlightPhoto } from '@/data/highlights'
 import { Icon } from '@/components/Icon'
+import { SITE } from '@/config/site.config'
 import { cn } from '@/lib/cn'
 import { rich } from './rich'
 
@@ -83,11 +84,10 @@ export function Highlights({ variant, onStart, startLabel = 'Start Exploring' }:
       <header className="hl-head">
         <h2 className="hl-greeting">{highlightsHeader.greeting}</h2>
         <p className="hl-role">{highlightsHeader.role}</p>
-        <p className="hl-tagline">{highlightsHeader.tagline}</p>
+        <p className="hl-tagline">{SITE.taglines[1]}</p>
         <div className="hl-me">
           <img src={highlightsHeader.photo.src} alt={highlightsHeader.photo.alt} decoding="async" />
         </div>
-        <p className="hl-intro">{highlightsHeader.intro}</p>
         <p className="hl-cue">
           {highlightsHeader.cue} <Icon name="arrow-down" size={15} />
         </p>

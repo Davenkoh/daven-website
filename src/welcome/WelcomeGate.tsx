@@ -4,8 +4,6 @@ import { Button } from '@/components/Button'
 import { Icon } from '@/components/Icon'
 
 interface WelcomeGateProps {
-  /** whether the interactive room follows (shows the sound hint) */
-  interactive: boolean
   onEnter: () => void
 }
 
@@ -15,7 +13,7 @@ const stagger = (i: number) => ({
   transition: { duration: 0.6, delay: 0.15 + i * 0.12, ease: [0.22, 1, 0.36, 1] as const },
 })
 
-export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
+export function WelcomeGate({ onEnter }: WelcomeGateProps) {
   return (
     <motion.section
       key="welcome"
@@ -38,24 +36,13 @@ export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
         <motion.p {...stagger(1)} className="mt-6 text-3xl text-fg/95 sm:text-4xl md:text-5xl">
           {SITE.taglines[0]}
         </motion.p>
-        <motion.p {...stagger(2)} className="mt-3 font-mono text-lg text-fg/70 md:text-2xl">
+        <motion.p {...stagger(2)} className="mt-4 font-mono text-base text-fg/75 md:text-xl">
           {SITE.taglines[1]}
         </motion.p>
         <motion.div {...stagger(3)} className="mt-12 flex flex-col items-center gap-5">
           <Button variant="accent" onClick={onEnter} className="px-8 py-3.5 text-base" autoFocus>
             Start <Icon name="arrow-right" size={16} />
           </Button>
-          <p className="inline-flex items-center gap-2 font-mono text-sm text-fg/75">
-            {interactive ? (
-              <>
-                <Icon name="speaker" size={15} /> Sound on for the full experience
-              </>
-            ) : (
-              <>
-                <Icon name="speaker-off" size={15} /> Classic pages, no music
-              </>
-            )}
-          </p>
         </motion.div>
       </div>
     </motion.section>

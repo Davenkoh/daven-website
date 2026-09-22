@@ -37,9 +37,7 @@ export interface HighlightSection {
 export const highlightsHeader = {
   greeting: "Aloha! I'm Daven",
   role: 'Business × Tech',
-  tagline: 'GTM · Operations · Software · AI',
   photo: { src: '/portraits/daven.webp', alt: 'Daven, sitting on an office chair' },
-  intro: 'The key experiences that made me who I am',
   cue: 'Follow my journey',
 }
 

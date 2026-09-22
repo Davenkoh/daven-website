@@ -1,14 +1,10 @@
-import type { Entry, Tag, Topic } from './types'
+import type { Entry, Topic } from './types'
 import { career } from './career'
+import { education } from './education'
 import { projects } from './projects'
-import { events } from './events'
+import { communities } from './communities'
 
-export const entriesByTopic: Record<Topic, Entry[]> = { career, projects, events }
-
-export function filterEntries(entries: Entry[], filters: Tag[]): Entry[] {
-  if (filters.length === 0) return entries
-  return entries.filter((e) => e.tags.some((t) => filters.includes(t)))
-}
+export const entriesByTopic: Record<Topic, Entry[]> = { career, education, projects, communities }
 
 /** Photos for an entry: `photos` wins, `image` is the legacy single hero. */
 export const entryPhotos = (entry: Entry): string[] => entry.photos ?? (entry.image ? [entry.image] : [])

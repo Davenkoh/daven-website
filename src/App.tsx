@@ -47,14 +47,15 @@ export default function App() {
   return (
     <>
       <AnimatePresence>
-        {!welcomed && <WelcomeGate key="gate" interactive={mode === 'interactive'} onEnter={enter} />}
+        {!welcomed && <WelcomeGate key="gate" onEnter={enter} />}
       </AnimatePresence>
       {welcomed && (
         <Suspense fallback={null}>
           <Routes>
             <Route element={<Shell />}>
               <Route index element={mode === 'classic' ? <HomePage /> : null} />
-              <Route path="about" element={<AboutPage />} />
+              <Route path="contact" element={<AboutPage />} />
+              <Route path="about" element={<Navigate to="/contact" replace />} />
               <Route path=":topic" element={<TopicRoute />} />
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
@@ -65,11 +66,11 @@ export default function App() {
   )
 }
 
-/** Interactive mode renders the room; classic mode (and /about in any mode) renders the dark pages. */
+/** Interactive mode renders the room; classic mode (and /contact in any mode) renders the dark pages. */
 function Shell() {
   const mode = useSiteStore((s) => s.mode)
   const { pathname } = useLocation()
-  if (mode === 'classic' || pathname.startsWith('/about')) return <ClassicLayout roomAvailable={mode === 'interactive'} />
+  if (mode === 'classic' || pathname.startsWith('/contact')) return <ClassicLayout roomAvailable={mode === 'interactive'} />
   return <InteractiveShell />
 }
 

@@ -44,28 +44,30 @@ export const LAPTOP = { x: 1059, y: 527, fontSize: 15 }
 
 export const PORTRAIT = {
   src: '/portraits/daven.webp',
-  x: 560,
-  y: 332,
-  w: 520,
+  x: 662,
+  y: 367,
+  w: 337,
   /** height / width of the cut-out */
-  aspect: 1019 / 1000,
+  aspect: 1.4267,
 }
 const portraitH = PORTRAIT.w * PORTRAIT.aspect
 
 export const HOTSPOTS: HotspotDef[] = [
-  { id: 'career', label: 'Career', to: '/career', x: 405, y: 40, w: 595, h: 320, dot: { x: 0.5, y: 0.5 } },
+  // the shelf: books for Career, the framed picture on the lower-middle shelf for Education
+  { id: 'career', label: 'Career', to: '/career', x: 405, y: 40, w: 595, h: 320, dot: { x: 0.62, y: 0.32 } },
+  { id: 'education', label: 'Education', to: '/education', x: 728, y: 266, w: 108, h: 92, dot: { x: 0.5, y: 0.5 } },
   { id: 'projects', label: 'Projects', to: '/projects', x: 565, y: 393, w: 315, h: 165, dot: { x: 0.5, y: 0.42 } },
-  { id: 'events', label: 'Events I organised', to: '/events', x: 40, y: 65, w: 330, h: 265, dot: { x: 0.5, y: 0.5 } },
+  { id: 'communities', label: 'Communities', to: '/communities', x: 40, y: 65, w: 330, h: 265, dot: { x: 0.5, y: 0.5 } },
   // on the character's chest
   {
-    id: 'about',
-    label: 'About me',
-    to: '/about',
+    id: 'contact',
+    label: 'Contact me',
+    to: '/contact',
     x: PORTRAIT.x + PORTRAIT.w * 0.3,
-    y: PORTRAIT.y + portraitH * 0.5,
+    y: PORTRAIT.y + portraitH * 0.34,
     w: PORTRAIT.w * 0.4,
-    h: portraitH * 0.28,
-    dot: { x: 0.5, y: 0.3 },
+    h: portraitH * 0.22,
+    dot: { x: 0.5, y: 0.35 },
   },
   { id: 'lamp', label: 'Lamp', action: 'lamp', x: 1500, y: 288, w: 162, h: 134, dot: { x: 0.5, y: 0.5 } },
 ]

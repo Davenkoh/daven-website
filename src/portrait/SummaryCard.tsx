@@ -19,7 +19,7 @@ export function SummaryCard() {
       <h1 className="mt-1 text-4xl font-medium tracking-tight text-white">{SITE.shortName}</h1>
       <p className="mt-2 text-lg leading-tight text-fg">{SITE.taglines[0]}</p>
       <p className="mt-1 font-mono text-[11px] text-fg/70">{SITE.taglines[1]}</p>
-      <button type="button" onClick={openHighlights} className="mt-4 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-[#1b1408] transition hover:brightness-110">
+      <button type="button" onClick={openHighlights} className="summary-cta mt-4 inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-[#1b1408] transition hover:brightness-110">
         My Highlights <Icon name="arrow-right" size={14} />
       </button>
     </div>
