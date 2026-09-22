@@ -10,6 +10,10 @@ npm run preview    # serve the production build
 npm run lint
 ```
 
+## Deployment
+
+Live at https://davenkoh-website.vercel.app (Vercel project `daven-website`, connected to this GitHub repo). Every push to `main` deploys to production; other branches get preview URLs. `vercel.json` holds the SPA rewrite and cache headers. Manual deploy from this folder: `npx vercel deploy --prod`.
+
 ## Modes
 
 - **Room** (interactive): the workspace scene at `/`; Career, Education, Projects, Communities and Contact Me open as panels over the room at `/career`, `/education`, `/projects`, `/communities` and `/contact`.
