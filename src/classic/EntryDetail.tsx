@@ -33,8 +33,9 @@ function Section({ label, children }: { label: string; children: ReactNode }) {
  */
 export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailProps) {
   const dialog = useRef<HTMLDivElement>(null)
-  // the cover sits on the card; the dialog shows the rest
-  const inside = entryPhotos(entry).slice(1)
+  // with a dedicated cover crop every photo shows inside; otherwise the first photo is the cover
+  const photos = entryPhotos(entry)
+  const inside = entry.cover ? photos : photos.slice(1)
   const facts: [string, string | undefined][] = [
     ['Context', entry.context],
     ['Highest impact', entry.impact],

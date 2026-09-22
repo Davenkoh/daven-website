@@ -42,8 +42,10 @@ export interface Entry {
   tags: Tag[]
   /** hero image (kept for backwards compatibility; prefer `photos`) */
   image?: string
-  /** photos on the card and in the detail dialog: the first is the cover */
+  /** photos in the detail dialog; without `cover`, the first doubles as the card cover */
   photos?: string[]
+  /** a 16:10 crop for the card (public/photos/covers), so the card shows the subject, not a centre crop */
+  cover?: string
   logo?: string
   /** Initials or emoji used when there is no logo image */
   icon?: string

@@ -31,7 +31,7 @@ interface GalleryCardProps {
 
 /** One entry in the gallery: cover photo, logo + title + subtitle, one paragraph, then "View details". */
 export function GalleryCard({ entry, colour, showTags, onOpen }: GalleryCardProps) {
-  const photos = entryPhotos(entry)
+  const cover = entry.cover ?? entryPhotos(entry)[0]
   const blurb = entryBlurb(entry)
   const open = () => onOpen(entry)
   const onKeyDown = (e: KeyboardEvent<HTMLElement>) => {
@@ -43,8 +43,8 @@ export function GalleryCard({ entry, colour, showTags, onOpen }: GalleryCardProp
   return (
     <article className="gallery-card" role="button" tabIndex={0} style={{ '--c': colour } as CSSProperties} onClick={open} onKeyDown={onKeyDown}>
       <div className="gallery-media">
-        {photos[0] ? (
-          <img src={photos[0]} alt="" loading="lazy" decoding="async" />
+        {cover ? (
+          <img src={cover} alt="" loading="lazy" decoding="async" />
         ) : (
           <div className="gallery-placeholder">
             <EntryIcon entry={entry} size="lg" />
