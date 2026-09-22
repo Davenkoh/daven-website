@@ -1,4 +1,4 @@
-import { useEffect, useRef, type CSSProperties } from 'react'
+import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'motion/react'
 import type { Entry } from '@/data/types'
@@ -6,7 +6,9 @@ import { entryPhotos } from '@/data'
 import { Icon } from '@/components/Icon'
 import { Pill } from '@/components/Pill'
 import { TagChips } from '@/components/TagChips'
-import { EntryIcon, FactList } from './EntryCard'
+import { cn } from '@/lib/cn'
+import { EntryIcon } from './EntryCard'
+import { SlideDeck } from './SlideDeck'
 
 interface EntryDetailProps {
   entry: Entry
@@ -15,10 +17,30 @@ interface EntryDetailProps {
   onClose: () => void
 }
 
-/** Everything about one entry, in a dialog over the gallery. Escape, the × or a click outside closes it. */
+function Section({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <section className="entry-dialog-section">
+      <h3>{label}</h3>
+      {children}
+    </section>
+  )
+}
+
+/**
+ * Everything about one entry, in a dialog over the gallery: the remaining photos, summary, the full
+ * story, tech stack, then labelled figures (architecture, specs, a slide deck). Escape, × or a click
+ * outside closes it.
+ */
 export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailProps) {
   const dialog = useRef<HTMLDivElement>(null)
-  const photos = entryPhotos(entry)
+  // the cover sits on the card; the dialog shows the rest
+  const inside = entryPhotos(entry).slice(1)
+  const facts: [string, string | undefined][] = [
+    ['Context', entry.context],
+    ['Highest impact', entry.impact],
+    ['Result', entry.result],
+  ]
+  const presentFacts = facts.filter((f): f is [string, string] => !!f[1])
 
   useEffect(() => {
     dialog.current?.focus({ preventScroll: true })
@@ -65,18 +87,6 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
           <Icon name="close" size={18} />
         </button>
         <div className="entry-dialog-scroll">
-          {photos.length > 0 && (
-            <div className="entry-dialog-photos">
-              <img src={photos[0]} alt="" className="entry-dialog-hero" decoding="async" />
-              {photos.length > 1 && (
-                <div className="entry-dialog-thumbs">
-                  {photos.slice(1, 7).map((src) => (
-                    <img key={src} src={src} alt="" loading="lazy" decoding="async" />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
           <header className="entry-dialog-head">
             <EntryIcon entry={entry} size="lg" />
             <div className="min-w-0">
@@ -84,12 +94,63 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
               {entry.subtitle && <p className="mt-1 text-base text-muted">{entry.subtitle}</p>}
             </div>
           </header>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {entry.period && <Pill>{entry.period}</Pill>}
-            {entry.location && <Pill>{entry.location}</Pill>}
-            {entry.status && <Pill className="border-accent/40 text-accent">{entry.status}</Pill>}
-          </div>
-          <FactList entry={entry} className="entry-dialog-facts" />
+          {(entry.period || entry.location || entry.status) && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {entry.period && <Pill>{entry.period}</Pill>}
+              {entry.location && <Pill>{entry.location}</Pill>}
+              {entry.status && <Pill className="border-accent/40 text-accent">{entry.status}</Pill>}
+            </div>
+          )}
+
+          {inside.length > 0 && (
+            <div className={cn('entry-dialog-photos', inside.length === 1 && 'is-single')}>
+              {inside.map((src) => (
+                <img key={src} src={src} alt="" loading="lazy" decoding="async" />
+              ))}
+            </div>
+          )}
+
+          {entry.summary && (
+            <Section label="Summary">
+              {Array.isArray(entry.summary) ? (
+                <ul>
+                  {entry.summary.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>{entry.summary}</p>
+              )}
+            </Section>
+          )}
+          {presentFacts.length > 0 && (
+            <dl className="entry-dialog-facts">
+              {presentFacts.map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {entry.bullets && (
+            <Section label="The full story">
+              <ul>
+                {entry.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            </Section>
+          )}
+          {entry.stack && (
+            <Section label="Tech Stack">
+              <ul className="entry-dialog-stack">
+                {entry.stack.map((s, i) => (
+                  <li key={`${s}-${i}`}>{s}</li>
+                ))}
+              </ul>
+            </Section>
+          )}
           {entry.meta && (
             <dl className="entry-dialog-meta">
               {entry.meta.map((m) => (
@@ -108,16 +169,11 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
               ))}
             </dl>
           )}
-          {entry.bullets && (
-            <section className="entry-dialog-section">
-              <h3>The full story</h3>
-              <ul>
-                {entry.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {entry.figures?.map((f) => (
+            <Section key={f.label} label={f.label}>
+              {f.slides ? <SlideDeck slides={f.slides} label={f.label} /> : f.src ? <img className="entry-dialog-figure" src={f.src} alt={f.label} loading="lazy" decoding="async" /> : null}
+            </Section>
+          ))}
           {entry.description && <p className="mt-5 text-fg/80">{entry.description}</p>}
           {entry.links && (
             <div className="mt-5 flex flex-wrap gap-3">
@@ -128,7 +184,7 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
               ))}
             </div>
           )}
-          {showTags && <TagChips tags={entry.tags} tone="dark" className="mt-6 border-t border-line pt-4 text-[11px]" />}
+          {showTags && <TagChips tags={entry.tags} tone="dark" className="mt-7 border-t border-line pt-4 text-[11px]" />}
         </div>
       </motion.div>
     </motion.div>,

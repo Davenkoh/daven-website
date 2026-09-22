@@ -1,6 +1,6 @@
 import type { CSSProperties, KeyboardEvent } from 'react'
 import type { Entry } from '@/data/types'
-import { entryPhotos } from '@/data'
+import { entryBlurb, entryPhotos } from '@/data'
 import { Icon } from '@/components/Icon'
 import { TagChips } from '@/components/TagChips'
 import { cn } from '@/lib/cn'
@@ -22,28 +22,6 @@ export function EntryIcon({ entry, className, size = 'md' }: { entry: Entry; cla
   )
 }
 
-/** The four lines every gallery card carries: summary, context, highest-impact item, result. */
-export function FactList({ entry, className }: { entry: Entry; className?: string }) {
-  const facts: [string, string | undefined][] = [
-    ['Summary', entry.summary],
-    ['Context', entry.context],
-    ['Highest impact', entry.impact],
-    ['Result', entry.result],
-  ]
-  const present = facts.filter((f): f is [string, string] => !!f[1])
-  if (present.length === 0) return null
-  return (
-    <dl className={cn('gallery-facts', className)}>
-      {present.map(([label, value]) => (
-        <div key={label}>
-          <dt>{label}</dt>
-          <dd>{value}</dd>
-        </div>
-      ))}
-    </dl>
-  )
-}
-
 interface GalleryCardProps {
   entry: Entry
   colour: string
@@ -51,9 +29,10 @@ interface GalleryCardProps {
   onOpen: (entry: Entry) => void
 }
 
-/** One entry in the gallery: photo, logo + title + subtitle, the four fact lines, then "View details". */
+/** One entry in the gallery: cover photo, logo + title + subtitle, one paragraph, then "View details". */
 export function GalleryCard({ entry, colour, showTags, onOpen }: GalleryCardProps) {
   const photos = entryPhotos(entry)
+  const blurb = entryBlurb(entry)
   const open = () => onOpen(entry)
   const onKeyDown = (e: KeyboardEvent<HTMLElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -80,7 +59,7 @@ export function GalleryCard({ entry, colour, showTags, onOpen }: GalleryCardProp
             {entry.subtitle && <p className="mt-0.5 text-sm text-muted">{entry.subtitle}</p>}
           </div>
         </div>
-        <FactList entry={entry} />
+        {blurb && <p className="gallery-blurb">{blurb}</p>}
         <div className="gallery-foot">
           {showTags ? <TagChips tags={entry.tags} tone="dark" className="text-[11px]" /> : <span />}
           <span className="gallery-more">

@@ -23,7 +23,6 @@ npm run lint
 | `public/portraits/daven.webp` | cut-out of you on the chair, facing the camera (in place; also the journey header photo) | transparent background, 1000×1019 (update `PORTRAIT.aspect` if replaced) |
 | `public/audio/track-1.mp3` … `track-3.mp3` | lofi tracks (done: three 10-minute sides, 128 kbps) | Titles/artists live in `src/data/tracks.ts`. Keep the ids — topics map to tracks in `src/config/site.config.ts`. To re-cut: `ffmpeg -ss 0 -t 600 -i source.m4a -codec:a libmp3lame -b:a 128k public/audio/track-1.mp3`. |
 | `public/photos/avatar.jpg` | small round avatar | used in the nav pill |
-| `public/videos/intro.mp4` or `videoIntro.youtubeId` in `src/config/site.config.ts` | video intro on the Contact page | 16:9; `public/photos/about-hero.jpg` is the poster |
 | `public/photos/hobby-*.jpg` | hobby photos | wired in `src/data/about.ts` |
 | `public/audio/records/rec-1.mp3` … | records for the Contact page turntable | titles/colours in `src/about/player/records.ts`; these pause the room's lofi while they play |
 | `public/Daven-Koh-Resume.pdf` | resume | linked from the footer |
@@ -44,7 +43,7 @@ The first visit to the room shows a one-click spotlight tour of everything click
 ## Content
 
 - `src/data/career.ts`, `education.ts`, `projects.ts`, `communities.ts` — entries; `summary`, `context`, `impact`, `result` are the four gallery-card lines, `bullets` the full story in the detail dialog; `tags` drive the GTM / Operations / Software & AI radio chips.
-- `src/data/about.ts` — timeline, hobbies, quote, languages, community, skills.
+- `src/data/about.ts` — timeline, hobbies, quote, languages, skills.
 - `src/config/site.config.ts` — name, taglines, socials, topic → track mapping.
 
 ## Deploy

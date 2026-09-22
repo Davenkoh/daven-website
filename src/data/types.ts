@@ -24,6 +24,14 @@ export interface EntryLink {
   href: string
 }
 
+/** A labelled piece at the end of the detail dialog: one image (architecture, spec) or a deck of slides. */
+export interface EntryFigure {
+  label: string
+  src?: string
+  /** slide images shown inline with arrows */
+  slides?: string[]
+}
+
 export interface Entry {
   slug: string
   title: string
@@ -40,14 +48,21 @@ export interface Entry {
   /** Initials or emoji used when there is no logo image */
   icon?: string
   meta?: EntryMeta[]
-  /** the four lines on a gallery card; the full story lives in `bullets` */
-  summary?: string
+  /** the one-paragraph description on the gallery card (falls back to `summary`) */
+  body?: string
+  /** "Summary" in the detail dialog: a paragraph or bullet points */
+  summary?: string | string[]
   context?: string
   /** highest-impact item */
   impact?: string
   result?: string
   description?: string
+  /** "The full story" in the detail dialog */
   bullets?: string[]
+  /** "Tech Stack" in the detail dialog */
+  stack?: string[]
+  /** Architecture, Product Spec, Pitch Deck… */
+  figures?: EntryFigure[]
   links?: EntryLink[]
   status?: string
 }
@@ -83,13 +98,6 @@ export interface Language {
   name: string
   greeting: string
   level: string
-}
-
-export interface CommunityItem {
-  org: string
-  role: string
-  period: string
-  href?: string
 }
 
 export interface SkillItem {

@@ -15,11 +15,6 @@ export const SITE = {
   timeZoneLabel: 'SGT',
   email: 'Davenkoh3@gmail.com',
   resumeUrl: '/Daven-Koh-Resume.pdf',
-  /**
-   * Video intro on the Contact page. Set `youtubeId` (the part after v= in the YouTube link)
-   * or drop a file at public/videos/intro.mp4 and leave youtubeId empty.
-   */
-  videoIntro: { youtubeId: '', src: '/videos/intro.mp4', poster: '/photos/about-hero.jpg' },
   socials: [
     { label: 'LinkedIn', href: 'https://linkedin.com/in/daven-koh' },
     { label: 'GitHub', href: 'https://github.com/Davenkoh' },
@@ -31,7 +26,7 @@ export const SITE = {
     { label: 'Education', to: '/education' },
     { label: 'Projects', to: '/projects' },
     { label: 'Communities', to: '/communities' },
-    { label: 'Contact Me', to: '/contact' },
+    { label: 'Contact', to: '/contact' },
   ],
 } as const
 

@@ -6,7 +6,6 @@ import { HobbiesCard } from './cards/HobbiesCard'
 import { LanguagesCard } from './cards/LanguagesCard'
 import { PlayerCard } from './cards/PlayerCard'
 import { QuoteCard } from './cards/QuoteCard'
-import { CommunityCard } from './cards/CommunityCard'
 
 type IconName = ComponentProps<typeof Icon>['name']
 
@@ -37,7 +36,6 @@ export function Bento() {
       <LanguagesCard />
       <PlayerCard />
       <QuoteCard />
-      <CommunityCard />
     </div>
   )
 }

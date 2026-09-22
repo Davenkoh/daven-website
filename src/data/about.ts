@@ -1,4 +1,4 @@
-import type { CommunityItem, Hobby, Language, SkillGroup, TimelineItem } from './types'
+import type { Hobby, Language, SkillGroup, TimelineItem } from './types'
 
 export const timeline: TimelineItem[] = [
   { org: 'Holicay', role: 'Growth & AI Systems Intern', period: '2026', icon: 'H', logo: '/logos/holicay.png' },
@@ -24,13 +24,6 @@ export const quote = {
 export const languages: Language[] = [
   { code: 'en', flag: '🇸🇬', name: 'English', greeting: 'Hello, welcome in!', level: 'English · native' },
   { code: 'zh', flag: '🇨🇳', name: 'Mandarin', greeting: '你好，欢迎！', level: 'Mandarin · fluent spoken' },
-]
-
-export const community: CommunityItem[] = [
-  { org: 'The Collective', role: 'Community Builder · student founder network', period: 'Oct 2025 – present' },
-  { org: 'NUS Entrepreneurship Society', role: 'External Liaisons Executive, Partnerships', period: 'Aug 2025 – Jan 2026' },
-  { org: 'RC4 Entrepreneurship', role: 'Finance Director', period: 'May 2026 – present' },
-  { org: 'RC4 Volunteers', role: 'Programmes IC', period: 'May 2026 – present' },
 ]
 
 export const skills: SkillGroup[] = [
