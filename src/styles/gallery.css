@@ -312,6 +312,56 @@
   font-size: 12px;
   color: var(--color-muted);
 }
+/* filmstrip: every slide, scrolls sideways, the current one lit */
+.deck-strip {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 4px 2px 10px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+.deck-thumb {
+  position: relative;
+  flex: 0 0 auto;
+  width: 148px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: #151515;
+  opacity: 0.7;
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease;
+}
+.deck-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.deck-thumb:hover,
+.deck-thumb:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+.deck-thumb.is-active {
+  opacity: 1;
+  border-color: var(--c);
+}
+.deck-thumb span {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  padding: 1px 7px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #fff;
+}
 @media (min-width: 640px) {
   .entry-dialog-facts {
     grid-template-columns: repeat(3, minmax(0, 1fr));

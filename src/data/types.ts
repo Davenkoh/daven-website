@@ -28,8 +28,10 @@ export interface EntryLink {
 export interface EntryFigure {
   label: string
   src?: string
-  /** slide images shown inline with arrows */
+  /** slide images shown inline with arrows and a filmstrip */
   slides?: string[]
+  /** small versions of `slides` for the filmstrip (defaults to the slides themselves) */
+  thumbs?: string[]
 }
 
 export interface Entry {

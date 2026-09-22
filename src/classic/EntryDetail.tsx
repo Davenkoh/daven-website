@@ -172,7 +172,7 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
           )}
           {entry.figures?.map((f) => (
             <Section key={f.label} label={f.label}>
-              {f.slides ? <SlideDeck slides={f.slides} label={f.label} /> : f.src ? <img className="entry-dialog-figure" src={f.src} alt={f.label} loading="lazy" decoding="async" /> : null}
+              {f.slides ? <SlideDeck slides={f.slides} thumbs={f.thumbs} label={f.label} /> : f.src ? <img className="entry-dialog-figure" src={f.src} alt={f.label} loading="lazy" decoding="async" /> : null}
             </Section>
           ))}
           {entry.description && <p className="mt-5 text-fg/80">{entry.description}</p>}

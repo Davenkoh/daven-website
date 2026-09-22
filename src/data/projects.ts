@@ -3,8 +3,9 @@ import type { Entry } from './types'
 const H = '/photos/highlights'
 const P = '/photos/projects'
 
-/** 42 slides rendered from the original deck (assets-src/photos-original) */
+/** 42 slides rendered from the original deck (assets-src/photos-original), plus 320px thumbnails for the filmstrip */
 const SUSS_DECK = Array.from({ length: 42 }, (_, i) => `/docs/suss-brand-challenge-2023/slide-${String(i + 1).padStart(2, '0')}.webp`)
+const SUSS_THUMBS = SUSS_DECK.map((s) => s.replace('slide-', 'thumb-'))
 
 export const projects: Entry[] = [
   {
@@ -69,6 +70,6 @@ export const projects: Entry[] = [
     photos: [`${P}/suss-first-runner-up.webp`, `${P}/suss-pitch.webp`, `${P}/suss-brand-challenge.webp`],
     body: "Designed and pitched a go-to-market campaign for Thatz International's new gig-work app.",
     summary: ["Designed and pitched a go-to-market campaign for Thatz International's new gig-work app.", '1st runner-up amongst 10 polytechnic finalist teams'],
-    figures: [{ label: 'Pitch Deck', slides: SUSS_DECK }],
+    figures: [{ label: 'Pitch Deck', slides: SUSS_DECK, thumbs: SUSS_THUMBS }],
   },
 ]
