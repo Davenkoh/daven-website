@@ -43,12 +43,12 @@ export const WINDOW = {
 export const LAPTOP = { x: 1059, y: 527, fontSize: 15 }
 
 export const PORTRAIT = {
-  src: '/portraits/daven.png',
+  src: '/portraits/daven.webp',
   x: 560,
   y: 332,
   w: 520,
-  /** height / width of the portrait PNG */
-  aspect: 2000 / 1600,
+  /** height / width of the cut-out */
+  aspect: 1019 / 1000,
 }
 const portraitH = PORTRAIT.w * PORTRAIT.aspect
 

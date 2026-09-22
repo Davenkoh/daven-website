@@ -20,7 +20,7 @@ npm run lint
 | File | What | Notes |
 |---|---|---|
 | `public/room.webp` + `public/room.jpg` | the room image (done: 1672×941, original kept in `assets-src/`) | To swap it, export WebP + JPEG, set `ROOM.width/height` in `src/config/scene.config.ts` and calibrate (below). |
-| `public/portraits/daven.png` | cut-out of you on the chair, facing the camera | transparent background, 1600×2000 (or update `PORTRAIT.aspect`) |
+| `public/portraits/daven.webp` | cut-out of you on the chair, facing the camera (in place; also the journey header photo) | transparent background, 1000×1019 (update `PORTRAIT.aspect` if replaced) |
 | `public/audio/track-1.mp3` … `track-3.mp3` | lofi tracks (done: three 10-minute sides, 128 kbps) | Titles/artists live in `src/data/tracks.ts`. Keep the ids — topics map to tracks in `src/config/site.config.ts`. To re-cut: `ffmpeg -ss 0 -t 600 -i source.m4a -codec:a libmp3lame -b:a 128k public/audio/track-1.mp3`. |
 | `public/photos/avatar.jpg` | small round avatar | used in the nav pill |
 | `public/videos/intro.mp4` or `videoIntro.youtubeId` in `src/config/site.config.ts` | video intro on the About page | 16:9; `public/photos/about-hero.jpg` is the poster |

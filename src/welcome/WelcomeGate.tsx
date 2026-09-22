@@ -2,7 +2,6 @@ import { motion } from 'motion/react'
 import { SITE } from '@/config/site.config'
 import { Button } from '@/components/Button'
 import { Icon } from '@/components/Icon'
-import { InteractiveToggle } from '@/scene/InteractiveToggle'
 
 interface WelcomeGateProps {
   /** whether the interactive room follows (shows the sound hint) */
@@ -43,7 +42,6 @@ export function WelcomeGate({ interactive, onEnter }: WelcomeGateProps) {
           {SITE.taglines[1]}
         </motion.p>
         <motion.div {...stagger(3)} className="mt-12 flex flex-col items-center gap-5">
-          <InteractiveToggle controlsAudio={false} className="px-5 py-2.5" />
           <Button variant="accent" onClick={onEnter} className="px-8 py-3.5 text-base" autoFocus>
             Start <Icon name="arrow-right" size={16} />
           </Button>

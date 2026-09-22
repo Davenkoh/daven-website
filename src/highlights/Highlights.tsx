@@ -6,7 +6,8 @@ import { rich } from './rich'
 
 interface HighlightsProps {
   variant: 'overlay' | 'page'
-  onStart: () => void
+  /** shows the closing button when given; the classic home ends on the thanks line instead */
+  onStart?: () => void
   startLabel?: string
 }
 
@@ -111,9 +112,11 @@ export function Highlights({ variant, onStart, startLabel = 'Start Exploring' }:
 
       <footer className="hl-end">
         <p className="hl-end-thanks">{rich(highlightsClosing.thanks, ACCENT)}</p>
-        <button type="button" className="hl-start" onClick={onStart}>
-          {startLabel} <Icon name="arrow-right" size={18} />
-        </button>
+        {onStart && (
+          <button type="button" className="hl-start" onClick={onStart}>
+            {startLabel} <Icon name="arrow-right" size={18} />
+          </button>
+        )}
       </footer>
     </article>
   )

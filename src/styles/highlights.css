@@ -87,14 +87,6 @@
 .hl-dock-btn:hover {
   background: rgba(255, 255, 255, 0.1);
 }
-.hl-dock-btn.is-skip {
-  background: var(--color-accent);
-  color: #1b1408;
-  font-weight: 600;
-}
-.hl-dock-btn.is-skip:hover {
-  filter: brightness(1.08);
-}
 
 /* ---------- layout ---------- */
 .hl {
@@ -317,15 +309,14 @@
   list-style: none;
 }
 .hl-pills li {
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 999px;
   border: 1px solid color-mix(in oklab, var(--c), transparent 45%);
   background: color-mix(in oklab, var(--c), transparent 88%);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.03em;
+  font-size: 19px;
+  font-weight: 500;
   line-height: 1.4;
-  color: #fff;
+  color: var(--color-fg);
 }
 
 /* ---------- photos: two tiles per row; pairs, stacks and full-width pieces span the row ---------- */
@@ -379,10 +370,10 @@
 .hl-figure figcaption {
   margin-top: 10px;
   font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 14px;
   letter-spacing: 0.03em;
   line-height: 1.5;
-  color: rgba(242, 242, 242, 0.72);
+  color: var(--color-fg);
 }
 .hl-figure.is-full figcaption {
   text-align: center;

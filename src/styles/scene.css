@@ -50,6 +50,9 @@
   height: auto;
   user-select: none;
   -webkit-user-drag: none;
+  /* the cut-out ends at the shins; dissolve that edge into the chair base */
+  -webkit-mask-image: linear-gradient(#000 88%, transparent);
+  mask-image: linear-gradient(#000 88%, transparent);
 }
 
 /* ---------- window: tint, rain, sheen ---------- */

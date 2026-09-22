@@ -38,7 +38,7 @@ export const highlightsHeader = {
   greeting: "Aloha! I'm Daven",
   role: 'Business × Tech',
   tagline: 'GTM · Operations · Software · AI',
-  photo: { src: '/photos/me-office-chair.webp', alt: 'Daven, sitting on an office chair' },
+  photo: { src: '/portraits/daven.webp', alt: 'Daven, sitting on an office chair' },
   intro: 'The key experiences that made me who I am',
   cue: 'Follow my journey',
 }
@@ -80,7 +80,7 @@ export const highlights: HighlightSection[] = [
   {
     id: 'noc',
     year: '2026',
-    title: "My NOC Vietnam May '26 key experiences, deepening my tech skills in the real startup world",
+    title: "My NOC Vietnam May '26 key experiences",
     colour: '#e5705a',
     blocks: [
       { type: 'subhead', text: 'Holicay Internship, a trip planning app startup in Ho Chi Minh (under NOC)' },
@@ -154,7 +154,7 @@ export const highlights: HighlightSection[] = [
       },
       {
         type: 'subhead',
-        text: 'Korea University (KU) × NUS Founder Mixer @ Seoul, Korea University (w/ The Collective)',
+        text: 'Korea University (KU) × NUS Founder Mixer @ Seoul (w/ The Collective)',
         sub: 'Brought together 20 Crimson KU startup founders and 20 NUS students.',
       },
       {
