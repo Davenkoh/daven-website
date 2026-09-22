@@ -28,3 +28,4 @@ assets-src
 
 # vercel cli project link
 .vercel
+.env*
