@@ -1,232 +1,215 @@
 /**
- * "Business × Tech: how I got here" — the one-page journey shown after Start (interactive) and
- * on the classic home page. `**bold**` inside text is rendered in the section colour.
+ * "How I got here": the one-page journey shown after Start (interactive) and on the classic home page.
+ * `*emphasis*` or `**emphasis**` inside text is rendered bold in the section colour.
  */
 export interface HighlightPhoto {
   src: string
-  caption: string
   alt?: string
-  /** very wide screenshots: shown full-width at their natural height */
-  wide?: boolean
+  /** show the whole image inside the tile instead of cropping it (screenshots, whiteboards) */
+  fit?: 'contain'
+  /** CSS object-position for cropped tiles, e.g. 'center 25%' keeps the top of a portrait */
+  focus?: string
+}
+
+export interface HighlightFigure {
+  /** one photo (a grid tile), or two sharing this caption (side by side, or stacked) */
+  photos: HighlightPhoto[]
+  caption: string
+  /** 'full' = one image on its own row at natural shape; 'stack' = full-width images stacked */
+  layout?: 'full' | 'stack'
 }
 
 export type HighlightBlock =
-  | { type: 'headline'; text: string }
   | { type: 'p'; text: string }
-  | { type: 'quote'; text: string }
-  | { type: 'stats'; items: string[] }
-  | { type: 'list'; items: string[] }
-  | { type: 'photos'; photos: HighlightPhoto[] }
+  | { type: 'results'; items: string[] }
+  | { type: 'subhead'; text: string; sub?: string }
+  | { type: 'photos'; figures: HighlightFigure[] }
 
 export interface HighlightSection {
   id: string
-  index: string
-  years: string
-  /** big label in the left column */
-  yearBig: string
-  kicker: string
+  /** label in the left column: a year, or NOW */
+  year: string
+  title: string
   colour: string
   blocks: HighlightBlock[]
 }
 
 export const highlightsHeader = {
-  eyebrow: 'GTM · Operations · Software · AI',
-  title: 'Business × Tech: how I got here',
-  intro: "Here's how I learned each one, starting from zero.",
-  cue: 'Follow my journey ↓',
+  greeting: "Aloha! I'm Daven",
+  role: 'Business × Tech',
+  tagline: 'GTM · Operations · Software · AI',
+  photo: { src: '/photos/me-office-chair.webp', alt: 'Daven, sitting on an office chair' },
+  intro: 'The key experiences that made me who I am',
+  cue: 'Follow my journey',
 }
 
 export const highlightsClosing = {
-  name: 'Daven',
-  role: 'Business × Tech',
-  tagline: 'GTM · Operations · Software · AI',
-  thanks: 'Thanks for following my journey. Have fun exploring my workspace.',
+  thanks: '*Thanks for following my journey. Have fun exploring my workspace.*',
 }
 
 const P = '/photos/highlights'
 
 export const highlights: HighlightSection[] = [
   {
-    id: 'spark',
-    index: '00',
-    years: '2021–2022',
-    yearBig: '2021',
-    kicker: 'The spark: discovering entrepreneurship',
+    id: 'acai',
+    year: '2022',
+    title: 'Co-founding my first business: Acai Den',
     colour: '#e0a63c',
     blocks: [
-      { type: 'headline', text: 'Business gave me the tools. Entrepreneurship gave me a direction.' },
       {
         type: 'p',
-        text: "At Ngee Ann Polytechnic, I studied business and specialised in marketing, learning how to understand customers and bring ideas to market. But what inspired me was hearing founders at the Entrepreneurship Office talk about choosing the uncertain path and making something from nothing. I didn't just want to work inside a business. I wanted to build one before I felt ready.",
+        text: 'At 18, I co-founded Acai Den, an açaí café at Ngee Ann, with no idea where to start or how to keep a business thriving. *I learned by asking people who knew more than me, getting my hands dirty, failing, and trying again.* I fell in love with the process of figuring things out.',
       },
+      { type: 'results', items: ['~S$200K revenue', '~30% net margin', '~20 people hired and trained'] },
       {
         type: 'photos',
-        photos: [
-          { src: `${P}/spark-design-thinking.webp`, caption: 'Learning design thinking for the first time at Ngee Ann Polytechnic.' },
-          { src: `${P}/spark-marketing-deck.webp`, caption: 'A brand strategy deck from my marketing classes.' },
+        figures: [
+          { photos: [{ src: `${P}/acai-queue.webp` }], caption: 'The average queue outside Acai Den' },
+          { photos: [{ src: `${P}/acai-food.webp` }], caption: 'Our product' },
+          { photos: [{ src: `${P}/acai-film-crew.webp`, focus: 'center 55%' }], caption: 'Acai Den gaining media attention' },
+          { photos: [{ src: `${P}/acai-newspaper.webp` }], caption: 'Acai Den featured in a local newspaper' },
+          {
+            photos: [{ src: `${P}/acai-start.webp`, fit: 'contain' }],
+            caption: 'Where it all started: the first whiteboard working out how to start a business from scratch',
+          },
+          { photos: [{ src: `${P}/acai-pitch.webp` }], caption: 'The pitch that won our kickstarter grant' },
         ],
       },
     ],
   },
   {
-    id: 'business',
-    index: '01',
-    years: '2022–2024',
-    yearBig: '2022',
-    kicker: 'My business era',
+    id: 'noc',
+    year: '2026',
+    title: "My NOC Vietnam May '26 key experiences, deepening my tech skills in the real startup world",
     colour: '#e5705a',
     blocks: [
-      { type: 'headline', text: 'So I built the closest thing to home.' },
+      { type: 'subhead', text: 'Holicay Internship, a trip planning app startup in Ho Chi Minh (under NOC)' },
       {
         type: 'p',
-        text: "I grew up watching my father run canteen stalls, so food felt like the natural place to start. At 18, I co-founded **Acai Den**, an açaí café at Ngee Ann, with no idea how to price a menu, hire a team or keep a shop alive. I learned by doing (suppliers, student staff, SOPs, payroll, promotions) to serve açaí that students could afford to come back for. I didn't fall in love with F&B. I fell in love with **building, learning and trying**.",
+        text: "Holicay's biggest business problem was getting a constant stream of customers. I created an *AI content production system*, with a human steering the copywriting, it outputs a TikTok post in 10 minutes, from research to design to posting. *Combining AI systems with GTM strategy.*",
       },
-      { type: 'stats', items: ['~S$200K revenue', '~30% net margin', '~20 people hired and trained'] },
+      { type: 'results', items: ['1M+ views across the first few videos'] },
       {
         type: 'photos',
-        photos: [
-          { src: `${P}/acai-start.webp`, caption: 'The first whiteboard: working out how to start a business from scratch.' },
-          { src: `${P}/acai-queue.webp`, caption: 'The queue outside Acai Den on a good day.' },
-          { src: `${P}/acai-food.webp`, caption: 'The bowls that kept students coming back.' },
-          { src: `${P}/acai-newspaper.webp`, caption: 'Acai Den featured in Lianhe Zaobao.' },
+        figures: [
+          {
+            photos: [{ src: `${P}/holicay-tiktok-1.webp` }, { src: `${P}/holicay-tiktok-2.webp` }],
+            caption: 'TikTok results produced by the AI system',
+            layout: 'stack',
+          },
+          { photos: [{ src: `${P}/holicay-architecture.webp` }], caption: 'AI content engine architecture', layout: 'full' },
+        ],
+      },
+      { type: 'subhead', text: 'Agentic AI Build Week, largest Agentic AI hackathon in ASEAN (First runner-up)' },
+      {
+        type: 'p',
+        text: "During NOC in Ho Chi Minh, four teammates and I joined the Agentic AI Build Week Hackathon and walked into an industry new to us. We built a real-time airport-operations dashboard with an AI agent that identifies understaffed zones and recommends where to redeploy staff. *I identified the user needs, designed the user experience, and led our pitch to the Chairman of Sovico Holdings and Vietjet's Head of Operations.*",
+      },
+      { type: 'results', items: ['First runner-up in the Aviation Track at an event with 400 teams from 55 countries'] },
+      {
+        type: 'photos',
+        figures: [
+          { photos: [{ src: `${P}/buildweek-pitch.webp` }], caption: "Pitching to the Chairman of Sovico Holdings and Vietjet's Head of Operations" },
+          { photos: [{ src: `${P}/buildweek-product.webp`, fit: 'contain' }], caption: 'The airport-operations dashboard' },
+          { photos: [{ src: `${P}/buildweek-winner.webp` }], caption: 'Winner photo with Sovico Holdings & Vietjet' },
+          { photos: [{ src: `${P}/buildweek-group.webp`, focus: 'center 78%' }], caption: 'Team photo' },
+          { photos: [{ src: `${P}/buildweek-architecture.webp` }], caption: 'Sentinel architecture', layout: 'full' },
         ],
       },
     ],
   },
   {
-    id: 'gap',
-    index: '02',
-    years: '2023–2024',
-    yearBig: '2023',
-    kicker: 'The gap between business and tech',
+    id: 'ideate',
+    year: '2025',
+    title: 'NUS Ideate 2025: Engineering Hackathon (Semi-Finalist)',
     colour: '#5fa8d8',
     blocks: [
-      { type: 'headline', text: "I could see the systems I wanted. I couldn't build them yet." },
       {
         type: 'p',
-        text: 'Six months with **Sphere 8**, a tech consultancy startup in Bangkok, showed me how small teams use technology to move fast. Back at Acai Den, I kept running into work that should have been easier: scheduling, payroll, inventory, reporting.',
+        text: 'I engineered OrcaVision, a smart-glasses prototype that uses computer vision to help visually impaired users avoid obstacles. I had one month to build it, despite having never touched engineering or the software and hardware involved. I learned by finding mentors, experimenting, failing, and trying again. The experience reinforced my love for tech and taught me my favourite quote: *“I will either find a way or make one.”*',
       },
-      { type: 'quote', text: 'Business taught me what needed fixing. Technology would let me fix it.' },
       {
         type: 'photos',
-        photos: [{ src: `${P}/acai-film-crew.webp`, caption: 'Running the shop while a film crew shot at Acai Den.' }],
-      },
-    ],
-  },
-  {
-    id: 'tech',
-    index: '03',
-    years: '2025',
-    yearBig: '2025',
-    kicker: 'My tech era',
-    colour: '#6dbf8a',
-    blocks: [
-      { type: 'headline', text: 'So I went back to school to learn the other half.' },
-      {
-        type: 'p',
-        text: "I chose **Business Artificial Intelligence Systems at NUS** because it sat right inside that gap. The first real test came at the **IDEATE 2025 hackathon**. I engineered OrcaVision end to end on hardware I'd never touched: smart glasses that use computer vision to help visually impaired users avoid obstacles. It broke completely the day before our demo. We rebuilt it and still reached the semi-finals.",
-      },
-      { type: 'stats', items: ['Semi-finalist out of 82 teams', 'Working prototype in one month', 'Team of four'] },
-      { type: 'stats', items: ['NUS School of Computing', 'GPA 4.88 / 5.00', "Dean's List"] },
-      {
-        type: 'photos',
-        photos: [
-          { src: `${P}/ideate-product.webp`, caption: 'OrcaVision on my face: camera, Raspberry Pi and all.' },
-          { src: `${P}/ideate-building.webp`, caption: 'Building it on hardware I had never touched.' },
-          { src: `${P}/ideate-pitch.webp`, caption: 'Demo day at IDEATE 2025.' },
-          { src: `${P}/ideate-team.webp`, caption: 'The team of four with our poster.' },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'vietnam',
-    index: '04',
-    years: 'May–July 2026',
-    yearBig: '2026',
-    kicker: 'Business × Tech in Vietnam',
-    colour: '#e0a63c',
-    blocks: [
-      { type: 'headline', text: 'Then both halves met in the real world.' },
-      {
-        type: 'p',
-        text: "Through **NOC Vietnam**, I joined Holicay, a startup in Ho Chi Minh City that helps people plan trips. Holicay grew by working with content creators. But the team did it all by hand: finding creators, sending hundreds of messages and tracking thousands of videos in spreadsheets. For the first time, I understood the business problem and could build the solution myself. I built AI tools to find creators, message them, track results and make short videos. My first version tried to automate everything. The founders told me to keep it simple. So I rebuilt it and let people make the decisions AI wasn't good at.",
-      },
-      { type: 'quote', text: "The best system isn't the most impressive one. It's the one people actually use." },
-      { type: 'stats', items: ['1M+ TikTok views', 'Daily outreach: 4 hours → under 1', 'Monthly reporting: 3 days → 5 minutes'] },
-      {
-        type: 'photos',
-        photos: [
-          { src: `${P}/holicay-tiktok-1.webp`, caption: 'The AI-produced TikToks on the Holicay channel.', wide: true },
-          { src: `${P}/holicay-tiktok-2.webp`, caption: 'Four posts, over a million views, under US$1 each.', wide: true },
-        ],
-      },
-      { type: 'headline', text: 'The same instinct, compressed into 24 hours.' },
-      {
-        type: 'p',
-        text: "During NOC, four teammates and I joined the **Agentic AI Build Week Hackathon** and walked into an industry new to us. We built a real-time airport-operations dashboard with an AI agent that flags understaffed zones and recommends where to redeploy staff. I led our pitch to the Chairman of Sovico Holdings and Vietjet's Head of Operations. We were first runner-up in the Aviation Track at an event with 400 teams from 55 countries.",
-      },
-      { type: 'stats', items: ['24 hours', '5 builders', 'Aviation Track first runner-up'] },
-      {
-        type: 'photos',
-        photos: [
-          { src: `${P}/buildweek-pitch.webp`, caption: "Pitching to the Chairman of Sovico Holdings and Vietjet's Head of Operations." },
-          { src: `${P}/buildweek-product.webp`, caption: 'The airport-operations dashboard and staffing agent.' },
-          { src: `${P}/buildweek-winner.webp`, caption: 'First runner-up, Aviation Track.' },
-          { src: `${P}/buildweek-group.webp`, caption: 'The team after 24 hours.' },
+        figures: [
+          {
+            photos: [{ src: `${P}/ideate-product.webp`, focus: 'center 25%' }, { src: `${P}/ideate-building.webp` }],
+            caption: 'Prototyping hardware and software I never touched',
+          },
+          { photos: [{ src: `${P}/ideate-pitch.webp` }], caption: 'Demo day' },
+          { photos: [{ src: `${P}/ideate-team.webp`, focus: 'center 45%' }], caption: 'Meet the team' },
+          { photos: [{ src: `${P}/ideate-poster.webp` }], caption: 'OrcaVision product specs', layout: 'full' },
         ],
       },
     ],
   },
   {
     id: 'community',
-    index: '05',
-    years: '2025–now',
-    yearBig: 'Now',
-    kicker: 'Full circle: building community',
-    colour: '#e5705a',
+    year: 'NOW',
+    title: 'My community: NUS Entrepreneurship Society, The Collective and RC4 Entrepreneurship',
+    colour: '#6dbf8a',
     blocks: [
-      { type: 'headline', text: 'Someone once opened the door for me. Now I try to hold it open for others.' },
       {
         type: 'p',
-        text: 'My path began because founders and mentors made an unfamiliar road feel possible. Through the **NUS Entrepreneurship Society**, **The Collective** and **RC4 Entrepreneurship**, I help create those moments for other students. Some events started with little or no budget, so we had to find partners and earn trust before anyone would show up. Community-building turned out to be its own kind of entrepreneurship.',
+        text: '*I love staying connected with the entrepreneurship community, connecting people, and helping where I can.* Entrepreneurship communities once gave me opportunities, connections, and experiences that shaped me. Today, I help create those moments for other students through events. Here are some notable events I helped co-organise:',
       },
       {
-        type: 'list',
-        items: [
-          'Founders Across Campus · 80 founders from NUS, NTU, SMU and SUTD, with StartupX',
-          'KU × NUS Founder Mixer, Seoul · ~20 KU founders meet ~20 NUS students',
-          'The Collective Pitch Night · 8 student startups, S$1,000 prize from Hacktron',
-          'NOC × iDP Sharing · 90 sign-ups, 11 speakers, alumni from 9 NOC locations',
-        ],
+        type: 'subhead',
+        text: 'Korea University (KU) × NUS Founder Mixer @ Seoul, Korea University (w/ The Collective)',
+        sub: 'Brought together 20 Crimson KU startup founders and 20 NUS students.',
       },
       {
         type: 'photos',
-        photos: [
-          { src: `${P}/fac-emcee.webp`, caption: 'Emceeing Founders Across Campus.' },
-          { src: `${P}/fac-crowd.webp`, caption: '80 founders from four universities in one room.' },
-          { src: `${P}/ku-nus.webp`, caption: 'KU × NUS Student Founders Exchange in Seoul.' },
-          { src: `${P}/ku-nus-emcee.webp`, caption: 'On the mic at Korea University.' },
-          { src: `${P}/pitch-night.webp`, caption: 'The Collective Pitch Night.' },
-          { src: `${P}/noc-idp-group.webp`, caption: 'NOC × iDP Sharing at RC4.' },
+        figures: [
+          { photos: [{ src: `${P}/ku-nus.webp` }], caption: 'KU × NUS Student Founders Exchange in Seoul' },
+          { photos: [{ src: `${P}/ku-nus-emcee.webp` }], caption: 'Emceeing at Korea University' },
         ],
+      },
+      {
+        type: 'subhead',
+        text: 'Founders Across Campus (w/ NUS Entre Society)',
+        sub: 'Brought together 80 founders from NUS, NTU, SMU and SUTD in collaboration with StartupX.',
+      },
+      {
+        type: 'photos',
+        figures: [
+          { photos: [{ src: `${P}/fac-emcee.webp` }], caption: 'Emceeing Founders Across Campus' },
+          { photos: [{ src: `${P}/fac-crowd.webp` }], caption: '80 founders from four universities in one room' },
+        ],
+      },
+      {
+        type: 'subhead',
+        text: 'The Collective Pitch Night',
+        sub: '8 student startups, a S$1,000 prize from Hacktron, and judges from Antler and alumni from YC Startup School.',
+      },
+      {
+        type: 'photos',
+        figures: [{ photos: [{ src: `${P}/pitch-night.webp` }, { src: `${P}/pitch-night-2.webp` }], caption: 'The Collective Pitch Night' }],
+      },
+      {
+        type: 'subhead',
+        text: 'NOC × iDP Sharing @ RC4',
+        sub: 'Brought together 11 speakers including NOC staff (Jeene New), 9 NOC alumni and an iDP professor, with 90 sign ups.',
+      },
+      {
+        type: 'photos',
+        figures: [{ photos: [{ src: `${P}/noc-idp-group.webp` }, { src: `${P}/noc-idp.webp`, focus: 'center 50%' }], caption: 'NOC × iDP Sharing at RC4' }],
       },
     ],
   },
   {
-    id: 'now',
-    index: 'NOW',
-    years: '',
-    yearBig: '→',
-    kicker: "What I'm building",
-    colour: '#5fa8d8',
+    id: 'why',
+    year: 'NOW',
+    title: 'Why I chose to study Business AI Systems, a technical degree, after a Business Marketing Diploma',
+    colour: '#e0a63c',
     blocks: [
-      { type: 'headline', text: 'Business shows me which problems matter. Technology gives me the leverage to solve them.' },
       {
         type: 'p',
-        text: "I feel most alive between disciplines: talking to customers, untangling messy operations, building the system and getting it to the people who need it. This is the work I want to keep doing. Right now, I'm building two things: an **automated options trading strategy**, and a **no-slop AI content pipeline** that helps businesses get more views and customers.",
+        text: 'To solve bigger problems and build businesses with greater impact, I needed technical skills. So I chose to study at the intersection of technology and business, my two passions.',
       },
-      { type: 'photos', photos: [{ src: `${P}/me.webp`, caption: 'Winter exchange at Korea University, Seoul.' }] },
+      {
+        type: 'p',
+        text: 'Building at the intersection of Business × Tech is work I enjoy. Today, I am continuing to advance my AI content pipeline, helping businesses turn content into more views and customers.',
+      },
     ],
   },
 ]

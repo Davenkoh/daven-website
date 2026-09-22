@@ -11,6 +11,8 @@ type IconName =
   | 'close'
   | 'arrow-right'
   | 'arrow-left'
+  | 'arrow-down'
+  | 'arrow-up'
   | 'eye'
   | 'copy'
   | 'external'
@@ -77,6 +79,18 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <path d="M19 12H5" />
       <path d="m11 18-6-6 6-6" />
+    </>
+  ),
+  'arrow-down': (
+    <>
+      <path d="M12 5v14" />
+      <path d="m6 13 6 6 6-6" />
+    </>
+  ),
+  'arrow-up': (
+    <>
+      <path d="M12 19V5" />
+      <path d="m6 11 6-6 6 6" />
     </>
   ),
   eye: (

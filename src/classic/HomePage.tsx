@@ -27,13 +27,6 @@ export function HomePage() {
 
   return (
     <>
-      <section>
-        <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted">Aloha! I&apos;m</p>
-        <h1 className="title-arrow mt-2 text-6xl font-medium tracking-tight md:text-7xl lg:text-8xl">{SITE.shortName}</h1>
-        <p className="mt-8 text-2xl md:text-3xl">{SITE.taglines[0]}</p>
-        <p className="mt-2 font-mono text-sm text-muted md:text-base">{SITE.taglines[1]}</p>
-      </section>
-
       <Highlights variant="page" onStart={enterRoom} startLabel="Enter the room" />
 
       <section className="mt-4 grid gap-4 md:grid-cols-3" aria-label="Explore">
