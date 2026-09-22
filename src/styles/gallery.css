@@ -53,9 +53,9 @@
 }
 .gallery-blurb {
   margin: 0;
-  font-size: 15.5px;
+  font-size: 16.5px;
   line-height: 1.55;
-  color: rgba(242, 242, 242, 0.85);
+  color: rgba(242, 242, 242, 0.88);
 }
 .gallery-foot {
   display: flex;
@@ -97,7 +97,7 @@
 }
 .entry-dialog {
   position: relative;
-  width: min(1040px, 100%);
+  width: min(1120px, 100%);
   max-height: 100%;
   overflow: hidden;
   border-radius: 24px;
@@ -119,16 +119,19 @@
   z-index: 2;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(20, 20, 22, 0.8);
-  color: #fff;
-  transition: background 0.2s ease;
+  background: var(--color-accent);
+  color: #1b1408;
+  box-shadow: 0 10px 28px rgba(224, 166, 60, 0.35);
+  transition:
+    transform 0.15s ease,
+    filter 0.2s ease;
 }
 .entry-dialog-close:hover {
-  background: rgba(255, 255, 255, 0.14);
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 /* the remaining photos, packed in two columns at their natural shapes */
 .entry-dialog-photos {
@@ -173,15 +176,15 @@
 }
 .entry-dialog-facts dd {
   margin: 2px 0 0;
-  font-size: 15px;
-  line-height: 1.5;
-  color: rgba(242, 242, 242, 0.85);
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(242, 242, 242, 0.88);
 }
 .entry-dialog-meta {
   display: grid;
   gap: 8px;
   margin: 22px 0 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 .entry-dialog-meta > div {
   display: flex;
@@ -216,19 +219,19 @@
 }
 .entry-dialog-section ul {
   display: grid;
-  gap: 8px;
-  margin: 10px 0 0;
-  padding-left: 18px;
+  gap: 10px;
+  margin: 12px 0 0;
+  padding-left: 20px;
   list-style: disc;
-  font-size: 15.5px;
-  line-height: 1.55;
-  color: rgba(242, 242, 242, 0.85);
+  font-size: 17.5px;
+  line-height: 1.6;
+  color: rgba(242, 242, 242, 0.88);
 }
 .entry-dialog-section p {
-  margin: 10px 0 0;
-  font-size: 15.5px;
-  line-height: 1.6;
-  color: rgba(242, 242, 242, 0.85);
+  margin: 12px 0 0;
+  font-size: 17.5px;
+  line-height: 1.65;
+  color: rgba(242, 242, 242, 0.88);
 }
 .entry-dialog-section ul.entry-dialog-stack {
   display: flex;
@@ -238,12 +241,12 @@
   list-style: none;
 }
 .entry-dialog-stack li {
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid color-mix(in oklab, var(--c), transparent 55%);
   background: color-mix(in oklab, var(--c), transparent 90%);
   font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 14px;
   color: rgba(242, 242, 242, 0.9);
 }
 /* a labelled image: architecture, spec sheet… shown whole, as large as the dialog allows */

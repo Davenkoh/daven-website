@@ -92,7 +92,7 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
             <EntryIcon entry={entry} size="lg" />
             <div className="min-w-0">
               <h2 className="text-2xl font-medium leading-tight md:text-3xl">{entry.title}</h2>
-              {entry.subtitle && <p className="mt-1 text-base text-muted">{entry.subtitle}</p>}
+              {entry.subtitle && <p className="mt-1 text-lg text-muted">{entry.subtitle}</p>}
             </div>
           </header>
           {(entry.period || entry.location || entry.status) && (
@@ -175,7 +175,7 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
               {f.slides ? <SlideDeck slides={f.slides} thumbs={f.thumbs} label={f.label} /> : f.src ? <img className="entry-dialog-figure" src={f.src} alt={f.label} loading="lazy" decoding="async" /> : null}
             </Section>
           ))}
-          {entry.description && <p className="mt-5 text-fg/80">{entry.description}</p>}
+          {entry.description && <p className="mt-5 text-lg text-fg/85">{entry.description}</p>}
           {entry.links && (
             <div className="mt-5 flex flex-wrap gap-3">
               {entry.links.map((l) => (
