@@ -1,7 +1,9 @@
-import { useEffect, useRef, type MouseEvent } from 'react'
+import { useEffect, useRef, useState, type MouseEvent, type UIEvent } from 'react'
 import { motion } from 'motion/react'
 import { Icon } from '@/components/Icon'
+import { cn } from '@/lib/cn'
 import { Highlights } from './Highlights'
+import { SwipeCue } from './SwipeCue'
 
 /**
  * The journey as a large panel over the room: the room stays visible around the edges as a cue
@@ -9,6 +11,11 @@ import { Highlights } from './Highlights'
  */
 export function HighlightsOverlay({ onClose }: { onClose: () => void }) {
   const scroller = useRef<HTMLDivElement>(null)
+  // the swipe cue shows until the visitor scrolls for the first time
+  const [scrolled, setScrolled] = useState(false)
+  const onScroll = (e: UIEvent<HTMLDivElement>) => {
+    if (!scrolled && e.currentTarget.scrollTop > 24) setScrolled(true)
+  }
 
   useEffect(() => {
     scroller.current?.focus({ preventScroll: true })
@@ -53,8 +60,13 @@ export function HighlightsOverlay({ onClose }: { onClose: () => void }) {
           <Icon name="close" size={16} /> Close
         </button>
 
-        <div ref={scroller} className="hl-scroller" tabIndex={-1}>
+        <div ref={scroller} className="hl-scroller" tabIndex={-1} onScroll={onScroll}>
           <Highlights variant="overlay" onStart={onClose} />
+        </div>
+
+        <div className={cn('hl-swipe', scrolled && 'is-hidden')} aria-hidden="true">
+          <SwipeCue />
+          <span>Scroll to explore</span>
         </div>
 
         <div className="hl-dock" role="group" aria-label="Scroll shortcuts">

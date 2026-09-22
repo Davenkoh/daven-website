@@ -89,7 +89,7 @@ export function Highlights({ variant, onStart, startLabel = 'Start Exploring' }:
           <img src={highlightsHeader.photo.src} alt={highlightsHeader.photo.alt} decoding="async" />
         </div>
         <p className="hl-cue">
-          {highlightsHeader.cue} <Icon name="arrow-down" size={15} />
+          {highlightsHeader.cue} <Icon name="arrow-down" size={18} />
         </p>
       </header>
 
