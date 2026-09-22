@@ -23,7 +23,7 @@ export const projects: Entry[] = [
       'Competed in the Aviation track at an event of 400 teams, 3,000 builders and 55 countries. Built a real-time airport-operations dashboard with an AI staffing agent that flags understaffed zones and recommends where to move staff.',
       "Built in 24 hours in a team of 5. Led the pitch to the Chairman of Sovico Holdings, which owns Vietjet and HDBank, and to Vietjet's Head of Operations.",
     ],
-    stack: ['xx', 'xx'],
+    stack: ['JavaScript (ES modules)', 'HTML + CSS dashboard', 'Postgres + JSON fixtures', 'TinyFish web data', 'EWMA / LSTM / Transformer / GNN forecasting', 'Simulation engine with immutable state', 'Otto Agent governance'],
     figures: [{ label: 'Architecture', src: `${H}/buildweek-architecture.webp` }],
   },
   {
@@ -32,7 +32,7 @@ export const projects: Entry[] = [
     org: 'NUS Ideate 2025',
     period: 'Sep 2025',
     tags: ['Software & AI'],
-    icon: '🕶️',
+    icon: '🔧',
     cover: '/photos/covers/orcavision.webp',
     photos: [`${H}/ideate-product.webp`, `${H}/ideate-building.webp`, `${H}/ideate-pitch.webp`, `${H}/ideate-team.webp`],
     body: 'Smart glasses that run computer vision on a Raspberry Pi to help visually impaired users avoid obstacles. Semi-finalist out of 82 teams and 350 students.',
@@ -41,7 +41,7 @@ export const projects: Entry[] = [
       'Semi-finalist out of 82 teams and 350 students.',
       'Never engineered before, this taught me "I will either find a way or make one".',
     ],
-    stack: ['xx', 'xx'],
+    stack: ['Raspberry Pi Zero 2 W', 'Camera module', 'YOLOv8 (lightweight, ~300 ms end to end)', 'Python + OpenCV', 'Speaker with voice alerts and tones'],
     figures: [{ label: 'Product Spec', src: `${H}/ideate-poster.webp` }],
   },
   {
@@ -55,7 +55,7 @@ export const projects: Entry[] = [
     photos: [`${P}/noctua-laundry-bot.webp`],
     body: 'Telegram bot with live washer and dryer status, completion alerts and announcements. Used by 120 active residents.',
     summary: 'Telegram bot with live washer and dryer status, completion alerts and announcements. Used by 120 active residents.',
-    stack: ['xx', 'xx', 'xx'],
+    stack: ['Python', 'Telegram Bot API', 'JobQueue scheduling (UTC)', 'SQLite (WAL, transactions)', 'Ubuntu VPS on Oracle Cloud', 'systemd auto-restart + backups'],
     figures: [{ label: 'Architecture', src: `${P}/noctua-laundry-bot-architecture.webp` }],
   },
   {
