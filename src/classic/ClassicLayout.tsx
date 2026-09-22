@@ -1,29 +1,17 @@
-import { Link, Outlet } from 'react-router'
+import { Outlet } from 'react-router'
 import { Footer } from '@/components/Footer'
 import { NavPill } from '@/components/NavPill'
-import { Icon } from '@/components/Icon'
 import { InteractiveToggle } from '@/scene/InteractiveToggle'
 
-interface ClassicLayoutProps {
-  /** true when the visitor is in interactive mode and this page sits on top of the room (e.g. /about) */
-  roomAvailable?: boolean
-}
-
-export function ClassicLayout({ roomAvailable = false }: ClassicLayoutProps) {
+/** Classic mode: the dark pages with the footer and the floating nav. */
+export function ClassicLayout() {
   return (
     <div className="min-h-dvh bg-bg text-fg">
-      {roomAvailable && (
-        <div className="mx-auto max-w-6xl px-6 pt-5">
-          <Link to="/" className="inline-flex items-center gap-2 font-hud text-xs text-muted transition hover:text-fg">
-            <Icon name="arrow-left" size={14} /> Back to the room
-          </Link>
-        </div>
-      )}
-      <main className={roomAvailable ? 'mx-auto max-w-6xl px-6 pt-7 md:pt-9' : 'mx-auto max-w-6xl px-6 pt-8 md:pt-12'}>
+      <main className="mx-auto max-w-6xl px-6 pt-8 md:pt-12">
         <Outlet />
       </main>
       <Footer />
-      <NavPill homeLabel={roomAvailable ? 'Room' : 'Home'} extra={<InteractiveToggle label="Interactive" />} />
+      <NavPill homeLabel="Home" extra={<InteractiveToggle label="Interactive" />} />
     </div>
   )
 }

@@ -5,8 +5,6 @@ import { readStorage, writeStorage } from '@/lib/storage'
 
 const HIGHLIGHTS_KEY = 'daven.highlightsSeen'
 
-export type BookView = 'book' | 'linear'
-
 interface SiteState {
   mode: Mode
   /** true once the visitor picked a mode explicitly; auto-detection then stops */
@@ -14,9 +12,6 @@ interface SiteState {
   lamp: boolean
   rain: boolean
   calibration: boolean
-  /** how the topics read inside the room: the flip-book or a linear scrolling page */
-  bookView: BookView
-  setBookView: (view: BookView) => void
   /** the journey one-pager shown after Start in the room (once per session, or on demand) */
   highlightsOpen: boolean
   highlightsSeen: boolean
@@ -28,7 +23,7 @@ interface SiteState {
   toggleCalibration: () => void
 }
 
-const partialize = (s: SiteState) => ({ mode: s.mode, modeOverride: s.modeOverride, lamp: s.lamp, rain: s.rain, bookView: s.bookView })
+const partialize = (s: SiteState) => ({ mode: s.mode, modeOverride: s.modeOverride, lamp: s.lamp, rain: s.rain })
 type Persisted = ReturnType<typeof partialize>
 
 export const useSiteStore = create<SiteState>()(
@@ -39,8 +34,6 @@ export const useSiteStore = create<SiteState>()(
       lamp: true,
       rain: true,
       calibration: false,
-      bookView: 'linear',
-      setBookView: (view) => set({ bookView: view }),
       highlightsOpen: readStorage('session', HIGHLIGHTS_KEY) !== '1',
       highlightsSeen: readStorage('session', HIGHLIGHTS_KEY) === '1',
       openHighlights: () => set({ highlightsOpen: true }),
@@ -55,10 +48,15 @@ export const useSiteStore = create<SiteState>()(
     }),
     {
       name: 'daven.site',
-      version: 2,
+      version: 3,
       partialize,
-      // v2: the list view became the default reading view
-      migrate: (persisted) => ({ ...(persisted as Persisted), bookView: 'linear' as BookView }),
+      // v3: the flip-book (and its reading-view preference) is gone
+      migrate: (persisted) => {
+        const state = { ...(persisted as Record<string, unknown>) }
+        delete state.bookView
+        delete state.filters
+        return state as Persisted
+      },
     },
   ),
 )

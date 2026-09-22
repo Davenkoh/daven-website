@@ -3,7 +3,7 @@ import { cn } from '@/lib/cn'
 
 interface TagChipsProps {
   tags: Tag[]
-  /** 'paper' for book pages (light), 'dark' for the classic cards */
+  /** 'paper' for light backgrounds, 'dark' for the cards and dialogs */
   tone?: 'paper' | 'dark'
   className?: string
 }

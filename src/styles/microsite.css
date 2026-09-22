@@ -1,0 +1,76 @@
+/* ---------- microsite shell: a large panel over the room, the room showing around the edges ---------- */
+.ms-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 4vw;
+  background: rgba(4, 4, 6, 0.5);
+}
+.ms-panel {
+  position: relative;
+  width: min(1320px, 100%);
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0b0b0c;
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(0, 0, 0, 0.6);
+  outline: none;
+}
+.ms-scroller {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  outline: none;
+}
+.ms-content {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 64px 40px 80px;
+}
+.ms-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px 0 14px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #1b1408;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 28px rgba(224, 166, 60, 0.35);
+  transition:
+    transform 0.15s ease,
+    filter 0.2s ease;
+}
+.ms-close:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+@media (max-width: 640px) {
+  .ms-overlay {
+    padding: 2vh 2vw;
+  }
+  .ms-panel {
+    border-radius: 18px;
+  }
+  .ms-content {
+    padding: 64px 18px 56px;
+  }
+  .ms-close {
+    top: 12px;
+    right: 12px;
+    height: 38px;
+    font-size: 13px;
+  }
+}

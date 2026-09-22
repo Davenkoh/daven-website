@@ -17,7 +17,7 @@ import { useCalibrationHotkey } from './useCalibrationHotkey'
 
 const TOUR_KEY = 'daven.tourSeen'
 
-/** Interactive home: the room stays mounted; books open on top via the <Outlet/>. */
+/** Interactive home: the room stays mounted; pages open as panels on top via the <Outlet/>. */
 export function InteractiveShell() {
   const world = useWorldScale()
   const { pathname } = useLocation()
@@ -40,7 +40,7 @@ export function InteractiveShell() {
     writeStorage('local', TOUR_KEY, '1')
     setTourOpen(false)
   }, [])
-  // books set their own title; restore ours whenever the room is back in front
+  // panels set their own title; restore ours whenever the room is back in front
   useEffect(() => {
     if (!overlayOpen) document.title = SITE.title
   }, [overlayOpen])

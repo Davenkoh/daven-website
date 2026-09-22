@@ -2,7 +2,7 @@ import type { CSSProperties, KeyboardEvent } from 'react'
 import type { Entry } from '@/data/types'
 import { entryPhotos } from '@/data'
 import { Icon } from '@/components/Icon'
-import { TagChips } from '@/book/TagChips'
+import { TagChips } from '@/components/TagChips'
 import { cn } from '@/lib/cn'
 
 export function EntryIcon({ entry, className, size = 'md' }: { entry: Entry; className?: string; size?: 'md' | 'lg' }) {

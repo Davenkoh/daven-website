@@ -5,7 +5,7 @@ import type { Entry } from '@/data/types'
 import { entryPhotos } from '@/data'
 import { Icon } from '@/components/Icon'
 import { Pill } from '@/components/Pill'
-import { TagChips } from '@/book/TagChips'
+import { TagChips } from '@/components/TagChips'
 import { EntryIcon, FactList } from './EntryCard'
 
 interface EntryDetailProps {
@@ -24,12 +24,15 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
     dialog.current?.focus({ preventScroll: true })
     const previous = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+    // capture phase, then stop: the panel underneath listens for Escape too and must stay open
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key !== 'Escape') return
+      e.stopPropagation()
+      onClose()
     }
-    window.addEventListener('keydown', onKey)
+    window.addEventListener('keydown', onKey, true)
     return () => {
-      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('keydown', onKey, true)
       document.body.style.overflow = previous
     }
   }, [onClose])
@@ -39,12 +42,6 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
       className="entry-modal"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
-      }}
-      // keys inside the dialog must not reach the book underneath (its Escape closes the whole book);
-      // stopping them here also stops the window listener, so Escape is handled right here too
-      onKeyDown={(e) => {
-        if (e.key === 'Escape') onClose()
-        e.stopPropagation()
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

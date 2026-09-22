@@ -1,57 +1,3 @@
-/* ---------- overlay: a large panel over the room, the room showing around the edges ---------- */
-.hl-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 70;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4vh 4vw;
-  background: rgba(4, 4, 6, 0.5);
-}
-.hl-panel {
-  position: relative;
-  width: min(1320px, 100%);
-  height: 100%;
-  overflow: hidden;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #0b0b0c;
-  box-shadow:
-    0 40px 120px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(0, 0, 0, 0.6);
-}
-.hl-scroller {
-  height: 100%;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  outline: none;
-}
-.hl-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 42px;
-  padding: 0 18px 0 14px;
-  border-radius: 999px;
-  background: var(--color-accent);
-  color: #1b1408;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 10px 28px rgba(224, 166, 60, 0.35);
-  transition:
-    transform 0.15s ease,
-    filter 0.2s ease;
-}
-.hl-close:hover {
-  filter: brightness(1.08);
-  transform: translateY(-1px);
-}
-
 /* floating shortcuts, bottom centre of the panel, always in reach */
 .hl-dock {
   position: absolute;
@@ -558,12 +504,6 @@
   }
 }
 @media (max-width: 640px) {
-  .hl-overlay {
-    padding: 2vh 2vw;
-  }
-  .hl-panel {
-    border-radius: 18px;
-  }
   .hl-in-overlay {
     padding-top: 76px;
   }
@@ -573,12 +513,6 @@
   }
   .hl-figure.is-full img {
     max-height: 520px;
-  }
-  .hl-close {
-    top: 12px;
-    right: 12px;
-    height: 38px;
-    font-size: 13px;
   }
   .hl-dock {
     bottom: 12px;

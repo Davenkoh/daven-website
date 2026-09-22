@@ -1,5 +1,5 @@
 import { lazy, Suspense, useLayoutEffect, useState } from 'react'
-import { Navigate, Route, Routes, useLocation, useParams } from 'react-router'
+import { Navigate, Route, Routes, useParams } from 'react-router'
 import { AnimatePresence } from 'motion/react'
 import { CLASSIC_BREAKPOINT } from '@/config/site.config'
 import { TOPICS, type Topic } from '@/data/types'
@@ -13,8 +13,9 @@ import { ClassicLayout } from '@/classic/ClassicLayout'
 import { HomePage } from '@/classic/HomePage'
 import { TopicPage } from '@/classic/TopicPage'
 import { InteractiveShell } from '@/scene/InteractiveShell'
+import { MicrositeOverlay } from '@/scene/MicrositeOverlay'
+import { TopicOverlay } from '@/scene/TopicOverlay'
 
-const BookOverlay = lazy(() => import('@/book/BookOverlay'))
 const AboutPage = lazy(() => import('@/about/AboutPage'))
 
 const WELCOME_KEY = 'daven.welcomed'
@@ -54,7 +55,7 @@ export default function App() {
           <Routes>
             <Route element={<Shell />}>
               <Route index element={mode === 'classic' ? <HomePage /> : null} />
-              <Route path="contact" element={<AboutPage />} />
+              <Route path="contact" element={<ContactRoute />} />
               <Route path="about" element={<Navigate to="/contact" replace />} />
               <Route path=":topic" element={<TopicRoute />} />
             </Route>
@@ -66,12 +67,20 @@ export default function App() {
   )
 }
 
-/** Interactive mode renders the room; classic mode (and /contact in any mode) renders the dark pages. */
+/** Interactive mode renders the room with pages as panels over it; classic mode renders the dark pages. */
 function Shell() {
   const mode = useSiteStore((s) => s.mode)
-  const { pathname } = useLocation()
-  if (mode === 'classic' || pathname.startsWith('/contact')) return <ClassicLayout roomAvailable={mode === 'interactive'} />
-  return <InteractiveShell />
+  return mode === 'classic' ? <ClassicLayout /> : <InteractiveShell />
+}
+
+function ContactRoute() {
+  const mode = useSiteStore((s) => s.mode)
+  if (mode === 'classic') return <AboutPage />
+  return (
+    <MicrositeOverlay label="Contact me">
+      <AboutPage />
+    </MicrositeOverlay>
+  )
 }
 
 function TopicRoute() {
@@ -79,5 +88,5 @@ function TopicRoute() {
   const mode = useSiteStore((s) => s.mode)
   if (!topic || !(TOPICS as readonly string[]).includes(topic)) return <Navigate to="/" replace />
   const t = topic as Topic
-  return mode === 'classic' ? <TopicPage topic={t} /> : <BookOverlay key={t} topic={t} />
+  return mode === 'classic' ? <TopicPage topic={t} /> : <TopicOverlay key={t} topic={t} />
 }

@@ -39,7 +39,7 @@ export function HighlightsOverlay({ onClose }: { onClose: () => void }) {
 
   return (
     <motion.div
-      className="hl-overlay"
+      className="ms-overlay"
       onClick={onBackdropClick}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -47,7 +47,7 @@ export function HighlightsOverlay({ onClose }: { onClose: () => void }) {
       transition={{ duration: 0.5 }}
     >
       <motion.section
-        className="hl-panel"
+        className="ms-panel"
         role="dialog"
         aria-modal="true"
         aria-label="My Highlights"
@@ -56,11 +56,11 @@ export function HighlightsOverlay({ onClose }: { onClose: () => void }) {
         exit={{ opacity: 0, y: 12, scale: 0.985, transition: { duration: 0.35 } }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <button type="button" className="hl-close" onClick={onClose} aria-label="Close and enter the room">
+        <button type="button" className="ms-close" onClick={onClose} aria-label="Close and enter the room">
           <Icon name="close" size={16} /> Close
         </button>
 
-        <div ref={scroller} className="hl-scroller" tabIndex={-1} onScroll={onScroll}>
+        <div ref={scroller} className="ms-scroller" tabIndex={-1} onScroll={onScroll}>
           <Highlights variant="overlay" onStart={onClose} />
         </div>
 

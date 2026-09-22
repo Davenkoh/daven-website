@@ -1,7 +1,7 @@
 export type Tag = 'GTM' | 'Operations' | 'Software & AI'
 export const TAGS: readonly Tag[] = ['GTM', 'Operations', 'Software & AI']
 
-/** One room colour per category: lamp amber, rug red, window blue. `paper` is the darker ink for book pages. */
+/** One room colour per category: lamp amber, rug red, window blue. `paper` is the darker ink for light backgrounds. */
 export const TAG_COLOURS: Record<Tag, { dark: string; paper: string }> = {
   GTM: { dark: '#e0a63c', paper: '#b57a14' },
   Operations: { dark: '#e5705a', paper: '#b8452f' },
@@ -34,7 +34,7 @@ export interface Entry {
   tags: Tag[]
   /** hero image (kept for backwards compatibility; prefer `photos`) */
   image?: string
-  /** photos shown on the book page and the classic card: the first is the hero, the rest are thumbnails */
+  /** photos on the card and in the detail dialog: the first is the cover */
   photos?: string[]
   logo?: string
   /** Initials or emoji used when there is no logo image */
