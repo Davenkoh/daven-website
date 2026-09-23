@@ -2,8 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { Mode } from '@/data/types'
 import { readStorage, writeStorage } from '@/lib/storage'
-
-const HIGHLIGHTS_KEY = 'daven.highlightsSeen'
+import { HIGHLIGHTS_KEY } from '@/lib/session'
 
 interface SiteState {
   mode: Mode

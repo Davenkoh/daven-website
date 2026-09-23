@@ -5,6 +5,7 @@ import { CLASSIC_BREAKPOINT } from '@/config/site.config'
 import { TOPICS, type Topic } from '@/data/types'
 import { useCoarsePointer, useMediaQuery } from '@/hooks/useMediaQuery'
 import { readStorage, writeStorage } from '@/lib/storage'
+import { WELCOME_KEY } from '@/lib/session'
 import { useSiteStore } from '@/store/useSiteStore'
 import { useAudioStore } from '@/store/useAudioStore'
 import { useAudioEngine } from '@/audio/useAudioEngine'
@@ -17,8 +18,6 @@ import { MicrositeOverlay } from '@/scene/MicrositeOverlay'
 import { TopicOverlay } from '@/scene/TopicOverlay'
 
 const AboutPage = lazy(() => import('@/about/AboutPage'))
-
-const WELCOME_KEY = 'daven.welcomed'
 
 export default function App() {
   const mode = useSiteStore((s) => s.mode)

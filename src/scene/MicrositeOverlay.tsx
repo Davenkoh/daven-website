@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { motion } from 'motion/react'
 import { Icon } from '@/components/Icon'
 import { useFocusTrap } from '@/hooks/useFocusTrap'
+import { useAudioStore } from '@/store/useAudioStore'
 
 interface MicrositeOverlayProps {
   label: string
@@ -15,7 +16,12 @@ interface MicrositeOverlayProps {
  */
 export function MicrositeOverlay({ label, children }: MicrositeOverlayProps) {
   const navigate = useNavigate()
-  const close = useCallback(() => navigate('/'), [navigate])
+  const close = useCallback(() => {
+    // a deep-link visitor never pressed Start: closing the panel is their first click in the room
+    const audio = useAudioStore.getState()
+    if (!audio.unlocked) void audio.unlock()
+    navigate('/')
+  }, [navigate])
   const panel = useRef<HTMLElement>(null)
   useFocusTrap(panel)
 
