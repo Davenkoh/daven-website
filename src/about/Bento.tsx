@@ -28,13 +28,13 @@ export function BentoItem({ title, icon, glyph, className, children }: BentoItem
   )
 }
 
-/** Hobbies across the top, then languages and the quote side by side. */
+/** Languages and the quote side by side, then the hobbies across the full width. */
 export function Bento() {
   return (
     <div className="mt-10 grid gap-4 md:grid-cols-2">
-      <HobbiesCard />
       <LanguagesCard />
       <QuoteCard />
+      <HobbiesCard />
     </div>
   )
 }
