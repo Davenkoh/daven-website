@@ -9,13 +9,11 @@ export const timeline: TimelineItem[] = [
   { org: 'Ngee Ann Polytechnic', role: 'Diploma in Business (Marketing)', period: '2021 – 2024', icon: 'NP', logo: '/logos/ngee-ann.png' },
 ]
 
-/** TODO(Daven): replace with real hobbies and drop photos into public/photos/ */
 export const hobbies: Hobby[] = [
-  { name: 'Hobby one', caption: 'Replace me in src/data/about.ts', photos: ['/photos/hobby-1-a.jpg', '/photos/hobby-1-b.jpg', '/photos/hobby-1-c.jpg'] },
-  { name: 'Hobby two', caption: 'Replace me in src/data/about.ts', photos: ['/photos/hobby-2-a.jpg', '/photos/hobby-2-b.jpg', '/photos/hobby-2-c.jpg'] },
+  { name: 'Bouldering', photos: ['/photos/hobbies/bouldering.webp'] },
+  { name: 'Running', photos: ['/photos/hobbies/running.webp'] },
 ]
 
-/** TODO(Daven): your favourite quote */
 export const quote = {
   text: 'I will either find a way or make one.',
   author: 'Hannibal Barca',

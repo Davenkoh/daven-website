@@ -4,7 +4,6 @@ import { Icon } from '@/components/Icon'
 import type { ComponentProps } from 'react'
 import { HobbiesCard } from './cards/HobbiesCard'
 import { LanguagesCard } from './cards/LanguagesCard'
-import { PlayerCard } from './cards/PlayerCard'
 import { QuoteCard } from './cards/QuoteCard'
 
 type IconName = ComponentProps<typeof Icon>['name']
@@ -29,12 +28,12 @@ export function BentoItem({ title, icon, glyph, className, children }: BentoItem
   )
 }
 
+/** Hobbies across the top, then languages and the quote side by side. */
 export function Bento() {
   return (
-    <div className="mt-10 grid gap-4 md:grid-cols-3">
+    <div className="mt-10 grid gap-4 md:grid-cols-2">
       <HobbiesCard />
       <LanguagesCard />
-      <PlayerCard />
       <QuoteCard />
     </div>
   )
