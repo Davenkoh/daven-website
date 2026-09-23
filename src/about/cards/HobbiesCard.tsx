@@ -13,7 +13,7 @@ export function HobbiesCard() {
                 alt={h.name}
                 loading="lazy"
                 decoding="async"
-                className="aspect-[16/15] w-full object-cover transition-transform duration-700 group-hover/hobby:scale-[1.03]"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover/hobby:scale-[1.03]"
               />
             </div>
             <figcaption className="mt-3 flex items-baseline justify-between gap-3">
