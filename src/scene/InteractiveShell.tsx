@@ -24,7 +24,6 @@ export function InteractiveShell() {
   const overlayOpen = pathname !== '/'
   const calibration = useSiteStore((s) => s.calibration)
   const highlightsOpen = useSiteStore((s) => s.highlightsOpen)
-  const highlightsSeen = useSiteStore((s) => s.highlightsSeen)
   const closeHighlights = useSiteStore((s) => s.closeHighlights)
   const unlock = useAudioStore((s) => s.unlock)
   const unlocked = useAudioStore((s) => s.unlocked)
@@ -41,11 +40,10 @@ export function InteractiveShell() {
   }, [unlock])
   useCalibrationHotkey()
   const finishHighlights = useCallback(() => {
-    const first = !highlightsSeen
     closeHighlights()
-    // first close of the session doubles as the audio unlock gesture
-    if (first) requestUnlock()
-  }, [highlightsSeen, closeHighlights, requestUnlock])
+    // closing the journey is a click, so it doubles as the audio unlock gesture (a no-op once the music is on)
+    requestUnlock()
+  }, [closeHighlights, requestUnlock])
   // no Start screen any more: the first click in the room itself (journey and panels closed) starts the music.
   // Listening for `click` rather than `pointerdown` means a click that opens the journey is seen after
   // the journey has opened, so it stays silent.
