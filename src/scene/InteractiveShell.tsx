@@ -31,8 +31,13 @@ export function InteractiveShell() {
   const unlockRequested = useRef(false)
   const requestUnlock = useCallback(() => {
     if (unlockRequested.current || useAudioStore.getState().unlocked) return
+    // the journey is silent for as long as it is on screen; the music waits for it to close
+    if (useSiteStore.getState().highlightsOpen) return
     unlockRequested.current = true
-    void unlock()
+    void unlock().finally(() => {
+      // blocked by the browser: allow another try on the next click
+      if (!useAudioStore.getState().unlocked) unlockRequested.current = false
+    })
   }, [unlock])
   useCalibrationHotkey()
   const finishHighlights = useCallback(() => {
@@ -41,11 +46,13 @@ export function InteractiveShell() {
     // first close of the session doubles as the audio unlock gesture
     if (first) requestUnlock()
   }, [highlightsSeen, closeHighlights, requestUnlock])
-  // no Start screen any more: the first click in the room itself (journey and panels closed) starts the music
+  // no Start screen any more: the first click in the room itself (journey and panels closed) starts the music.
+  // Listening for `click` rather than `pointerdown` means a click that opens the journey is seen after
+  // the journey has opened, so it stays silent.
   useEffect(() => {
     if (unlocked || highlightsOpen || overlayOpen) return
-    window.addEventListener('pointerdown', requestUnlock, { once: true })
-    return () => window.removeEventListener('pointerdown', requestUnlock)
+    window.addEventListener('click', requestUnlock)
+    return () => window.removeEventListener('click', requestUnlock)
   }, [unlocked, highlightsOpen, overlayOpen, requestUnlock])
   // first time in the room: spotlight everything clickable
   const [tourOpen, setTourOpen] = useState(() => readStorage('local', TOUR_KEY) !== '1')
