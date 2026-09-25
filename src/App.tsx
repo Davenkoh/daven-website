@@ -1,15 +1,11 @@
-import { lazy, Suspense, useLayoutEffect, useState } from 'react'
+import { lazy, Suspense, useLayoutEffect } from 'react'
 import { Navigate, Route, Routes, useParams } from 'react-router'
-import { AnimatePresence } from 'motion/react'
 import { CLASSIC_BREAKPOINT } from '@/config/site.config'
 import { TOPICS, type Topic } from '@/data/types'
 import { useCoarsePointer, useMediaQuery } from '@/hooks/useMediaQuery'
-import { readStorage, writeStorage } from '@/lib/storage'
-import { WELCOME_KEY } from '@/lib/session'
+import '@/lib/session'
 import { useSiteStore } from '@/store/useSiteStore'
-import { useAudioStore } from '@/store/useAudioStore'
 import { useAudioEngine } from '@/audio/useAudioEngine'
-import { WelcomeGate } from '@/welcome/WelcomeGate'
 import { ClassicLayout } from '@/classic/ClassicLayout'
 import { HomePage } from '@/classic/HomePage'
 import { TopicPage } from '@/classic/TopicPage'
@@ -33,36 +29,18 @@ export default function App() {
 
   useAudioEngine()
 
-  const [welcomed, setWelcomed] = useState(() => readStorage('session', WELCOME_KEY) === '1')
-  const unlock = useAudioStore((s) => s.unlock)
-  const highlightsSeen = useSiteStore((s) => s.highlightsSeen)
-  const enter = () => {
-    writeStorage('session', WELCOME_KEY, '1')
-    // The journey page comes first and stays silent; music starts when it closes.
-    // (If it was already seen this session, start the music now while we still have the click.)
-    if (mode === 'interactive' && highlightsSeen) void unlock()
-    setWelcomed(true)
-  }
-
   return (
-    <>
-      <AnimatePresence>
-        {!welcomed && <WelcomeGate key="gate" onEnter={enter} />}
-      </AnimatePresence>
-      {welcomed && (
-        <Suspense fallback={null}>
-          <Routes>
-            <Route element={<Shell />}>
-              <Route index element={mode === 'classic' ? <HomePage /> : null} />
-              <Route path="contact" element={<ContactRoute />} />
-              <Route path="about" element={<Navigate to="/contact" replace />} />
-              <Route path=":topic" element={<TopicRoute />} />
-            </Route>
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Suspense>
-      )}
-    </>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route element={<Shell />}>
+          <Route index element={mode === 'classic' ? <HomePage /> : null} />
+          <Route path="contact" element={<ContactRoute />} />
+          <Route path="about" element={<Navigate to="/contact" replace />} />
+          <Route path=":topic" element={<TopicRoute />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   )
 }
 

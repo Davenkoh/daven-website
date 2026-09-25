@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Outlet, useLocation } from 'react-router'
 import { AnimatePresence } from 'motion/react'
 import { readStorage, writeStorage } from '@/lib/storage'
@@ -27,13 +27,26 @@ export function InteractiveShell() {
   const highlightsSeen = useSiteStore((s) => s.highlightsSeen)
   const closeHighlights = useSiteStore((s) => s.closeHighlights)
   const unlock = useAudioStore((s) => s.unlock)
+  const unlocked = useAudioStore((s) => s.unlocked)
+  const unlockRequested = useRef(false)
+  const requestUnlock = useCallback(() => {
+    if (unlockRequested.current || useAudioStore.getState().unlocked) return
+    unlockRequested.current = true
+    void unlock()
+  }, [unlock])
   useCalibrationHotkey()
   const finishHighlights = useCallback(() => {
     const first = !highlightsSeen
     closeHighlights()
     // first close of the session doubles as the audio unlock gesture
-    if (first) void unlock()
-  }, [highlightsSeen, closeHighlights, unlock])
+    if (first) requestUnlock()
+  }, [highlightsSeen, closeHighlights, requestUnlock])
+  // no Start screen any more: the first click in the room itself (journey and panels closed) starts the music
+  useEffect(() => {
+    if (unlocked || highlightsOpen || overlayOpen) return
+    window.addEventListener('pointerdown', requestUnlock, { once: true })
+    return () => window.removeEventListener('pointerdown', requestUnlock)
+  }, [unlocked, highlightsOpen, overlayOpen, requestUnlock])
   // first time in the room: spotlight everything clickable
   const [tourOpen, setTourOpen] = useState(() => readStorage('local', TOUR_KEY) !== '1')
   const endTour = useCallback(() => {
