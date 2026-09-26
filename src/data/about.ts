@@ -1,12 +1,12 @@
 import type { Hobby, Language, SkillGroup, TimelineItem } from './types'
 
 export const timeline: TimelineItem[] = [
-  { org: 'Holicay', role: 'Growth & AI Systems Intern', period: '2026', icon: 'H', logo: '/logos/holicay.png' },
-  { org: 'Acai Den', role: 'Co-founder', period: '2022 – 2024', icon: '🫐' },
-  { org: 'RedProp @ PropNex', role: 'Account & Sales Assistant', period: '2023 – 2024', icon: 'R', logo: '/logos/propnex.png' },
-  { org: 'Sphere 8', role: 'Marketing & PR Intern', period: '2023', icon: 'S8' },
-  { org: 'National University of Singapore', role: 'BComp, Business AI Systems', period: '2025 – 2029', icon: '🎓', logo: '/logos/nus.png' },
-  { org: 'Ngee Ann Polytechnic', role: 'Diploma in Business (Marketing)', period: '2021 – 2024', icon: 'NP', logo: '/logos/ngee-ann.png' },
+  { org: 'Holicay', role: 'Growth & AI Systems Intern', period: '2026', icon: '🧭', logo: '/logos/holicay.png' },
+  { org: 'Acai Den', role: 'Co-founder', period: '2022 – 2024', icon: '🫐', logo: '/logos/acai-den.webp' },
+  { org: 'RedProp @ PropNex', role: 'Account & Sales Assistant', period: '2023 – 2024', icon: '🏠', logo: '/logos/propnex.png' },
+  { org: 'Sphere 8', role: 'Marketing & PR Intern', period: '2023', icon: '🌐', logo: '/logos/sphere-8.webp' },
+  { org: 'National University of Singapore', role: 'BComp, Business AI Systems', period: '2025 – 2029', icon: '🎓', logo: '/logos/nus.svg' },
+  { org: 'Ngee Ann Polytechnic', role: 'Diploma in Business (Marketing)', period: '2021 – 2024', icon: '🎓', logo: '/logos/ngee-ann.png' },
 ]
 
 export const hobbies: Hobby[] = [
