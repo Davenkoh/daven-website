@@ -1,5 +1,8 @@
 import type { Entry } from './types'
 
+const P = '/photos/education'
+const C = '/photos/covers'
+
 export const education: Entry[] = [
   {
     slug: 'nus',
@@ -11,19 +14,13 @@ export const education: Entry[] = [
     tags: ['Software & AI'],
     icon: '🎓',
     logo: '/logos/nus.png',
-    summary: 'A technical degree at the intersection of business and AI, chosen after a business diploma.',
-    context: 'Residential College 4, a systems-thinking residential programme.',
-    impact: 'NUS Overseas Colleges (NOC) Vietnam in 2026 and a winter exchange at Korea University in Seoul.',
-    result: "GPA 4.88 / 5.00, Dean's List.",
-    meta: [
-      { label: 'Type', value: 'Education' },
-      { label: 'GPA', value: "4.88 / 5.00 · Dean's List" },
-      { label: 'College', value: 'Residential College 4 (systems thinking)' },
-    ],
+    cover: `${C}/nus.webp`,
+    photos: [`${P}/nus-sign.webp`],
+    body: 'A technical degree at the intersection of business and AI, chosen after a business diploma.',
+    summary: "GPA 4.88 / 5.00, Dean's List.",
     bullets: [
-      "GPA 4.88 / 5.00 (Dean's List).",
       'Residential College 4, a systems-thinking residential programme.',
-      'On NUS Overseas Colleges (NOC) Vietnam in 2026; winter exchange at Korea University in Seoul.',
+      'NUS Overseas Colleges (NOC) Vietnam in 2026 and a winter exchange at Korea University in Seoul.',
     ],
   },
   {
@@ -36,15 +33,10 @@ export const education: Entry[] = [
     tags: ['GTM'],
     icon: 'NP',
     logo: '/logos/ngee-ann.png',
-    summary: 'Business studies with a marketing specialisation and a minor in entrepreneurship.',
-    context: 'Where I first heard founders talk about building something from nothing, and co-founded Acai Den on campus.',
-    impact: 'Top in Marketing Communications.',
-    result: "GPA 3.88 / 4.00, Director's List.",
-    meta: [
-      { label: 'Type', value: 'Education' },
-      { label: 'GPA', value: "3.88 / 4.00 · Director's List" },
-      { label: 'Award', value: 'Top in Marketing Communications' },
-    ],
-    bullets: ["GPA 3.88 / 4.00 (Director's List).", 'Top in Marketing Communications.'],
+    cover: `${C}/ngee-ann.webp`,
+    photos: [`${P}/ngee-ann-graduation.webp`],
+    body: 'Business studies with a marketing specialisation and a minor in entrepreneurship.',
+    summary: "GPA 3.88 / 4.00, Director's List, and Top in Marketing Communications.",
+    bullets: ['Where I first heard founders talk about building something from nothing, and co-founded Acai Den on campus.'],
   },
 ]

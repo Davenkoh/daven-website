@@ -158,55 +158,6 @@
   gap: 14px;
   padding-right: 44px;
 }
-.entry-dialog-facts {
-  display: grid;
-  gap: 12px;
-  margin: 22px 0 0;
-  padding: 18px;
-  border-radius: 16px;
-  border: 1px solid var(--color-line);
-  background: rgba(255, 255, 255, 0.03);
-}
-.entry-dialog-facts dt {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--c);
-}
-.entry-dialog-facts dd {
-  margin: 2px 0 0;
-  font-size: 17px;
-  line-height: 1.55;
-  color: rgba(242, 242, 242, 0.88);
-}
-.entry-dialog-meta {
-  display: grid;
-  gap: 8px;
-  margin: 22px 0 0;
-  font-size: 16px;
-}
-.entry-dialog-meta > div {
-  display: flex;
-  gap: 12px;
-}
-.entry-dialog-meta dt {
-  flex: 0 0 96px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-}
-.entry-dialog-meta dd {
-  margin: 0;
-  color: rgba(242, 242, 242, 0.85);
-}
-.entry-dialog-meta a {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: rgba(255, 255, 255, 0.3);
-}
 .entry-dialog-section {
   margin-top: 34px;
 }
@@ -364,12 +315,6 @@
   font-family: var(--font-mono);
   font-size: 11px;
   color: #fff;
-}
-@media (min-width: 640px) {
-  .entry-dialog-facts {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px 22px;
-  }
 }
 @media (max-width: 640px) {
   .entry-modal {

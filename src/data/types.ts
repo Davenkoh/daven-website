@@ -13,12 +13,6 @@ export const TOPICS: readonly Topic[] = ['career', 'education', 'projects', 'com
 
 export type Mode = 'interactive' | 'classic'
 
-export interface EntryMeta {
-  label: string
-  value: string
-  href?: string
-}
-
 export interface EntryLink {
   label: string
   href: string
@@ -51,15 +45,10 @@ export interface Entry {
   logo?: string
   /** Initials or emoji used when there is no logo image */
   icon?: string
-  meta?: EntryMeta[]
   /** the one-paragraph description on the gallery card (falls back to `summary`) */
   body?: string
   /** "Summary" in the detail dialog: a paragraph or bullet points */
   summary?: string | string[]
-  context?: string
-  /** highest-impact item */
-  impact?: string
-  result?: string
   description?: string
   /** "The full story" in the detail dialog */
   bullets?: string[]

@@ -36,12 +36,6 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
   // with a dedicated cover crop every photo shows inside; otherwise the first photo is the cover
   const photos = entryPhotos(entry)
   const inside = entry.cover ? photos : photos.slice(1)
-  const facts: [string, string | undefined][] = [
-    ['Context', entry.context],
-    ['Highest impact', entry.impact],
-    ['Result', entry.result],
-  ]
-  const presentFacts = facts.filter((f): f is [string, string] => !!f[1])
 
   useEffect(() => {
     dialog.current?.focus({ preventScroll: true })
@@ -124,16 +118,6 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
               )}
             </Section>
           )}
-          {presentFacts.length > 0 && (
-            <dl className="entry-dialog-facts">
-              {presentFacts.map(([label, value]) => (
-                <div key={label}>
-                  <dt>{label}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
-          )}
           {entry.bullets && (
             <Section label="The full story">
               <ul>
@@ -151,24 +135,6 @@ export function EntryDetail({ entry, colour, showTags, onClose }: EntryDetailPro
                 ))}
               </ul>
             </Section>
-          )}
-          {entry.meta && (
-            <dl className="entry-dialog-meta">
-              {entry.meta.map((m) => (
-                <div key={m.label}>
-                  <dt>{m.label}</dt>
-                  <dd>
-                    {m.href ? (
-                      <a href={m.href} target="_blank" rel="noreferrer">
-                        {m.value}
-                      </a>
-                    ) : (
-                      m.value
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
           )}
           {entry.figures?.map((f) => (
             <Section key={f.label} label={f.label}>

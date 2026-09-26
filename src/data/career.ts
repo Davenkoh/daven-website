@@ -1,5 +1,9 @@
 import type { Entry } from './types'
 
+const H = '/photos/highlights'
+const P = '/photos/career'
+const C = '/photos/covers'
+
 export const career: Entry[] = [
   {
     slug: 'holicay',
@@ -11,20 +15,16 @@ export const career: Entry[] = [
     tags: ['GTM', 'Software & AI'],
     icon: 'H',
     logo: '/logos/holicay.png',
-    summary: 'Built the AI systems that gave a small startup a steady stream of content, creators and reporting.',
-    context: 'NOC Vietnam internship at a travel planning app in Ho Chi Minh City, where creator marketing was run by hand.',
-    impact: 'An end-to-end AI content engine: topic research, scripting, production and publishing in one pipeline.',
-    result: '1M TikTok views from 4 posts at under US$1 each; daily outreach down from ~4 hours to under 1; monthly reporting from 3 days to 5 minutes.',
-    meta: [
-      { label: 'Type', value: 'Internship · NOC Vietnam' },
-      { label: 'Outcome', value: '1M TikTok views from 4 posts' },
-      { label: 'Cost', value: '< US$1 per post' },
-    ],
+    cover: `${C}/holicay.webp`,
+    photos: [`${P}/holicay-team.webp`, `${H}/holicay-tiktok-1.webp`, `${H}/holicay-tiktok-2.webp`],
+    body: 'Built the AI systems that gave a small startup a steady stream of content, creators and reporting.',
+    summary: '1M TikTok views from 4 posts at under US$1 each; daily creator outreach down from ~4 hours to under 1; monthly reporting from 3 days to 5 minutes.',
     bullets: [
       'Built an end-to-end AI content engine spanning topic research, scripting, production and publishing; generated 1M TikTok views from 4 posts at under US$1 each, replacing ~US$100 to commission an influencer.',
       'Set up an AI system for influencer selection, outreach and CRM tracking, handling ~200 cold outreach a week. About 4 hours of manual work a day fell to under 1 hour.',
       'Cut monthly partnership reporting from 3 days of manual data entry to 5 minutes with an AI agent that tracks ~50 influencers and 4,500 videos a month across 3 platforms in the CRM.',
     ],
+    figures: [{ label: 'AI content engine architecture', src: `${H}/holicay-architecture.webp` }],
   },
   {
     slug: 'acai-den',
@@ -35,15 +35,10 @@ export const career: Entry[] = [
     period: 'Nov 2022 – Nov 2024',
     tags: ['GTM', 'Operations'],
     icon: '🫐',
-    summary: 'Co-founded and ran an acai bowl store at Ngee Ann Polytechnic for two years.',
-    context: 'Started at 18 with a S$5,000 start-up grant and no experience running a business.',
-    impact: 'Two business-model revamps while leading operations, finance, sales and marketing.',
-    result: '~S$200k revenue at ~30% net margin; ~20 student staff and a manager hired and trained.',
-    meta: [
-      { label: 'Type', value: 'Co-founder · F&B' },
-      { label: 'Outcome', value: '~S$200k revenue at ~30% net margin' },
-      { label: 'Grant', value: 'S$5,000 start-up grant' },
-    ],
+    cover: `${C}/acai-den.webp`,
+    photos: [`${H}/acai-film-crew.webp`, `${H}/acai-queue.webp`, `${H}/acai-food.webp`, `${H}/acai-newspaper.webp`, `${H}/acai-start.webp`, `${H}/acai-pitch.webp`],
+    body: 'Co-founded and ran an acai bowl store at Ngee Ann Polytechnic for two years.',
+    summary: '~S$200k revenue at ~30% net margin; ~20 student staff and a manager hired and trained.',
     bullets: [
       'Grew the business from concept to ~S$200k revenue at ~30% net margin in two years, through two strategic business-model revamps, while leading operations, finance, sales and marketing.',
       'Hired and trained about 20 student staff and a manager over two years, and wrote the SOPs, training, payroll, inventory and cost-control systems.',
@@ -60,15 +55,10 @@ export const career: Entry[] = [
     tags: ['GTM', 'Operations', 'Software & AI'],
     icon: 'R',
     logo: '/logos/propnex.png',
-    summary: "Turned a real estate team's WhatsApp chats into a working CRM pipeline.",
-    context: 'Part-time role with a PropNex team handling hundreds of client conversations in unstructured chats.',
-    impact: 'Automated lead capture and follow-up on GoHighLevel and WhatsApp.',
-    result: '~500 clients sorted by stage in one CRM pipeline.',
-    meta: [
-      { label: 'Type', value: 'Part-time' },
-      { label: 'Outcome', value: '~500 clients in a stage-sorted CRM' },
-      { label: 'Stack', value: 'GoHighLevel · WhatsApp' },
-    ],
+    cover: `${C}/redprop.webp`,
+    photos: [`${P}/redprop-office.webp`],
+    body: "Turned a real estate team's WhatsApp chats into a working CRM pipeline.",
+    summary: '~500 clients sorted by stage in one CRM pipeline, with automated lead capture and follow-up on GoHighLevel and WhatsApp.',
     bullets: [
       'Built automated lead capture and follow-up on GoHighLevel and WhatsApp, converting unstructured chats for ~500 clients into a stage-sorted CRM pipeline.',
     ],
@@ -82,17 +72,8 @@ export const career: Entry[] = [
     period: 'Mar – Aug 2023',
     tags: ['GTM'],
     icon: 'S8',
-    summary: 'Ran social media and PR for a tech consultancy startup in Bangkok.',
-    context: 'Six-month placement under the Global Entrepreneurial Internship Programme.',
-    impact: 'Wrote and published 60+ posts across 3 platforms.',
-    result: '+120% social media views in six months.',
-    meta: [
-      { label: 'Type', value: 'Global Entrepreneurial Internship Programme' },
-      { label: 'Outcome', value: '+120% social media views in 6 months' },
-      { label: 'Output', value: '60+ posts · 3 platforms' },
-    ],
-    bullets: [
-      'Grew social media views 120% in six months, writing and publishing 60+ posts across 3 social media platforms.',
-    ],
+    body: 'Ran social media and PR for a tech consultancy startup in Bangkok.',
+    summary: '+120% social media views in six months, on a six-month Global Entrepreneurial Internship Programme placement.',
+    bullets: ['Grew social media views 120% in six months, writing and publishing 60+ posts across 3 social media platforms.'],
   },
 ]
