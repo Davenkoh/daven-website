@@ -1,5 +1,6 @@
 import { lazy, Suspense, useLayoutEffect } from 'react'
 import { Navigate, Route, Routes, useParams } from 'react-router'
+import { Analytics } from '@vercel/analytics/react'
 import { CLASSIC_BREAKPOINT } from '@/config/site.config'
 import { TOPICS, type Topic } from '@/data/types'
 import { useCoarsePointer, useMediaQuery } from '@/hooks/useMediaQuery'
@@ -40,6 +41,7 @@ export default function App() {
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Analytics />
     </Suspense>
   )
 }
