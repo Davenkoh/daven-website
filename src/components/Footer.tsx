@@ -24,11 +24,13 @@ export function Footer() {
             </a>
           ))}
         </FooterColumn>
-        <FooterColumn title="Resources">
-          <a href={SITE.resumeUrl} target="_blank" rel="noreferrer" className="hover:text-fg">
-            Download resume
-          </a>
-        </FooterColumn>
+        {SITE.resumeUrl && (
+          <FooterColumn title="Resources">
+            <a href={SITE.resumeUrl} target="_blank" rel="noreferrer" className="hover:text-fg">
+              Download resume
+            </a>
+          </FooterColumn>
+        )}
       </div>
       <div className="mx-auto max-w-6xl px-6 pb-28 text-xs text-muted">
         <span>© {new Date().getFullYear()} {SITE.name}</span>

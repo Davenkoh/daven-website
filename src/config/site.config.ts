@@ -13,12 +13,11 @@ export const SITE = {
   location: 'Singapore',
   timeZone: 'Asia/Singapore',
   timeZoneLabel: 'SGT',
-  email: 'Davenkoh3@gmail.com',
-  resumeUrl: '/Daven-Koh-Resume.pdf',
+  /** Empty until the PDF is in public/ (e.g. '/Daven-Koh-Resume.pdf'); the Resume links stay inert meanwhile. */
+  resumeUrl: '' as string,
   socials: [
     { label: 'LinkedIn', href: 'https://linkedin.com/in/daven-koh' },
     { label: 'GitHub', href: 'https://github.com/Davenkoh' },
-    { label: 'Email', href: 'mailto:Davenkoh3@gmail.com' },
   ],
   pages: [
     { label: 'Home', to: '/' },

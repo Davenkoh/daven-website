@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import { SITE } from '@/config/site.config'
 import { Icon } from '@/components/Icon'
 
-const pill =
-  'inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/15 px-4 py-2 text-sm font-medium text-[#ffd98a] shadow-[0_6px_20px_rgba(224,166,60,0.18)] transition hover:bg-accent/25 hover:text-white'
+const pillBase =
+  'inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/15 px-4 py-2 text-sm font-medium text-[#ffd98a] shadow-[0_6px_20px_rgba(224,166,60,0.18)]'
+const pill = `${pillBase} transition hover:bg-accent/25 hover:text-white`
 
 function LinkedInMark() {
   return (
@@ -16,26 +16,13 @@ function LinkedInMark() {
   )
 }
 
-/** Email, LinkedIn, GitHub and the resume, beside the About title. */
+/** LinkedIn, GitHub and the resume, beside the About title. */
 export function ConnectLinks() {
-  const [copied, setCopied] = useState(false)
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(SITE.email)
-      setCopied(true)
-      window.setTimeout(() => setCopied(false), 1800)
-    } catch {
-      window.location.href = `mailto:${SITE.email}`
-    }
-  }
   const linkedin = SITE.socials.find((s) => s.label === 'LinkedIn')
   const github = SITE.socials.find((s) => s.label === 'GitHub')
   return (
     <div className="md:text-right">
       <div className="flex flex-wrap gap-2 md:justify-end">
-        <button type="button" onClick={copy} className={pill} title="Copy email">
-          <Icon name="mail" size={16} /> {copied ? 'Copied!' : SITE.email}
-        </button>
         {linkedin && (
           <a href={linkedin.href} target="_blank" rel="noreferrer" className={pill}>
             <LinkedInMark /> LinkedIn
@@ -46,9 +33,15 @@ export function ConnectLinks() {
             <img src="/logos/tools/github.svg" alt="" className="h-[18px] w-[18px]" /> GitHub
           </a>
         )}
-        <a href={SITE.resumeUrl} target="_blank" rel="noreferrer" className={pill}>
-          <Icon name="download" size={16} /> Resume
-        </a>
+        {SITE.resumeUrl ? (
+          <a href={SITE.resumeUrl} target="_blank" rel="noreferrer" className={pill}>
+            <Icon name="download" size={16} /> Resume
+          </a>
+        ) : (
+          <span className={`${pillBase} cursor-default`} title="Coming soon">
+            <Icon name="download" size={16} /> Resume
+          </span>
+        )}
       </div>
     </div>
   )

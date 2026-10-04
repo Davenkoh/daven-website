@@ -28,7 +28,7 @@ Live at https://davenkoh-website.vercel.app (Vercel project `daven-website`, con
 | `public/audio/track-1.mp3` … `track-3.mp3` | lofi tracks (done: three 10-minute sides, 128 kbps) | Titles/artists live in `src/data/tracks.ts`. Keep the ids — topics map to tracks in `src/config/site.config.ts`. To re-cut: `ffmpeg -ss 0 -t 600 -i source.m4a -codec:a libmp3lame -b:a 128k public/audio/track-1.mp3`. |
 | `public/photos/avatar.jpg` | small round avatar | used in the nav pill |
 | `public/photos/hobbies/*.webp` | hobby photos (Bouldering, Running) | wired in `src/data/about.ts` |
-| `public/Daven-Koh-Resume.pdf` | resume | linked from the footer |
+| `public/Daven-Koh-Resume.pdf` | resume (not added yet) | once it is in place, set `resumeUrl` in `src/config/site.config.ts` to switch on the Resume pill and the footer link |
 
 Regenerate placeholders with `python3 scripts/placeholders.py --force`.
 
